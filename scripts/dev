@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -o errexit
+# set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+  set -o xtrace
+fi
+
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+  echo 'Usage: ./dev
+
+This script :
+
+- install the npm dependencies
+- starts the npm development server
+
+'
+  exit
+fi
+
+cd "$(dirname "$0")"
+
+main() {
+  # kill previously running servers
+  kill -9 "$(lsof -i :5200 -t)" 2>/dev/null || true
+
+  (
+    cd ../ \
+    && echo "Installing dependencies..." \
+    && bun install > /dev/null \
+    && bun run dev
+  )
+}
+
+main "$@"
