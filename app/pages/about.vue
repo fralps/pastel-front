@@ -1,5 +1,5 @@
 <template>
   <section>
-    <p>This page will be displayed at the /about route.</p>
+    <h1 class="font-bold text-2xl text-(--ui-primary)">{{ $t('about') }}</h1>
   </section>
 </template>
