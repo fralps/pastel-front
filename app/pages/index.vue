@@ -39,7 +39,7 @@
         :alt="t('landing.heroBanner.imageAlt')"
         class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
       >
-    </UpageHero>
+    </UPageHero>
 
     <section id="features">
       <UPageSection
