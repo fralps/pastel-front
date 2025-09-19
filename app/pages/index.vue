@@ -11,7 +11,7 @@
   const links = ref([
   {
     label: 'Se connecter',
-    to: '/auth/login',
+    to: '/auth/sign-in',
     icon: 'i-lucide-log-in',
   },
   {
@@ -52,6 +52,7 @@
           size="md"
           description="Easily log and categorize your dreams with our intuitive interface."
           icon="i-lucide-bed"
+          class="text-center"
         />
 
         <UPageFeature
@@ -59,6 +60,7 @@
           title="Nightmares"
           description="Track and analyze your nightmares to understand patterns and triggers."
           icon="i-lucide-cloud-lightning"
+          class="text-center"
         />
 
         <UPageFeature
@@ -66,6 +68,7 @@
           title="Lucid Dreams"
           description="Explore and enhance your lucid dreaming experiences."
           icon="i-lucide-rainbow"
+          class="text-center"
         />
       </div>
     </section>

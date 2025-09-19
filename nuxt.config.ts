@@ -19,8 +19,5 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   devServer: {
     port: 8080,
-  },
-  app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
   }
 })
