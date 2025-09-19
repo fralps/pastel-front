@@ -1,5 +1,43 @@
 {
-  "welcome": "Welcome",
+  "landing": {
+    "header": {
+      "title": "Pastel",
+      "feature": "Features",
+      "demo": "Demo"
+    },
+    "heroBanner": {
+      "title": "Your dreams diary",
+      "description": "Create, organize, and keep your dreams with ease using Pastel.",
+      "ctaPrimary": "Sign In",
+      "ctaSecondary": "Sign Up",
+      "imageAlt": "Photo of the Pastel dashboard"
+    },
+    "featuresSection": {
+      "title": "Features",
+      "dreams": {
+        "title": "Dreams",
+        "description": "Easily log and categorize your dreams with our intuitive interface."
+      },
+      "nightmares": {
+        "title": "Nightmares",
+        "description": "Track and analyze your nightmares to understand patterns and triggers."
+      },
+      "lucidDreams": {
+        "title": "Lucid Dreams",
+        "description": "Explore and enhance your lucid dreaming experiences."
+      }
+    },
+    "demoSection": {
+      "title": "Demo",
+      "description": "See how Pastel can transform your dream journaling experience.",
+      "browserNotSupported": "Your browser does not support the interactive demo."
+    },
+    "footer": {
+      "rights": "All rights reserved.",
+      "features": "Features",
+      "demo": "Demo"
+    }
+  },
   "meta": {
     "landing": {
       "title": "Pastel - Home",

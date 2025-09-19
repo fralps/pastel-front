@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui'
+  import type { NavigationMenuItem } from '@nuxt/ui'
 
-const items: NavigationMenuItem[] = [
-  {
-    label: 'Features',
-    to: '#features'
-  },
-  {
-    label: 'Demo',
-    to: '#demo'
-  }
-]
+  const { t } = useI18n()
+
+  const items: NavigationMenuItem[] = [
+    {
+      label: t('landing.footer.features'),
+      to: '#features'
+    },
+    {
+      label: t('landing.footer.demo'),
+      to: '#demo'
+    }
+  ]
 </script>
 
 <template>
   <UFooter>
     <template #left>
-      <p class="text-muted text-sm">Pastel, Copyright © {{ new Date().getFullYear() }}</p>
+      <p class="text-muted text-sm">Pastel, {{ t('landing.footer.rights') }} {{ new Date().getFullYear() }}</p>
     </template>
 
     <UNavigationMenu :items="items" variant="link" />
@@ -38,7 +40,7 @@ const items: NavigationMenuItem[] = [
         size="xs"
         to="https://fralps-dev.vercel.app/"
         target="_blank"
-        aria-label="Website"
+        aria-label="Portfolio"
       />
       <UButton
         icon="i-simple-icons-bento"

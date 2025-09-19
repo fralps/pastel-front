@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  const { t } = useI18n()
+
   useSeoMeta({
     title: $t('meta.landing.title'),
     ogTitle: $t('meta.landing.ogTitle'),
@@ -10,15 +12,15 @@
 
   const links = ref([
   {
-    label: 'Se connecter',
+    label: $t('landing.heroBanner.ctaPrimary'),
     to: '/auth/sign-in',
     icon: 'i-lucide-log-in',
   },
   {
-    label: 'S\'inscrire',
+    label: $t('landing.heroBanner.ctaSecondary'),
     to: '/auth/register',
-    color: 'neutral',
-    variant: 'subtle',
+    color: 'neutral' as const,
+    variant: 'subtle' as const,
     trailingIcon: 'i-lucide-milestone'
   }])
 </script>
@@ -28,45 +30,45 @@
     <LandingHeader />
 
     <UPageHero
-      title="Your dreams diary"
-      description="Create, organize, and keep your dreams with ease using Pastel."
+      :title="t('landing.heroBanner.title')"
+      :description="t('landing.heroBanner.description')"
       :links="links">
 
       <img
         src="https://images.unsplash.com/photo-1504253163759-c23fccaebb55?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="App screenshot"
+        :alt="t('landing.heroBanner.imageAlt')"
         class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
       >
     </UpageHero>
 
     <section id="features">
       <UPageSection
-        title="Features"
+        :title="t('landing.featuresSection.title')"
         icon="i-lucide-package"
       />
 
       <div class="flex flex-col md:flex-row gap-12 w-[75%] mx-auto">
         <UPageFeature
           orientation="vertical"
-          title="Dreams"
+          :title="t('landing.featuresSection.dreams.title')"
           size="md"
-          description="Easily log and categorize your dreams with our intuitive interface."
+          :description="t('landing.featuresSection.dreams.description')"
           icon="i-lucide-bed"
           class="text-center"
         />
 
         <UPageFeature
           orientation="vertical"
-          title="Nightmares"
-          description="Track and analyze your nightmares to understand patterns and triggers."
+          :title="t('landing.featuresSection.nightmares.title')"
+          :description="t('landing.featuresSection.nightmares.description')"
           icon="i-lucide-cloud-lightning"
           class="text-center"
         />
 
         <UPageFeature
           orientation="vertical"
-          title="Lucid Dreams"
-          description="Explore and enhance your lucid dreaming experiences."
+          :title="t('landing.featuresSection.lucidDreams.title')"
+          :description="t('landing.featuresSection.lucidDreams.description')"
           icon="i-lucide-rainbow"
           class="text-center"
         />
@@ -75,7 +77,8 @@
 
     <section id="demo" class="mb-20 px-6 md:px-0">
       <UPageSection
-        title="Demo"
+        :title="t('landing.demoSection.title')"
+        :description="t('landing.demoSection.description')"
         icon="i-lucide-play-circle"
       />
 
@@ -84,7 +87,7 @@
           src="https://docs.material-tailwind.com/demo.mp4"
           type="video/mp4"
         >
-        Your browser does not support the video tag.
+        {{ $t('landing.demoSection.browserNotSupported') }}
       </video>
     </section>
 

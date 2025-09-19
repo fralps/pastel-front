@@ -37,3 +37,6 @@ jobs:
 
       - name: 🔬 Run ESLint
         run: bun run eslint
+
+      - name: 🔬 Run TypeScript type checking
+        run: bun run typecheck
