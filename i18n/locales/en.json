@@ -1,4 +1,11 @@
 {
   "welcome": "Welcome",
-  "about": "About"
+  "meta": {
+    "landing": {
+      "title": "Pastel - Home",
+      "ogTitle": "Pastel - Home",
+      "description": "Welcome to Pastel, your content creation platform.",
+      "ogDescription": "Welcome to Pastel, your content creation platform."
+    }
+  }
 }

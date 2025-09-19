@@ -1,104 +1,90 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
-  import type { SelectItem, NavigationMenuItem  } from '@nuxt/ui'
-
-  
-  const { locale, locales, setLocale } = useI18n({ useScope: 'global' })
-
-  const items = ref<SelectItem[]>(locales.value.map((locale) => ({
-    label: locale.name,
-    code: locale.code,
-    value: locale.code
-  })))
-  const currentLocale = ref(locale.value)
-
-  const links = ref([
-    {
-      label: 'Documentation',
-      to: 'https://ui.nuxt.com/getting-started/installation/nuxt',
-      color: 'neutral',
-      icon: 'i-lucide-square-play'
-    },
-    {
-      label: 'Github',
-      to: 'https://github.com/nuxt/ui',
-      color: 'neutral',
-      variant: 'outline',
-      trailingIcon: 'i-simple-icons-github'
-    }
-  ])
-
   useSeoMeta({
-    title: 'Pastel - Accueil',
-    ogTitle: 'Pastel - Accueil',
-    description: 'Bienvenue sur Pastel, votre plateforme de création de contenu.',
-    ogDescription: 'Bienvenue sur Pastel, votre plateforme de création de contenu.',
+    title: $t('meta.landing.title'),
+    ogTitle: $t('meta.landing.ogTitle'),
+    description: $t('meta.landing.description'),
+    ogDescription: $t('meta.landing.ogDescription'),
     ogImage: 'https://example.com/image.png',
     twitterCard: 'summary_large_image',
   })
 
-const route = useRoute()
-
-const navLinks = computed<NavigationMenuItem[]>(() => [
+  const links = ref([
   {
-    label: 'Docs',
-    to: '/docs/getting-started',
-    active: route.path.startsWith('/docs/getting-started')
+    label: 'Se connecter',
+    to: '/auth/login',
+    icon: 'i-lucide-log-in',
   },
   {
-    label: 'Components',
-    to: '/docs/components',
-    active: route.path.startsWith('/docs/components')
-  },
-  {
-    label: 'Figma',
-    to: 'https://go.nuxt.com/figma-ui',
-    target: '_blank'
-  },
-  {
-    label: 'Releases',
-    to: 'https://github.com/nuxt/ui/releases',
-    target: '_blank'
-  }
-])
+    label: 'S\'inscrire',
+    to: '/auth/register',
+    color: 'neutral',
+    variant: 'subtle',
+    trailingIcon: 'i-lucide-milestone'
+  }])
 </script>
 
 <template>
   <div>
-    <UHeader>
-      <template #title>
-        <Logo class="h-6 w-auto" />
-      </template>
+    <LandingHeader />
 
-      <UNavigationMenu :items="navLinks" />
-
-      <template #right>
-        <UColorModeButton />
-
-        <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            to="https://github.com/nuxt/ui"
-            target="_blank"
-            icon="i-simple-icons-github"
-            aria-label="GitHub"
-          />
-        </UTooltip>
-      </template>
-    </UHeader>
     <UPageHero
-      title="Pastel"
-      description="Create and keep your dreams alive."
-      :links="links"
-      headline="The ultimate dreams diary platform"
-    />
+      title="Your dreams diary"
+      description="Create, organize, and keep your dreams with ease using Pastel."
+      :links="links">
 
-    {{ $t('welcome') }}
+      <img
+        src="https://images.unsplash.com/photo-1504253163759-c23fccaebb55?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="App screenshot"
+        class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
+      >
+    </UpageHero>
 
-      <USelect v-model="currentLocale" :items="items" @change="() => setLocale(currentLocale)" />
+    <section id="features">
+      <UPageSection
+        title="Features"
+        icon="i-lucide-package"
+      />
 
-    <NuxtLink to="/about">About</NuxtLink>
+      <div class="flex flex-col md:flex-row gap-12 w-[75%] mx-auto">
+        <UPageFeature
+          orientation="vertical"
+          title="Dreams"
+          size="md"
+          description="Easily log and categorize your dreams with our intuitive interface."
+          icon="i-lucide-bed"
+        />
+
+        <UPageFeature
+          orientation="vertical"
+          title="Nightmares"
+          description="Track and analyze your nightmares to understand patterns and triggers."
+          icon="i-lucide-cloud-lightning"
+        />
+
+        <UPageFeature
+          orientation="vertical"
+          title="Lucid Dreams"
+          description="Explore and enhance your lucid dreaming experiences."
+          icon="i-lucide-rainbow"
+        />
+      </div>
+    </section>
+
+    <section id="demo" class="mb-20 px-6 md:px-0">
+      <UPageSection
+        title="Demo"
+        icon="i-lucide-play-circle"
+      />
+
+      <video class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4" controls>
+        <source
+          src="https://docs.material-tailwind.com/demo.mp4"
+          type="video/mp4"
+        >
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <LandingFooter />
   </div>
 </template>
