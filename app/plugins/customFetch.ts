@@ -4,14 +4,14 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const $customFetch = $fetch.create({
     baseURL: config.baseUrl as string ?? 'http://localhost:3000/api/v1',
-    onRequest({ request, options, error }) {
+    onRequest({ _request, options, _error }) {
       if (userAuth.value) {
         // Add Authorization header
         options.headers.set('Authorization', `Bearer ${userAuth.value}`)
       }
     },
-    onResponse({ response }) {
-      // response._data = new myBusinessResponse(response._data)
+    onResponse({ _response }) {
+      // _response._data = new myBusinessResponse(_response._data)
     },
     async onResponseError({ response }) {
       if (response.status === 401) {
