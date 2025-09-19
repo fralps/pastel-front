@@ -3,7 +3,7 @@ import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
 useSeoMeta({
-  title: 'Sign up',
+  title: 'Pastel - Sign up',
   description: 'Create an account to get started'
 })
 

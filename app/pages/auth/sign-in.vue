@@ -3,7 +3,7 @@ import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
 useSeoMeta({
-  title: 'Login',
+  title: 'Pastel - Login',
   description: 'Login to your account to continue'
 })
 
