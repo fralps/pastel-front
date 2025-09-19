@@ -11,7 +11,7 @@ const toast = useToast()
 
 const fields = [{
   name: 'email',
-  type: 'text' as const,
+  type: 'email' as const,
   label: 'Email',
   placeholder: 'Enter your email'
 },
