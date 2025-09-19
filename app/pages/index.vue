@@ -1,104 +1,96 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
-  import type { SelectItem, NavigationMenuItem  } from '@nuxt/ui'
-
-  
-  const { locale, locales, setLocale } = useI18n({ useScope: 'global' })
-
-  const items = ref<SelectItem[]>(locales.value.map((locale) => ({
-    label: locale.name,
-    code: locale.code,
-    value: locale.code
-  })))
-  const currentLocale = ref(locale.value)
-
-  const links = ref([
-    {
-      label: 'Documentation',
-      to: 'https://ui.nuxt.com/getting-started/installation/nuxt',
-      color: 'neutral',
-      icon: 'i-lucide-square-play'
-    },
-    {
-      label: 'Github',
-      to: 'https://github.com/nuxt/ui',
-      color: 'neutral',
-      variant: 'outline',
-      trailingIcon: 'i-simple-icons-github'
-    }
-  ])
+  const { t } = useI18n()
 
   useSeoMeta({
-    title: 'Pastel - Accueil',
-    ogTitle: 'Pastel - Accueil',
-    description: 'Bienvenue sur Pastel, votre plateforme de création de contenu.',
-    ogDescription: 'Bienvenue sur Pastel, votre plateforme de création de contenu.',
+    title: $t('meta.landing.title'),
+    ogTitle: $t('meta.landing.ogTitle'),
+    description: $t('meta.landing.description'),
+    ogDescription: $t('meta.landing.ogDescription'),
     ogImage: 'https://example.com/image.png',
     twitterCard: 'summary_large_image',
   })
 
-const route = useRoute()
-
-const navLinks = computed<NavigationMenuItem[]>(() => [
+  const links = ref([
   {
-    label: 'Docs',
-    to: '/docs/getting-started',
-    active: route.path.startsWith('/docs/getting-started')
+    label: $t('landing.heroBanner.ctaPrimary'),
+    to: '/auth/sign-in',
+    icon: 'i-lucide-log-in',
   },
   {
-    label: 'Components',
-    to: '/docs/components',
-    active: route.path.startsWith('/docs/components')
-  },
-  {
-    label: 'Figma',
-    to: 'https://go.nuxt.com/figma-ui',
-    target: '_blank'
-  },
-  {
-    label: 'Releases',
-    to: 'https://github.com/nuxt/ui/releases',
-    target: '_blank'
-  }
-])
+    label: $t('landing.heroBanner.ctaSecondary'),
+    to: '/auth/register',
+    color: 'neutral' as const,
+    variant: 'subtle' as const,
+    trailingIcon: 'i-lucide-milestone'
+  }])
 </script>
 
 <template>
   <div>
-    <UHeader>
-      <template #title>
-        <Logo class="h-6 w-auto" />
-      </template>
+    <LandingHeader />
 
-      <UNavigationMenu :items="navLinks" />
-
-      <template #right>
-        <UColorModeButton />
-
-        <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            to="https://github.com/nuxt/ui"
-            target="_blank"
-            icon="i-simple-icons-github"
-            aria-label="GitHub"
-          />
-        </UTooltip>
-      </template>
-    </UHeader>
     <UPageHero
-      title="Pastel"
-      description="Create and keep your dreams alive."
-      :links="links"
-      headline="The ultimate dreams diary platform"
-    />
+      :title="t('landing.heroBanner.title')"
+      :description="t('landing.heroBanner.description')"
+      :links="links">
 
-    {{ $t('welcome') }}
+      <img
+        src="https://images.unsplash.com/photo-1504253163759-c23fccaebb55?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        :alt="t('landing.heroBanner.imageAlt')"
+        class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
+      >
+    </UPageHero>
 
-      <USelect v-model="currentLocale" :items="items" @change="() => setLocale(currentLocale)" />
+    <section id="features">
+      <UPageSection
+        :title="t('landing.featuresSection.title')"
+        icon="i-lucide-package"
+      />
 
-    <NuxtLink to="/about">About</NuxtLink>
+      <div class="flex flex-col md:flex-row gap-12 w-[75%] mx-auto">
+        <UPageFeature
+          orientation="vertical"
+          :title="t('landing.featuresSection.dreams.title')"
+          size="md"
+          :description="t('landing.featuresSection.dreams.description')"
+          icon="i-lucide-bed"
+          class="text-center"
+        />
+
+        <UPageFeature
+          orientation="vertical"
+          :title="t('landing.featuresSection.nightmares.title')"
+          :description="t('landing.featuresSection.nightmares.description')"
+          icon="i-lucide-cloud-lightning"
+          class="text-center"
+        />
+
+        <UPageFeature
+          orientation="vertical"
+          :title="t('landing.featuresSection.lucidDreams.title')"
+          :description="t('landing.featuresSection.lucidDreams.description')"
+          icon="i-lucide-rainbow"
+          class="text-center"
+        />
+      </div>
+    </section>
+
+    <section id="demo" class="mb-20 px-6 md:px-0">
+      <UPageSection
+        :title="t('landing.demoSection.title')"
+        :description="t('landing.demoSection.description')"
+        icon="i-lucide-play-circle"
+      />
+
+      <video class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4" controls>
+        <source
+          src="https://docs.material-tailwind.com/demo.mp4"
+          type="video/mp4"
+        >
+        {{ $t('landing.demoSection.browserNotSupported') }}
+      </video>
+    </section>
+
+    <LandingFooter />
   </div>
 </template>

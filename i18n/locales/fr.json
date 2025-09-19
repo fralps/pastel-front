@@ -1,4 +1,49 @@
 {
-  "welcome": "Bienvenue",
-  "about": "À propos"
+  "landing": {
+    "header": {
+      "title": "Pastel",
+      "feature": "Fonctionnalités",
+      "demo": "Démo"
+    },
+    "heroBanner": {
+      "title": "Votre journal de rêves",
+      "description": "Créez, organisez et conservez vos rêves facilement avec Pastel.",
+      "ctaPrimary": "Se connecter",
+      "ctaSecondary": "J'ai envie d'essayer !",
+      "imageAlt": "Photo du dashboard de Pastel"
+    },
+    "featuresSection": {
+      "title": "Fonctionnalités",
+      "dreams": {
+        "title": "Rêves",
+        "description": "Enregistrez et catégorisez facilement vos rêves grâce à notre interface intuitive."
+      },
+      "nightmares": {
+        "title": "Cauchemars",
+        "description": "Suivez et analysez vos cauchemars pour comprendre les schémas et les déclencheurs."
+      },
+      "lucidDreams": {
+        "title": "Rêves lucides",
+        "description": "Explorez et améliorez vos expériences de rêves lucides."
+      }
+    },
+    "demoSection": {
+      "title": "Démo",
+      "description": "Découvrez comment Pastel peut transformer votre expérience de journal de rêves.",
+      "browserNotSupported": "Votre navigateur ne supporte pas la démo interactive."
+    },
+    "footer": {
+      "rights": "Tous droits réservés.",
+      "features": "Fonctionnalités",
+      "demo": "Démo"
+    }
+  },
+  "meta": {
+    "landing": {
+      "title": "Pastel - Accueil",
+      "ogTitle": "Pastel - Accueil",
+      "description": "Bienvenue sur Pastel, votre plateforme de création de contenu.",
+      "ogDescription": "Bienvenue sur Pastel, votre plateforme de création de contenu."
+    }
+  }
 }
