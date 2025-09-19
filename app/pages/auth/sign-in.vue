@@ -33,9 +33,21 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
   toast.add({ title: 'Success', description: 'You are now logged in.', color: 'success' })
-  console.log('Submitted', payload)
+
+  const { data } = await useCustomFetch<[]>('/users/sign_in', {
+    method: 'POST',
+    body: {
+      user: {
+        email: payload.data.email,
+        password: payload.data.password
+      }
+    }
+  })
+
+  console.log('Response:', data);
+
 }
 </script>
 

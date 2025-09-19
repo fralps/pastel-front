@@ -14,7 +14,19 @@ const fields = [{
   type: 'text' as const,
   label: 'Email',
   placeholder: 'Enter your email'
+},
+{
+  name: 'firstname',
+  type: 'text' as const,
+  label: 'First Name',
+  placeholder: 'Enter your first name'
 }, {
+  name: 'lastname',
+  type: 'text' as const,
+  label: 'Last Name',
+  placeholder: 'Enter your last name'
+},
+{
   name: 'password',
   label: 'Password',
   type: 'password' as const,
@@ -28,6 +40,8 @@ const fields = [{
 
 const schema = z.object({
   email: z.email('Invalid email'),
+  firstname: z.string().min(1, 'First name is required'),
+  lastname: z.string().min(1, 'Last name is required'),
   password: z.string().min(8, 'Must be at least 8 characters'),
   passwordConfirmation: z.string().min(8, 'Must be at least 8 characters')
 }).superRefine(({ passwordConfirmation, password }, ctx) => {
@@ -42,9 +56,24 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
   toast.add({ title: 'Success', description: 'Your account has been created.', color: 'success' })
-  console.log('Submitted', payload)
+
+  const { data } = await useCustomFetch<[]>('/users/sign_up', {
+    method: 'POST',
+    body: {
+      user: {
+        email: payload.data.email,
+        firstname: payload.data.firstname,
+        lastname: payload.data.lastname,
+        password: payload.data.password,
+        password_confirmation: payload.data.passwordConfirmation
+      }
+    }
+  })
+
+  console.log('Response:', data);
+  
 }
 </script>
 
