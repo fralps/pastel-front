@@ -19,6 +19,10 @@ export default defineNuxtConfig({
     ],
   },
   css: ['~/assets/css/main.css'],
+  piniaPluginPersistedstate: {
+    storage: 'cookies',
+    debug: true,
+  },
   devServer: {
     port: 8080,
   }

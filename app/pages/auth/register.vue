@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
+import { useCurrentUserStore } from '@/stores/currentUser'
 
+const currentUser = useCurrentUserStore()
 const { t, locale } = useI18n()
 
 useSeoMeta({
@@ -70,6 +72,7 @@ onMounted(async () => {
 
   if (userAuth.value) {
     userAuth.value = null
+    currentUser.$reset()
     await useCustomFetch('/users/sign_out', {
       method: 'DELETE'
     })

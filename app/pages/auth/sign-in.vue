@@ -3,7 +3,6 @@ import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 import { useCurrentUserStore } from '@/stores/currentUser'
 
-
 const currentUser = useCurrentUserStore()
 const { t } = useI18n()
 

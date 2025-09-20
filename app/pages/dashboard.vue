@@ -2,16 +2,15 @@
   import { useCurrentUserStore } from '@/stores/currentUser'
 
   const currentUser = useCurrentUserStore()
-
-  definePageMeta({
-    middleware: 'auth'
-  })
 </script>
 
 <template>
-  <div>
-    Dashboard
+    <AuthGuard>
 
-    <pre>{{ currentUser.attributes }}</pre>
-  </div>
+      <div>
+        Dashboard
+
+        <pre>{{ currentUser.attributes }}</pre>
+      </div>
+    </AuthGuard>
 </template>
