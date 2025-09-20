@@ -98,7 +98,7 @@
       "footer": "En vous inscrivant, vous acceptez nos {terms}.",
       "terms": "Conditions d'utilisation",
       "successTitle": "Succès",
-      "successDesc": "Votre compte a été créé.",
+      "successDesc": "Votre compte a été créé. Vous allez recevoir un e-mail de confirmation.",
       "invalidEmail": "E-mail invalide",
       "minPassword": "Au moins 8 caractères",
       "firstnameRequired": "Le prénom est requis",
