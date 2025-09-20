@@ -51,6 +51,12 @@
         "ogTitle": "Pastel - Connexion",
         "description": "Connectez-vous à votre compte Pastel.",
         "ogDescription": "Connectez-vous à votre compte Pastel."
+      },
+      "register": {
+        "title": "Pastel - Inscription",
+        "ogTitle": "Pastel - Inscription",
+        "description": "Créez un compte Pastel.",
+        "ogDescription": "Créez un compte Pastel."
       }
     }
   },
@@ -73,6 +79,31 @@
       "errorDesc": "E-mail ou mot de passe invalide.",
       "invalidEmail": "E-mail invalide",
       "minPassword": "Au moins 8 caractères"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "email": "E-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "firstname": "Prénom",
+      "firstnamePlaceholder": "Entrez votre prénom",
+      "lastname": "Nom",
+      "lastnamePlaceholder": "Entrez votre nom",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "passwordConfirmation": "Confirmez le mot de passe",
+      "passwordConfirmationPlaceholder": "Confirmez votre mot de passe",
+      "submit": "Créer le compte",
+      "alreadyAccount": "Vous avez déjà un compte ?",
+      "signIn": "Connexion",
+      "footer": "En vous inscrivant, vous acceptez nos {terms}.",
+      "terms": "Conditions d'utilisation",
+      "successTitle": "Succès",
+      "successDesc": "Votre compte a été créé.",
+      "invalidEmail": "E-mail invalide",
+      "minPassword": "Au moins 8 caractères",
+      "firstnameRequired": "Le prénom est requis",
+      "lastnameRequired": "Le nom est requis",
+      "passwordsNotMatch": "Les mots de passe ne correspondent pas"
     }
   }
 }

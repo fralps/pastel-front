@@ -71,11 +71,11 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 <template>
   <NuxtLayout name="auth">
     <UAuthForm
-  :fields="fields"
-  :schema="schema"
-  :title="t('auth.signIn.title')"
-  icon="i-lucide-lock"
-  @submit="onSubmit"
+      :fields="fields"
+      :schema="schema"
+      :title="t('auth.signIn.title')"
+      icon="i-lucide-lock"
+      @submit="onSubmit"
     >
       <template #description>
         {{ t('auth.signIn.noAccount') }} <ULink

@@ -51,6 +51,12 @@
         "ogTitle": "Pastel - Sign In",
         "description": "Sign in to your Pastel account.",
         "ogDescription": "Sign in to your Pastel account."
+      },
+      "register": {
+        "title": "Pastel - Register",
+        "ogTitle": "Pastel - Register",
+        "description": "Create a Pastel account.",
+        "ogDescription": "Create a Pastel account."
       }
     }
   },
@@ -73,6 +79,31 @@
       "errorDesc": "Invalid email or password.",
       "invalidEmail": "Invalid email",
       "minPassword": "Must be at least 8 characters"
+    },
+    "register": {
+      "title": "Create an account",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "firstname": "First Name",
+      "firstnamePlaceholder": "Enter your first name",
+      "lastname": "Last Name",
+      "lastnamePlaceholder": "Enter your last name",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "passwordConfirmation": "Confirm Password",
+      "passwordConfirmationPlaceholder": "Confirm your password",
+      "submit": "Create account",
+      "alreadyAccount": "Already have an account?",
+      "signIn": "Login",
+      "footer": "By signing up, you agree to our {terms}.",
+      "terms": "Terms of Service",
+      "successTitle": "Success",
+      "successDesc": "Your account has been created.",
+      "invalidEmail": "Invalid email",
+      "minPassword": "Must be at least 8 characters",
+      "firstnameRequired": "First name is required",
+      "lastnameRequired": "Last name is required",
+      "passwordsNotMatch": "The passwords did not match"
     }
   }
 }
