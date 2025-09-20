@@ -11,8 +11,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
     },
     onResponse({ response }) {
-      console.log(response.headers.get('Authorization'));
-
       // Store the token from response headers if available
       const token = response.headers.get('Authorization');
       if (token) {
