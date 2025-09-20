@@ -15,7 +15,7 @@
     label: $t('landing.heroBanner.ctaPrimary'),
     to: '/auth/sign-in',
     icon: 'i-lucide-log-in',
-    size: 'md'
+    size: 'md' as const
   },
   {
     label: $t('landing.heroBanner.ctaSecondary'),
@@ -23,7 +23,7 @@
     color: 'neutral' as const,
     variant: 'subtle' as const,
     trailingIcon: 'i-lucide-milestone',
-    size: 'md'
+    size: 'md' as const
   }])
 </script>
 
