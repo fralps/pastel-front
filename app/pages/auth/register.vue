@@ -56,6 +56,18 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
+onMounted(async () => {
+  // Logout user if already logged in
+  const userAuth = useCookie('token')
+
+  if (userAuth.value) {
+    userAuth.value = null
+    await useCustomFetch('/users/sign_out', {
+      method: 'DELETE'
+    })
+  }
+})
+
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   toast.add({ title: 'Success', description: 'Your account has been created.', color: 'success' })
 
@@ -73,7 +85,6 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
   })
 
   console.log('Response:', data);
-  
 }
 </script>
 

@@ -44,6 +44,35 @@
       "ogTitle": "Pastel - Home",
       "description": "Welcome to Pastel, your content creation platform.",
       "ogDescription": "Welcome to Pastel, your content creation platform."
+    },
+    "auth": {
+      "signIn": {
+        "title": "Pastel - Sign In",
+        "ogTitle": "Pastel - Sign In",
+        "description": "Sign in to your Pastel account.",
+        "ogDescription": "Sign in to your Pastel account."
+      }
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Welcome back",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "passwordHint": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "footer": "By signing in, you agree to our {terms}.",
+      "terms": "Terms of Service",
+      "successTitle": "Success",
+      "successDesc": "You are now logged in.",
+      "errorTitle": "Not authorized",
+      "errorDesc": "Invalid email or password.",
+      "invalidEmail": "Invalid email",
+      "minPassword": "Must be at least 8 characters"
     }
   }
 }

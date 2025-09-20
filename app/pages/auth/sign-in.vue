@@ -2,40 +2,53 @@
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
+const { t } = useI18n()
+
 useSeoMeta({
-  title: 'Pastel - Login',
-  description: 'Login to your account to continue'
+  title: t('meta.auth.signIn.title'),
+  description: t('meta.auth.signIn.description'),
+  ogTitle: t('meta.auth.signIn.ogTitle'),
+  ogDescription: t('meta.auth.signIn.ogDescription')
 })
 
 const toast = useToast()
 
-const fields = [{
-  name: 'email',
-  type: 'email' as const,
-  label: 'Email',
-  placeholder: 'Enter your email',
-  required: true
-}, {
-  name: 'password',
-  label: 'Password',
-  type: 'password' as const,
-  placeholder: 'Enter your password'
-}, {
-  name: 'remember',
-  label: 'Remember me',
-  type: 'checkbox' as const
-}]
+const fields = [
+  {
+    name: 'email',
+    type: 'email' as const,
+    label: t('auth.signIn.email'),
+    placeholder: t('auth.signIn.emailPlaceholder'),
+    required: true
+  },
+  {
+    name: 'password',
+    label: t('auth.signIn.password'),
+    type: 'password' as const,
+    placeholder: t('auth.signIn.passwordPlaceholder')
+  }
+]
 
 const schema = z.object({
-  email: z.string().email('Invalid email'),
-  password: z.string().min(8, 'Must be at least 8 characters')
+  email: z.email(t('auth.signIn.invalidEmail')),
+  password: z.string().min(8, t('auth.signIn.minPassword'))
 })
 
 type Schema = z.output<typeof schema>
 
-async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Success', description: 'You are now logged in.', color: 'success' })
+onMounted(async () => {
+  // Logout user if already logged in
+  const userAuth = useCookie('token')
 
+  if (userAuth.value) {
+    userAuth.value = null
+    await useCustomFetch('/users/sign_out', {
+      method: 'DELETE'
+    })
+  }
+})
+
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
   const { data } = await useCustomFetch<[]>('/users/sign_in', {
     method: 'POST',
     body: {
@@ -46,25 +59,29 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     }
   })
 
-  console.log('Response:', data);
-
+  if (data.value) {
+    toast.add({ title: t('auth.signIn.successTitle'), description: t('auth.signIn.successDesc'), color: 'success' })
+    await navigateTo('/dashboard')
+  } else {
+    toast.add({ title: t('auth.signIn.errorTitle'), description: t('auth.signIn.errorDesc'), color: 'error' })
+  }
 }
 </script>
 
 <template>
   <NuxtLayout name="auth">
     <UAuthForm
-      :fields="fields"
-      :schema="schema"
-      title="Welcome back"
-      icon="i-lucide-lock"
-      @submit="onSubmit"
+  :fields="fields"
+  :schema="schema"
+  :title="t('auth.signIn.title')"
+  icon="i-lucide-lock"
+  @submit="onSubmit"
     >
       <template #description>
-        Don't have an account? <ULink
+        {{ t('auth.signIn.noAccount') }} <ULink
           to="/auth/register"
           class="text-primary font-medium"
-        >Sign up</ULink>.
+        >{{ t('auth.signIn.signUp') }}</ULink>.
       </template>
 
       <template #password-hint>
@@ -72,14 +89,14 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
           to="/"
           class="text-primary font-medium"
           tabindex="-1"
-        >Forgot password?</ULink>
+        >{{ t('auth.signIn.passwordHint') }}</ULink>
       </template>
 
       <template #footer>
-        By signing in, you agree to our <ULink
+        {{ t('auth.signIn.footer', { terms: '' }) }}<ULink
           to="/"
           class="text-primary font-medium"
-        >Terms of Service</ULink>.
+        >{{ t('auth.signIn.terms') }}</ULink>.
       </template>
     </UAuthForm>
   </NuxtLayout>
