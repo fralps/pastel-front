@@ -2,7 +2,7 @@
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 useSeoMeta({
   title: t('meta.auth.register.title'),
@@ -85,7 +85,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
         firstname: payload.data.firstname,
         lastname: payload.data.lastname,
         password: payload.data.password,
-        password_confirmation: payload.data.passwordConfirmation
+        password_confirmation: payload.data.passwordConfirmation,
+        registration_locale: locale.value
       }
     }
   })

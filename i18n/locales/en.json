@@ -104,6 +104,14 @@
       "firstnameRequired": "First name is required",
       "lastnameRequired": "Last name is required",
       "passwordsNotMatch": "The passwords did not match"
+    },
+    "emailConfirmation": {
+      "successTitle": "Email confirmed",
+      "successDesc": "Your email has been successfully confirmed. You can now sign in.",
+      "alreadyValidatedTitle": "Email already validated",
+      "alreadyValidatedDesc": "This email has already been confirmed. Please sign in.",
+      "unknownErrorTitle": "Unknown error",
+      "unknownErrorDesc": "An error occurred during confirmation."
     }
   }
 }

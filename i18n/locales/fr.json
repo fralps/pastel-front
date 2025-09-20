@@ -104,6 +104,14 @@
       "firstnameRequired": "Le prénom est requis",
       "lastnameRequired": "Le nom est requis",
       "passwordsNotMatch": "Les mots de passe ne correspondent pas"
+    },
+    "emailConfirmation": {
+      "successTitle": "Email confirmé",
+      "successDesc": "Votre email a été confirmé avec succès. Vous pouvez maintenant vous connecter.",
+      "alreadyValidatedTitle": "Email déjà validé",
+      "alreadyValidatedDesc": "Cet email a déjà été confirmé. Veuillez vous connecter.",
+      "unknownErrorTitle": "Erreur inconnue",
+      "unknownErrorDesc": "Une erreur s'est produite lors de la confirmation."
     }
   }
 }
