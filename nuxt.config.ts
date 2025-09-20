@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
   ],
   i18n: {
     strategy: 'prefix',

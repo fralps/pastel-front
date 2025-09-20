@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
+import { useCurrentUserStore } from '@/stores/currentUser'
 
+
+const currentUser = useCurrentUserStore()
 const { t } = useI18n()
 
 useSeoMeta({
@@ -42,6 +45,7 @@ onMounted(async () => {
 
   if (userAuth.value) {
     userAuth.value = null
+    currentUser.$reset()
     await useCustomFetch('/users/sign_out', {
       method: 'DELETE'
     })
@@ -60,6 +64,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
   })
 
   if (data.value) {
+    currentUser.attributes = data.value
     toast.add({ title: t('auth.signIn.successTitle'), description: t('auth.signIn.successDesc'), color: 'success' })
     await navigateTo('/dashboard')
   } else {
