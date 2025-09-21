@@ -90,7 +90,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
       <template #password-hint>
         <ULink
-          to="/"
+          to="/auth/forgot-password"
           class="text-primary font-medium"
           tabindex="-1"
         >{{ t('auth.signIn.passwordHint') }}</ULink>
