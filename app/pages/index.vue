@@ -87,7 +87,7 @@
           src="https://docs.material-tailwind.com/demo.mp4"
           type="video/mp4"
         >
-        {{ $t('landing.demoSection.browserNotSupported') }}
+        {{ t('landing.demoSection.browserNotSupported') }}
       </video>
     </section>
 
