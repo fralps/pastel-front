@@ -57,6 +57,18 @@
         "ogTitle": "Pastel - Inscription",
         "description": "Créez un compte Pastel.",
         "ogDescription": "Créez un compte Pastel."
+      },
+      "forgotPassword": {
+        "title": "Pastel - Mot de passe oublié",
+        "ogTitle": "Pastel - Mot de passe oublié",
+        "description": "Réinitialisez votre mot de passe Pastel.",
+        "ogDescription": "Réinitialisez votre mot de passe Pastel."
+      },
+      "resetPassword": {
+        "title": "Pastel - Réinitialisation du mot de passe",
+        "ogTitle": "Pastel - Réinitialisation du mot de passe",
+        "description": "Réinitialisez votre mot de passe Pastel.",
+        "ogDescription": "Réinitialisez votre mot de passe Pastel."
       }
     }
   },
@@ -112,6 +124,38 @@
       "alreadyValidatedDesc": "Cet email a déjà été confirmé. Veuillez vous connecter.",
       "unknownErrorTitle": "Erreur inconnue",
       "unknownErrorDesc": "Une erreur s'est produite lors de la confirmation."
+    },
+    "forgotPassword": {
+      "title": "Mot de passe oublié",
+      "email": "E-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "submit": "Réinitialiser le mot de passe",
+      "footer": "En réinitialisant, vous acceptez nos {terms}",
+      "terms": "Conditions d'utilisation",
+      "successTitle": "Succès",
+      "successDesc": "Si cet e-mail est enregistré, vous recevrez un lien pour réinitialiser votre mot de passe.",
+      "invalidEmail": "E-mail invalide"
+    },
+    "resetPassword": {
+      "title": "Réinitialiser votre mot de passe",
+      "password": "Nouveau mot de passe",
+      "passwordPlaceholder": "Entrez votre nouveau mot de passe",
+      "passwordConfirmation": "Confirmez le mot de passe",
+      "passwordConfirmationPlaceholder": "Confirmez votre nouveau mot de passe",
+      "submit": "Réinitialiser le mot de passe",
+      "successTitle": "Succès",
+      "successDesc": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "errorTitle": "Erreur",
+      "errorDesc": "Une erreur s'est produite lors de la réinitialisation de votre mot de passe. Veuillez réessayer plus tard.",
+      "invalidTokenTitle": "Token invalide ou expiré",
+      "invalidTokenDesc": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
+      "minPassword": "Doit contenir au moins 8 caractères",
+      "passwordsNotMatch": "Les mots de passe ne correspondent pas"
     }
+  },
+  "shared": {
+    "continue": "Continuer",
+    "remembered": "Je me souviens de mon mot de passe",
+    "backToSignIn": "Retour à la connexion"
   }
 }

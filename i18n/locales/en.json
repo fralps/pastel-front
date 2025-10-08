@@ -57,6 +57,18 @@
         "ogTitle": "Pastel - Register",
         "description": "Create a Pastel account.",
         "ogDescription": "Create a Pastel account."
+      },
+      "forgotPassword": {
+        "title": "Pastel - Forgot Password",
+        "ogTitle": "Pastel - Forgot Password",
+        "description": "Reset your Pastel password.",
+        "ogDescription": "Reset your Pastel password."
+      },
+      "resetPassword": {
+        "title": "Pastel - Reset Password",
+        "ogTitle": "Pastel - Reset Password",
+        "description": "Reset your Pastel password.",
+        "ogDescription": "Reset your Pastel password."
       }
     }
   },
@@ -112,6 +124,39 @@
       "alreadyValidatedDesc": "This email has already been confirmed. Please sign in.",
       "unknownErrorTitle": "Unknown error",
       "unknownErrorDesc": "An error occurred during confirmation."
+    },
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "description": "Enter your email address and we'll send you instructions to reset your password.",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "submit": "Send reset instructions",
+      "successTitle": "Success",
+      "successDesc": "If an account with that email exists, you will receive an email with instructions to reset your password.",
+      "errorTitle": "Error",
+      "errorDesc": "An error occurred while trying to send the reset instructions. Please try again later.",
+      "invalidEmail": "Invalid email"
+    },
+    "resetPassword": {
+      "title": "Reset your password",
+      "password": "New Password",
+      "passwordPlaceholder": "Enter your new password",
+      "passwordConfirmation": "Confirm Password",
+      "passwordConfirmationPlaceholder": "Confirm your new password",
+      "submit": "Reset Password",
+      "successTitle": "Success",
+      "successDesc": "Your password has been successfully reset. You can now sign in with your new password.",
+      "errorTitle": "Error",
+      "errorDesc": "An error occurred while trying to reset your password. Please try again later.",
+      "invalidTokenTitle": "Invalid or expired token",
+      "invalidTokenDesc": "The password reset link is invalid or has expired. Please request a new one.",
+      "minPassword": "Must be at least 8 characters",
+      "passwordsNotMatch": "The passwords did not match"
     }
+  },
+  "shared": {
+    "continue": "Continue",
+    "remembered": "Remember your password?",
+    "backToSignIn": "Back to Sign In"
   }
 }

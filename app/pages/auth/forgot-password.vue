@@ -2,14 +2,14 @@
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
-// const { t } = useI18n()
+const { t } = useI18n()
 
-// useSeoMeta({
-//   title: t('meta.auth.signIn.title'),
-//   description: t('meta.auth.signIn.description'),
-//   ogTitle: t('meta.auth.signIn.ogTitle'),
-//   ogDescription: t('meta.auth.signIn.ogDescription')
-// })
+useSeoMeta({
+  title: t('meta.auth.forgotPassword.title'),
+  description: t('meta.auth.forgotPassword.description'),
+  ogTitle: t('meta.auth.forgotPassword.ogTitle'),
+  ogDescription: t('meta.auth.forgotPassword.ogDescription')
+})
 
 const toast = useToast()
 
@@ -17,20 +17,20 @@ const fields = [
   {
     name: 'email',
     type: 'email' as const,
-    label: 'Email',
-    placeholder: 'Enter your email',
+    label: t('auth.forgotPassword.email'),
+    placeholder: t('auth.forgotPassword.emailPlaceholder'),
     required: true
   }
 ]
 
 const schema = z.object({
-  email: z.email('Invalid email'),
+  email: z.email(t('auth.forgotPassword.invalidEmail')),
 })
 
 type Schema = z.output<typeof schema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  const { data } = await useCustomFetch<[]>('/users/sign_in', {
+  const { data } = await useCustomFetch<[]>('/users/password', {
     method: 'POST',
     body: {
       user: {
@@ -40,10 +40,10 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
   })
 
   if (data.value) {
-    toast.add({ title: 'Success', description: 'Password reset email sent', color: 'success' })
+    toast.add({ title: t('auth.forgotPassword.successTitle'), description: t('auth.forgotPassword.successDesc'), color: 'success' })
     await navigateTo('/dashboard')
   } else {
-    toast.add({ title: 'Error', description: 'Invalid email or password', color: 'error' })
+    toast.add({ title: t('auth.forgotPassword.errorTitle'), description: t('auth.forgotPassword.errorDesc'), color: 'error' })
   }
 }
 </script>
@@ -53,16 +53,19 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     <UAuthForm
       :fields="fields"
       :schema="schema"
-      title="Forgot Password"
+      :title="t('auth.forgotPassword.title')"
+      :submit="{
+        label: t('shared.continue'),
+      }"
       icon="i-lucide-lock"
       @submit="onSubmit"
     >
       <template #description>
-        Remember your password?
+        {{ t('shared.remembered') }}
         <ULink
           to="/auth/sign-in"
           class="text-primary font-medium"
-        >Sign In</ULink>.
+        >{{ t('shared.backToSignIn') }}</ULink>.
       </template>
     </UAuthForm>
   </NuxtLayout>
