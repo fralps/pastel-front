@@ -9,6 +9,16 @@
     ogTitle: 'Pastel - Dashboard',
     ogDescription: 'User dashboard'
   })
+
+  const logout = async () => {
+   await useCustomFetch<[]>('/users/sign_out', { method: 'DELETE'})
+
+    const userAuth = useCookie('token')
+    userAuth.value = null
+
+    resetUserState()
+    await navigateTo('/auth/sign-in')
+  }
 </script>
 
 <template>
@@ -18,6 +28,7 @@
         Dashboard
 
         <pre>{{ currentUser.attributes }}</pre>
+        <UButton @click="logout">Logout</UButton>
       </div>
     </AuthGuard>
 </template>
