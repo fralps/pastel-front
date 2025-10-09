@@ -79,6 +79,9 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       :schema="schema"
       :title="t('auth.signIn.title')"
       icon="i-lucide-lock"
+      :submit="{
+        label: t('shared.continue'),
+      }"
       @submit="onSubmit"
     >
       <template #description>

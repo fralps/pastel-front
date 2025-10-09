@@ -145,8 +145,6 @@
       "submit": "Réinitialiser le mot de passe",
       "successTitle": "Succès",
       "successDesc": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
-      "errorTitle": "Erreur",
-      "errorDesc": "Une erreur s'est produite lors de la réinitialisation de votre mot de passe. Veuillez réessayer plus tard.",
       "invalidTokenTitle": "Token invalide ou expiré",
       "invalidTokenDesc": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
       "minPassword": "Doit contenir au moins 8 caractères",

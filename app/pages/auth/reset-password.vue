@@ -49,7 +49,7 @@ const schema = z.object({
 type Schema = z.output<typeof schema>
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-  const { data } = await useCustomFetch<[]>('/users/password', {
+  const { status } = await useCustomFetch<[]>('/users/password', {
     method: 'PUT',
     body: {
       user: {
@@ -60,14 +60,11 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     }
   })
 
-  console.log(data.value);
-  
-
-  if (data.value) {
+  if (status.value === 'success') {
     toast.add({ title: t('auth.resetPassword.successTitle'), description: t('auth.resetPassword.successDesc'), color: 'success' })
-    await navigateTo('/dashboard')
+    await navigateTo('/auth/sign-in')
   } else {
-    toast.add({ title: t('auth.resetPassword.errorTitle'), description: t('auth.resetPassword.errorDesc'), color: 'error' })
+    toast.add({ title: t('auth.resetPassword.invalidTokenTitle'), description: t('auth.resetPassword.invalidTokenDesc'), color: 'error' })
   }
 }
 </script>

@@ -41,7 +41,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
   if (data.value) {
     toast.add({ title: t('auth.forgotPassword.successTitle'), description: t('auth.forgotPassword.successDesc'), color: 'success' })
-    await navigateTo('/dashboard')
+    await navigateTo('/auth/sign-in')
   } else {
     toast.add({ title: t('auth.forgotPassword.errorTitle'), description: t('auth.forgotPassword.errorDesc'), color: 'error' })
   }
