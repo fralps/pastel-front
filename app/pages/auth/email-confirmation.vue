@@ -39,7 +39,7 @@ onMounted(async () => {
         break
       default:
         navigateTo('/auth/sign-in')
-      toast.add({ title: $t('auth.emailConfirmation.unknownErrorTitle'), description: $t('auth.emailConfirmation.unknownErrorDesc'), color: 'error' })
+        toast.add({ title: $t('auth.emailConfirmation.unknownErrorTitle'), description: $t('auth.emailConfirmation.unknownErrorDesc'), color: 'error' })
     }
   }
 })
