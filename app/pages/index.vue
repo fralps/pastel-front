@@ -15,13 +15,15 @@
     label: $t('landing.heroBanner.ctaPrimary'),
     to: '/auth/sign-in',
     icon: 'i-lucide-log-in',
+    size: 'md' as const
   },
   {
     label: $t('landing.heroBanner.ctaSecondary'),
     to: '/auth/register',
     color: 'neutral' as const,
     variant: 'subtle' as const,
-    trailingIcon: 'i-lucide-milestone'
+    trailingIcon: 'i-lucide-milestone',
+    size: 'md' as const
   }])
 </script>
 

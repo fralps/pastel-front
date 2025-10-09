@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
   ],
   i18n: {
     strategy: 'prefix',
@@ -17,6 +19,10 @@ export default defineNuxtConfig({
     ],
   },
   css: ['~/assets/css/main.css'],
+  piniaPluginPersistedstate: {
+    storage: 'cookies',
+    debug: true,
+  },
   devServer: {
     port: 8080,
   }

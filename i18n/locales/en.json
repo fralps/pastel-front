@@ -44,6 +44,119 @@
       "ogTitle": "Pastel - Home",
       "description": "Welcome to Pastel, your content creation platform.",
       "ogDescription": "Welcome to Pastel, your content creation platform."
+    },
+    "auth": {
+      "signIn": {
+        "title": "Pastel - Sign In",
+        "ogTitle": "Pastel - Sign In",
+        "description": "Sign in to your Pastel account.",
+        "ogDescription": "Sign in to your Pastel account."
+      },
+      "register": {
+        "title": "Pastel - Register",
+        "ogTitle": "Pastel - Register",
+        "description": "Create a Pastel account.",
+        "ogDescription": "Create a Pastel account."
+      },
+      "forgotPassword": {
+        "title": "Pastel - Forgot Password",
+        "ogTitle": "Pastel - Forgot Password",
+        "description": "Reset your Pastel password.",
+        "ogDescription": "Reset your Pastel password."
+      },
+      "resetPassword": {
+        "title": "Pastel - Reset Password",
+        "ogTitle": "Pastel - Reset Password",
+        "description": "Reset your Pastel password.",
+        "ogDescription": "Reset your Pastel password."
+      }
     }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Welcome back",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "passwordHint": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "footer": "By signing in, you agree to our {terms}",
+      "terms": "Terms of Service",
+      "successTitle": "Success",
+      "successDesc": "You are now logged in.",
+      "errorTitle": "Not authorized",
+      "errorDesc": "Invalid email or password.",
+      "invalidEmail": "Invalid email",
+      "minPassword": "Must be at least 8 characters"
+    },
+    "register": {
+      "title": "Create an account",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "firstname": "First Name",
+      "firstnamePlaceholder": "Enter your first name",
+      "lastname": "Last Name",
+      "lastnamePlaceholder": "Enter your last name",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "passwordConfirmation": "Confirm Password",
+      "passwordConfirmationPlaceholder": "Confirm your password",
+      "submit": "Create account",
+      "alreadyAccount": "Already have an account?",
+      "signIn": "Login",
+      "footer": "By signing up, you agree to our {terms}",
+      "terms": "Terms of Service",
+      "successTitle": "Success",
+      "successDesc": "Your account has been created. You will receive a confirmation email.",
+      "invalidEmail": "Invalid email",
+      "minPassword": "Must be at least 8 characters",
+      "firstnameRequired": "First name is required",
+      "lastnameRequired": "Last name is required",
+      "passwordsNotMatch": "The passwords did not match"
+    },
+    "emailConfirmation": {
+      "successTitle": "Email confirmed",
+      "successDesc": "Your email has been successfully confirmed. You can now sign in.",
+      "alreadyValidatedTitle": "Email already validated",
+      "alreadyValidatedDesc": "This email has already been confirmed. Please sign in.",
+      "unknownErrorTitle": "Unknown error",
+      "unknownErrorDesc": "An error occurred during confirmation."
+    },
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "description": "Enter your email address and we'll send you instructions to reset your password.",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "submit": "Send reset instructions",
+      "successTitle": "Success",
+      "successDesc": "If an account with that email exists, you will receive an email with instructions to reset your password.",
+      "errorTitle": "Error",
+      "errorDesc": "An error occurred while trying to send the reset instructions. Please try again later.",
+      "invalidEmail": "Invalid email"
+    },
+    "resetPassword": {
+      "title": "Reset your password",
+      "password": "New Password",
+      "passwordPlaceholder": "Enter your new password",
+      "passwordConfirmation": "Confirm Password",
+      "passwordConfirmationPlaceholder": "Confirm your new password",
+      "submit": "Reset Password",
+      "successTitle": "Success",
+      "successDesc": "Your password has been successfully reset. You can now sign in with your new password.",
+      "errorTitle": "Error",
+      "errorDesc": "An error occurred while trying to reset your password. Please try again later.",
+      "invalidTokenTitle": "Invalid or expired token",
+      "invalidTokenDesc": "The password reset link is invalid or has expired. Please request a new one.",
+      "minPassword": "Must be at least 8 characters",
+      "passwordsNotMatch": "The passwords did not match"
+    }
+  },
+  "shared": {
+    "continue": "Continue",
+    "remembered": "Remember your password?",
+    "backToSignIn": "Back to Sign In"
   }
 }
