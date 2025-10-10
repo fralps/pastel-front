@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import type { Dream } from '@/models'
 
+const { $customFetch } = useNuxtApp()
 const { t } = useI18n()
 
 useSeoMeta({
@@ -11,35 +11,25 @@ useSeoMeta({
   ogDescription: t('meta.dashboard.index.ogDescription')
 })
 
-const entries = ref<Dream[]>([
-  {
-    id: '1',
-    title: 'Flying Over Mountains',
-    content: 'I was soaring through clouds above snow-capped peaks. The feeling of freedom was incredible...',
-    type: 'lucid',
-    date: '2024-01-15',
-    mood: 'Peaceful',
-    tags: ['flying', 'mountains', 'freedom'],
-  },
-  {
-    id: '2',
-    title: 'Lost in a Forest',
-    content: 'Dark trees surrounded me, and I couldn\'t find my way out. The shadows seemed to move...',
-    type: 'nightmare',
-    date: '2024-01-14',
-    mood: 'Anxious',
-    tags: ['forest', 'lost', 'darkness'],
-  },
-  {
-    id: '3',
-    title: 'Lost in a Forest',
-    content: 'Dark trees surrounded me, and I couldn\'t find my way out. The shadows seemed to move...',
-    type: 'dream',
-    date: '2024-01-14',
-    mood: 'Anxious',
-    tags: ['forest', 'lost', 'darkness'],
-  },
-])
+interface PaginatedDreamsResponse {
+  paginated_result: Dream[]
+}
+
+const dreamsList = ref<Dream[]>([])
+
+onMounted(async (): Promise<void> => {
+  await fetchDreams()
+})
+
+async function fetchDreams(): Promise<void> {
+  const response = await $customFetch<PaginatedDreamsResponse>('/sleeps', {
+    method: 'GET',
+  })
+
+  if (response?.paginated_result) {
+    dreamsList.value = response.paginated_result
+  }
+}
 </script>
 
 <template>
@@ -50,10 +40,10 @@ const entries = ref<Dream[]>([
         <div class="p-6">
           <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2">
             <UIcon name="i-lucide-star" class="size-5" />
-            Welcome to Your Dream World
+            {{ t('dashboard.welcome.title') }}
           </h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            You have {{ entries.length }} dreams recorded. Keep exploring your subconscious mind.
+          <p v-if="dreamsList && dreamsList.length > 0" class="text-sm text-gray-600 dark:text-gray-400">
+            {{ t('dashboard.welcome.description', { count: dreamsList.length }) }}
           </p>
         </div>
       </div>
@@ -61,21 +51,24 @@ const entries = ref<Dream[]>([
       <!-- Dreams list -->
       <div class="space-y-4">
         <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Dreams</h2>
-          <button
-            class="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
-          >
-            <UIcon name="i-lucide-plus" class="size-4" />
-            Add Dream
-          </button>
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{ t('dashboard.list.title') }}</h2>
+          <UButton v-if="dreamsList && dreamsList.length > 0" icon="i-lucide-plus" size="md" color="primary" variant="solid">{{ t('dashboard.list.addEntry') }}</UButton>
         </div>
 
-        <div class="grid gap-4 pb-18">
+        <div
+          v-if="dreamsList && dreamsList.length > 0"
+          class="grid gap-4 pb-18"
+        >
           <DashboardRecordCard
-            v-for="entry in entries"
+            v-for="entry in dreamsList"
             :key="entry.id"
             :entry="entry"
           />
+        </div>
+
+        <div v-else class="text-center text-gray-600 dark:text-gray-400 py-10">
+          <p class="mb-4">{{ t('dashboard.list.noDreams') }}</p>
+          <UButton icon="i-lucide-plus" size="md" color="primary" variant="solid">{{ t('dashboard.list.addDream') }}</UButton>
         </div>
       </div>
     </div>

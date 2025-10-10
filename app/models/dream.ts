@@ -1,9 +1,9 @@
 export type Dream = {
-  id: string
+  id: number
   title: string
-  content: string
-  type: 'dream' | 'nightmare' | 'lucid'
+  description: string
+  sleep_type: 'dream' | 'nightmare' | 'lucid' | 'erotic' | 'sleep_paralysis' | 'sleep_talking' | 'sleep_apnea' | 'sleep_walking'
   date: string
-  mood: string
-  tags: string[]
+  current_mood: string
+  tags_attributes: { id: number; name: string }[]
 };

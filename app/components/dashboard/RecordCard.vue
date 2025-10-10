@@ -12,6 +12,18 @@ const getTypeIcon = (type: string) => {
       return 'sparkles'
     case 'nightmare':
       return 'moon'
+    case 'dream':
+      return 'star'
+    case 'erotic':
+      return 'heart'
+    case 'sleep_paralysis':
+      return 'angry'
+    case 'sleep_talking':
+      return 'speech'
+    case 'sleep_apnea':
+      return 'wind'
+    case 'sleep_walking':
+      return 'footprints'
     default:
       return 'star'
   }
@@ -23,6 +35,18 @@ const getTypeColor = (type: string) => {
       return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
     case 'nightmare':
       return 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+    case 'dream':
+      return 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
+    case 'erotic':
+      return 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400'
+    case 'sleep_paralysis':
+      return 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
+    case 'sleep_talking':
+      return 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+    case 'sleep_apnea':
+      return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+    case 'sleep_walking':
+      return 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400'
     default:
       return 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
   }
@@ -40,27 +64,27 @@ const getTypeColor = (type: string) => {
           <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <UIcon name="i-lucide-calendar" class="size-3" />
             {{ new Date(props.entry.date).toLocaleDateString() }}
-            <template v-if="entry.mood">
+            <template v-if="entry.current_mood">
               <span>•</span>
-              <span>{{ props.entry.mood }}</span>
+              <span>{{ props.entry.current_mood }}</span>
             </template>
           </div>
         </div>
-        <span :class="['inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium', getTypeColor(props.entry.type)]">
-          <UIcon :name="`i-lucide-${getTypeIcon(props.entry.type)}`" class="size-4" />
-          {{ props.entry.type }}
+        <span :class="['inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium', getTypeColor(props.entry.sleep_type)]">
+          <UIcon :name="`i-lucide-${getTypeIcon(props.entry.sleep_type)}`" class="size-4" />
+          {{ props.entry.sleep_type }}
         </span>
       </div>
     </div>
     <div class="px-6 pb-6">
-      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{{ props.entry.content }}</p>
-      <div v-if="props.entry.tags.length > 0" class="flex flex-wrap gap-1">
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{{ props.entry.description }}</p>
+      <div v-if="props.entry.tags_attributes.length > 0" class="flex flex-wrap gap-1">
         <span 
-          v-for="(tag, index) in props.entry.tags" 
-          :key="index" 
+          v-for="(tag, index) in props.entry.tags_attributes" 
+          :key="index - tag.id" 
           class="px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded"
         >
-          {{ tag }}
+          {{ tag.name }}
         </span>
       </div>
     </div>

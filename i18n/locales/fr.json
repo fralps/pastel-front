@@ -159,6 +159,17 @@
       "passwordsNotMatch": "Les mots de passe ne correspondent pas"
     }
   },
+  "dashboard": {
+    "welcome": {
+      "title": "Bienvenue dans votre monde de rêves",
+      "description": "Vous avez {count} rêve(s) enregistré(s). Continuez à explorer votre subconscient."
+    },
+     "list": {
+      "title": "Vos rêves",
+      "noDreams": "Aucun rêve enregistré pour le moment. Commencez par ajouter un nouveau rêve !",
+      "addDream": "Ajouter un rêve"
+    }
+  },
   "shared": {
     "continue": "Continuer",
     "remembered": "Je me souviens de mon mot de passe",
