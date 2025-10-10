@@ -5,7 +5,7 @@ import type { Dream } from '@/models'
 const { t } = useI18n()
 
 const props = defineProps<{
-  entry: Dream
+  dream: Dream
 }>()
 
 const getTypeIcon = (type: string) => {
@@ -62,27 +62,27 @@ const getTypeColor = (type: string) => {
     <div class="p-6 pb-3">
       <div class="flex items-start justify-between">
         <div class="space-y-1">
-          <h3 class="text-base font-semibold text-gray-900 dark:text-white">{{ props.entry.title }}</h3>
+          <h3 class="text-base font-semibold text-gray-900 dark:text-white">{{ props.dream.title }}</h3>
           <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <UIcon name="i-lucide-calendar" class="size-3" />
-            {{ new Date(props.entry.date).toLocaleDateString() }}
-            <template v-if="entry.current_mood">
+            {{ new Date(props.dream.date).toLocaleDateString() }}
+            <template v-if="dream.current_mood">
               <span>•</span>
-              <span>{{ props.entry.current_mood }}</span>
+              <span>{{ props.dream.current_mood }}</span>
             </template>
           </div>
         </div>
-        <span :class="['inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium', getTypeColor(props.entry.sleep_type)]">
-          <UIcon :name="`i-lucide-${getTypeIcon(props.entry.sleep_type)}`" class="size-4" />
-          {{ t('dashboard.sleep_type.' + props.entry.sleep_type) }}
+        <span :class="['inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium', getTypeColor(props.dream.sleep_type)]">
+          <UIcon :name="`i-lucide-${getTypeIcon(props.dream.sleep_type)}`" class="size-4" />
+          {{ t('dashboard.sleep_type.' + props.dream.sleep_type) }}
         </span>
       </div>
     </div>
     <div class="px-6 pb-6">
-      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{{ props.entry.description }}</p>
-      <div v-if="props.entry.tags_attributes.length > 0" class="flex flex-wrap gap-1">
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{{ props.dream.description }}</p>
+      <div v-if="props.dream.tags_attributes.length > 0" class="flex flex-wrap gap-1">
         <span 
-          v-for="(tag, index) in props.entry.tags_attributes" 
+          v-for="(tag, index) in props.dream.tags_attributes" 
           :key="index - tag.id" 
           class="px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded"
         >

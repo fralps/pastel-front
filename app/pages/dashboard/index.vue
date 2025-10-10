@@ -14,23 +14,28 @@ useSeoMeta({
 interface PaginatedDreamsResponse {
   paginated_result: Dream[]
   total_sleeps: number
+  total_pages: {
+    pages: number
+  }
 }
 
 const dreamsList = ref<Dream[]>([])
 const totalDreams = ref(0)
+const currentPage = ref(1)
 
 onMounted(async (): Promise<void> => {
-  await fetchDreams()
+  await fetchDreams(currentPage.value)
 })
 
-async function fetchDreams(): Promise<void> {
-  const response = await $customFetch<PaginatedDreamsResponse>('/sleeps', {
+async function fetchDreams(page: number): Promise<void> {
+  const response = await $customFetch<PaginatedDreamsResponse>(`/sleeps?page=${page}`, {
     method: 'GET',
   })
 
   if (response?.paginated_result) {
     dreamsList.value = response.paginated_result
     totalDreams.value = response.total_sleeps
+    currentPage.value = page
   }
 }
 </script>
@@ -63,9 +68,18 @@ async function fetchDreams(): Promise<void> {
           class="grid gap-4 pb-18"
         >
           <DashboardRecordCard
-            v-for="entry in dreamsList"
-            :key="entry.id"
-            :entry="entry"
+            v-for="dream in dreamsList"
+            :key="dream.id"
+            :dream="dream"
+          />
+
+          <UPagination
+            v-model:page="currentPage"
+            :sibling-count="1"
+            :items-per-page="10"
+            :total="totalDreams"
+            class="mx-auto"
+            @update:page="fetchDreams"
           />
         </div>
 
