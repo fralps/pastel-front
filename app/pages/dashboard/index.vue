@@ -72,8 +72,8 @@ async function fetchDreams(page: number): Promise<void> {
           class="grid gap-4 pb-18"
         >
           <DashboardRecordCard
-            v-for="dream in dreamsList"
-            :key="dream.id"
+            v-for="(dream, index) in dreamsList"
+            :key="`dream-${dream.id}-${index}`"
             :dream="dream"
           />
 

@@ -83,7 +83,7 @@ const getTypeColor = (type: string) => {
       <div v-if="props.dream.tags_attributes.length > 0" class="flex flex-wrap gap-1">
         <span 
           v-for="(tag, index) in props.dream.tags_attributes" 
-          :key="index - tag.id" 
+          :key="`tag-${tag.id}-${index}`" 
           class="px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded"
         >
           {{ tag.name }}
