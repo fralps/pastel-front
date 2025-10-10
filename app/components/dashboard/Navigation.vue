@@ -1,6 +1,24 @@
 <script setup lang="ts">
   type TabType = 'home' | 'add' | 'insights'
+
   const activeTab = ref<TabType>('home')
+
+  const redirectTo = (tab: TabType) => {
+    switch (tab) {
+      case 'home':
+        navigateTo('/dashboard')
+        activeTab.value = 'home'
+        break
+      case 'add':
+        navigateTo('/dashboard/create')
+        activeTab.value = 'add'
+        break
+      case 'insights':
+        navigateTo('/dashboard/insights')
+        activeTab.value = 'insights'
+        break
+    }
+  }
 </script>
 
 <template>
@@ -13,7 +31,7 @@
             ? 'bg-indigo-600 text-white' 
             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
           ]"
-          @click="activeTab = 'home'"
+          @click="redirectTo('home')"
         >
           <UIcon name="i-lucide-book" class="size-4" />
           <span class="text-xs">Journal</span>
@@ -25,7 +43,7 @@
               ? 'bg-indigo-600 text-white' 
               : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
           ]"
-          @click="activeTab = 'add'"
+          @click="redirectTo('add')"
         >
           <UIcon name="i-lucide-plus" class="size-4" />
           <span class="text-xs">Add Dream</span>
@@ -37,7 +55,7 @@
             ? 'bg-indigo-600 text-white' 
             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
           ]"
-          @click="activeTab = 'insights'"
+          @click="redirectTo('insights')"
         >
           <UIcon name="i-lucide-chart-column" class="size-4" />
           <span class="text-xs">Insights</span>
