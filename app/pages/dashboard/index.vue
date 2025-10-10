@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { Dream } from '@/models'
 
+definePageMeta({
+  middleware: ['auth'],
+})
+
 const { $customFetch } = useNuxtApp()
 const { t } = useI18n()
 
