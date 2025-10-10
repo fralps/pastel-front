@@ -5,6 +5,7 @@ import { useCurrentUserStore } from '@/stores/currentUser'
 
 const currentUser = useCurrentUserStore()
 const { t } = useI18n()
+const toast = useToast()
 
 useSeoMeta({
   title: t('meta.auth.signIn.title'),
@@ -12,8 +13,6 @@ useSeoMeta({
   ogTitle: t('meta.auth.signIn.ogTitle'),
   ogDescription: t('meta.auth.signIn.ogDescription')
 })
-
-const toast = useToast()
 
 const fields = [
   {

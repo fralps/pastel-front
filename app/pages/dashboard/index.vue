@@ -64,7 +64,17 @@ async function fetchDreams(page: number): Promise<void> {
       <div class="space-y-4">
         <div class="flex items-center justify-between">
           <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{ t('dashboard.list.title') }}</h2>
-          <UButton v-if="dreamsList && dreamsList.length > 0" icon="i-lucide-plus" size="md" color="primary" variant="solid">{{ t('dashboard.list.addDream') }}</UButton>
+          <UButton
+            v-if="dreamsList && dreamsList.length > 0"
+            icon="i-lucide-plus"
+            size="md"
+            color="primary"
+            variant="solid"
+            class="cursor-pointer"
+            @click="navigateTo('/dashboard/create')"
+          >
+            {{ t('dashboard.list.addDream') }}
+          </UButton>
         </div>
 
         <div
@@ -89,7 +99,16 @@ async function fetchDreams(page: number): Promise<void> {
 
         <div v-else class="text-center text-gray-600 dark:text-gray-400 py-10">
           <p class="mb-4">{{ t('dashboard.list.noDreams') }}</p>
-          <UButton icon="i-lucide-plus" size="md" color="primary" variant="solid">{{ t('dashboard.list.addDream') }}</UButton>
+          <UButton
+            icon="i-lucide-plus"
+            size="md"
+            color="primary"
+            variant="solid"
+            class="cursor-pointer"
+            @click="navigateTo('/dashboard/create')"
+          >
+            {{ t('dashboard.list.addDream') }}
+          </UButton>
         </div>
       </div>
     </div>
