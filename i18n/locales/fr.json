@@ -168,6 +168,17 @@
       "title": "Vos rêves",
       "noDreams": "Aucun rêve enregistré pour le moment. Commencez par ajouter un nouveau rêve !",
       "addDream": "Ajouter un rêve"
+    },
+    "sleep_type": {
+      "dream": "Rêve",
+      "nightmare": "Cauchemar",
+      "lucid": "Rêve lucide",
+      "erotic": "Rêve érotique",
+      "sleep_paralysis": "Paralysie du sommeil",
+      "sleep_talking": "Somniloquie",
+      "sleep_walking": "Somnambulisme",
+      "sleep_apnea": "Apnée du sommeil",
+      "other": "Autre"
     }
   },
   "shared": {

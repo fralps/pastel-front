@@ -2,6 +2,8 @@
 import { defineProps } from 'vue'
 import type { Dream } from '@/models'
 
+const { t } = useI18n()
+
 const props = defineProps<{
   entry: Dream
 }>()
@@ -72,7 +74,7 @@ const getTypeColor = (type: string) => {
         </div>
         <span :class="['inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium', getTypeColor(props.entry.sleep_type)]">
           <UIcon :name="`i-lucide-${getTypeIcon(props.entry.sleep_type)}`" class="size-4" />
-          {{ props.entry.sleep_type }}
+          {{ t('dashboard.sleep_type.' + props.entry.sleep_type) }}
         </span>
       </div>
     </div>

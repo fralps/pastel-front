@@ -171,6 +171,17 @@
       "title": "Your Dreams",
       "noDreams": "No dreams recorded yet. Start by adding a new dream!",
       "addDream": "Add Dream"
+    },
+    "sleep_type": {
+      "dream": "Dream",
+      "nightmare": "Nightmare",
+      "lucid": "Lucid Dream",
+      "erotic": "Erotic Dream",
+      "sleep_paralysis": "Sleep Paralysis",
+      "sleep_talking": "Sleep Talking",
+      "sleep_walking": "Sleep Walking",
+      "sleep_apnea": "Sleep Apnea",
+      "other": "Other"
     }
   },
   "shared": {

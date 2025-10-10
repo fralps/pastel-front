@@ -13,9 +13,11 @@ useSeoMeta({
 
 interface PaginatedDreamsResponse {
   paginated_result: Dream[]
+  total_sleeps: number
 }
 
 const dreamsList = ref<Dream[]>([])
+const totalDreams = ref(0)
 
 onMounted(async (): Promise<void> => {
   await fetchDreams()
@@ -28,6 +30,7 @@ async function fetchDreams(): Promise<void> {
 
   if (response?.paginated_result) {
     dreamsList.value = response.paginated_result
+    totalDreams.value = response.total_sleeps
   }
 }
 </script>
@@ -42,8 +45,8 @@ async function fetchDreams(): Promise<void> {
             <UIcon name="i-lucide-star" class="size-5" />
             {{ t('dashboard.welcome.title') }}
           </h2>
-          <p v-if="dreamsList && dreamsList.length > 0" class="text-sm text-gray-600 dark:text-gray-400">
-            {{ t('dashboard.welcome.description', { count: dreamsList.length }) }}
+          <p v-if="dreamsList && totalDreams && dreamsList.length > 0" class="text-sm text-gray-600 dark:text-gray-400">
+            {{ t('dashboard.welcome.description', { count: totalDreams }) }}
           </p>
         </div>
       </div>
@@ -52,7 +55,7 @@ async function fetchDreams(): Promise<void> {
       <div class="space-y-4">
         <div class="flex items-center justify-between">
           <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{ t('dashboard.list.title') }}</h2>
-          <UButton v-if="dreamsList && dreamsList.length > 0" icon="i-lucide-plus" size="md" color="primary" variant="solid">{{ t('dashboard.list.addEntry') }}</UButton>
+          <UButton v-if="dreamsList && dreamsList.length > 0" icon="i-lucide-plus" size="md" color="primary" variant="solid">{{ t('dashboard.list.addDream') }}</UButton>
         </div>
 
         <div
