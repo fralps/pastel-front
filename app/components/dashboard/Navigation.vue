@@ -28,7 +28,7 @@
           :class="[
             'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors',
             activeTab === 'home' 
-            ? 'bg-indigo-600 text-white' 
+            ? 'bg-primary-600 text-white' 
             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
           ]"
           @click="redirectTo('home')"
@@ -40,7 +40,7 @@
           :class="[
             'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors',
             activeTab === 'add' 
-              ? 'bg-indigo-600 text-white' 
+              ? 'bg-primary-600 text-white' 
               : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
           ]"
           @click="redirectTo('add')"
@@ -52,7 +52,7 @@
           :class="[
             'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors',
             activeTab === 'insights' 
-            ? 'bg-indigo-600 text-white' 
+            ? 'bg-primary-600 text-white' 
             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
           ]"
           @click="redirectTo('insights')"

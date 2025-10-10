@@ -46,7 +46,7 @@ const entries = ref<Dream[]>([
   <NuxtLayout name="dashboard">
     <div class="space-y-6">
       <!-- Welcome Section -->
-      <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-200 dark:border-indigo-800 rounded-lg">
+      <div class="bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 border border-primary-200 dark:border-primary-800 rounded-lg">
         <div class="p-6">
           <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2">
             <UIcon name="i-lucide-star" class="size-5" />
@@ -63,7 +63,7 @@ const entries = ref<Dream[]>([
         <div class="flex items-center justify-between">
           <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Dreams</h2>
           <button
-            class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
           >
             <UIcon name="i-lucide-plus" class="size-4" />
             Add Dream

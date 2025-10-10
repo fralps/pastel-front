@@ -24,7 +24,7 @@ const getTypeColor = (type: string) => {
     case 'nightmare':
       return 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
     default:
-      return 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400'
+      return 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
   }
 }
 </script>

@@ -48,8 +48,8 @@ const entries = ref<Dream[]>([
         </div>
         <div class="p-6">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="text-center p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+            <div class="text-center p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
+              <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">
                 {{ entries.filter(e => e.type === 'dream').length }}
               </div>
               <div class="text-sm text-gray-600 dark:text-gray-400">Regular Dreams</div>
