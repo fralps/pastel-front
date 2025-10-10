@@ -70,6 +70,14 @@
         "description": "Reset your Pastel password.",
         "ogDescription": "Reset your Pastel password."
       }
+    },
+    "dashboard": {
+      "index": {
+        "title": "Pastel - Dashboard",
+        "ogTitle": "Pastel - Dashboard",
+        "description": "Manage your dreams with Pastel.",
+        "ogDescription": "Manage your dreams with Pastel."
+      }
     }
   },
   "auth": {
@@ -152,6 +160,28 @@
       "invalidTokenDesc": "The password reset link is invalid or has expired. Please request a new one.",
       "minPassword": "Must be at least 8 characters",
       "passwordsNotMatch": "The passwords did not match"
+    }
+  },
+  "dashboard": {
+    "welcome": {
+      "title": "Welcome to Your Dream World",
+      "description": "You have {count} dream(s) recorded. Keep exploring your subconscious mind."
+    },
+    "list": {
+      "title": "Your Dreams",
+      "noDreams": "No dreams recorded yet. Start by adding a new dream!",
+      "addDream": "Add Dream"
+    },
+    "sleep_type": {
+      "dream": "Dream",
+      "nightmare": "Nightmare",
+      "lucid": "Lucid Dream",
+      "erotic": "Erotic Dream",
+      "sleep_paralysis": "Sleep Paralysis",
+      "sleep_talking": "Sleep Talking",
+      "sleep_walking": "Sleep Walking",
+      "sleep_apnea": "Sleep Apnea",
+      "other": "Other"
     }
   },
   "shared": {

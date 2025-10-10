@@ -70,6 +70,14 @@
         "description": "Réinitialisez votre mot de passe Pastel.",
         "ogDescription": "Réinitialisez votre mot de passe Pastel."
       }
+    },
+    "dashboard": {
+      "index": {
+        "title": "Pastel - Tableau de bord",
+        "ogTitle": "Pastel - Tableau de bord",
+        "description": "Gérez vos rêves avec Pastel.",
+        "ogDescription": "Gérez vos rêves avec Pastel."
+      }
     }
   },
   "auth": {
@@ -149,6 +157,28 @@
       "invalidTokenDesc": "Le lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau.",
       "minPassword": "Doit contenir au moins 8 caractères",
       "passwordsNotMatch": "Les mots de passe ne correspondent pas"
+    }
+  },
+  "dashboard": {
+    "welcome": {
+      "title": "Bienvenue dans votre monde de rêves",
+      "description": "Vous avez {count} rêve(s) enregistré(s). Continuez à explorer votre subconscient."
+    },
+     "list": {
+      "title": "Vos rêves",
+      "noDreams": "Aucun rêve enregistré pour le moment. Commencez par ajouter un nouveau rêve !",
+      "addDream": "Ajouter un rêve"
+    },
+    "sleep_type": {
+      "dream": "Rêve",
+      "nightmare": "Cauchemar",
+      "lucid": "Rêve lucide",
+      "erotic": "Rêve érotique",
+      "sleep_paralysis": "Paralysie du sommeil",
+      "sleep_talking": "Somniloquie",
+      "sleep_walking": "Somnambulisme",
+      "sleep_apnea": "Apnée du sommeil",
+      "other": "Autre"
     }
   },
   "shared": {
