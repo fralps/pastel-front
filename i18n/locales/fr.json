@@ -70,6 +70,14 @@
         "description": "Réinitialisez votre mot de passe Pastel.",
         "ogDescription": "Réinitialisez votre mot de passe Pastel."
       }
+    },
+    "dashboard": {
+      "index": {
+        "title": "Pastel - Tableau de bord",
+        "ogTitle": "Pastel - Tableau de bord",
+        "description": "Gérez vos rêves avec Pastel.",
+        "ogDescription": "Gérez vos rêves avec Pastel."
+      }
     }
   },
   "auth": {

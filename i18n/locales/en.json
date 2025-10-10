@@ -70,6 +70,14 @@
         "description": "Reset your Pastel password.",
         "ogDescription": "Reset your Pastel password."
       }
+    },
+    "dashboard": {
+      "index": {
+        "title": "Pastel - Dashboard",
+        "ogTitle": "Pastel - Dashboard",
+        "description": "Manage your dreams with Pastel.",
+        "ogDescription": "Manage your dreams with Pastel."
+      }
     }
   },
   "auth": {
