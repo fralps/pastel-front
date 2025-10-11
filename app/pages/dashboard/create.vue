@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 import { CalendarDate, DateFormatter, getLocalTimeZone } from '@internationalized/date'
+import { sleepTypeOptions, intensityOptions, happenedOptions } from '@/constants'
 import type { Dream } from '@/models'
 
 definePageMeta({
@@ -34,32 +35,6 @@ const schema = z.object({
   date: z.any(),
   tags_attributes: z.array(z.object({ name: z.string() }))
 })
-
-const sleepTypeOptions = [
-  { label: 'Regular Dream', value: 'dream' },
-  { label: 'Lucid Dream', value: 'lucid' },
-  { label: 'Nightmare', value: 'nightmare' },
-  { label: 'Erotic Dream', value: 'erotic' },
-  { label: 'Sleep Paralysis', value: 'sleep_paralysis' },
-  { label: 'Sleep Talking', value: 'sleep_talking' },
-  { label: 'Sleep Apnea', value: 'sleep_apnea' },
-  { label: 'Sleep Walking', value: 'sleep_walking' },
-  { label: 'Other', value: 'other' }
-]
-
-const intensityOptions = [
-  { label: 'Very Clear', value: 'very_clear' },
-  { label: 'Clear', value: 'clear' },
-  { label: 'Unclear', value: 'unclear' },
-  { label: 'Very Unclear', value: 'very_unclear' }
-]
-
-const happenedOptions = [
-  { label: 'Falling Asleep', value: 'falling_asleep' },
-  { label: 'Sleeping', value: 'sleeping' },
-  { label: 'Waking Up', value: 'waking_up' },
-  { label: 'Napping', value: 'napping' }
-]
 
 type Schema = z.output<typeof schema>
 
@@ -150,13 +125,13 @@ const formatTags = (data: Schema): void => {
                   </UButton>
 
                   <template #content>
-                    <UCalendar v-model="state.date" class="p-2" />
+                    <UCalendar v-model="state.date" :required="true" class="p-2" />
                   </template>
                 </UPopover>
               </UFormField>
 
               <UFormField label="Tags" name="tags_attributes">
-                <UInputTags v-model="tags" placeholder="Enter tags..." class="w-full" />
+                <UInputTags v-model="tags" placeholder="Enter tags..." :required="true" class="w-full" />
               </UFormField>
             </div>
 
