@@ -77,7 +77,7 @@ const getTypeColor = (type: string) => {
         </div>
         <span :class="['inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium', getTypeColor(props.dream.sleep_type)]">
           <UIcon :name="`i-lucide-${getTypeIcon(props.dream.sleep_type)}`" class="size-4" />
-          {{ t('dashboard.sleep_type.' + props.dream.sleep_type) }}
+          {{ t('dashboard.sleepType.' + props.dream.sleep_type) }}
         </span>
       </div>
     </div>

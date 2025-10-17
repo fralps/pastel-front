@@ -169,16 +169,28 @@
       "noDreams": "Aucun rêve enregistré pour le moment. Commencez par ajouter un nouveau rêve !",
       "addDream": "Ajouter un rêve"
     },
-    "sleep_type": {
+    "sleepType": {
       "dream": "Rêve",
-      "nightmare": "Cauchemar",
       "lucid": "Rêve lucide",
+      "nightmare": "Cauchemar",
       "erotic": "Rêve érotique",
       "sleep_paralysis": "Paralysie du sommeil",
       "sleep_talking": "Somniloquie",
       "sleep_walking": "Somnambulisme",
       "sleep_apnea": "Apnée du sommeil",
       "other": "Autre"
+    },
+    "happened": {
+      "fallingAsleep": "Endormissement",
+      "sleeping": "Sommeil",
+      "wakingUp": "Réveil",
+      "napping": "Sieste"
+    },
+    "intensity": {
+      "veryClear": "Très clair",
+      "clear": "Clair",
+      "unclear": "Flou",
+      "veryUnclear": "Très flou"
     },
     "create": {
       "title": "Enregistrer un nouveau rêve",

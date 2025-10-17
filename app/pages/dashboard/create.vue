@@ -26,6 +26,22 @@ const df = new DateFormatter(formattedLocale, {
   dateStyle: 'full'
 })
 
+
+const mappedSleepTypeOptions = sleepTypeOptions.map(option => ({
+  label: t(option.label),
+  value: option.value
+}))
+
+const mappedHappenedOptions = happenedOptions.map(option => ({
+  label: t(option.label),
+  value: option.value
+}))
+
+const mappedIntensityOptions = intensityOptions.map(option => ({
+  label: t(option.label),
+  value: option.value
+}))
+
 const schema = z.object({
   title: z.string().min(2).max(100),
   description: z.string().min(10).max(1000),
@@ -100,17 +116,17 @@ const formatTags = (data: Schema): void => {
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField :label="$t('dashboard.create.form.sleep_type')" name="sleep_type">
-                <USelect v-model="state.sleep_type" :items="sleepTypeOptions" :required="true" class="cursor-pointer w-full" />
+                <USelect v-model="state.sleep_type" :items="mappedSleepTypeOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
 
               <UFormField :label="$t('dashboard.create.form.intensity')" name="intensity">
-                <USelect v-model="state.intensity" :items="intensityOptions" :required="true" class="cursor-pointer w-full" />
+                <USelect v-model="state.intensity" :items="mappedIntensityOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField :label="$t('dashboard.create.form.happened')" name="happened">
-                <USelect v-model="state.happened" :items="happenedOptions" :required="true" class="cursor-pointer w-full" />
+                <USelect v-model="state.happened" :items="mappedHappenedOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
 
               <UFormField :label="$t('dashboard.create.form.current_mood')" name="current_mood" class="w-full">

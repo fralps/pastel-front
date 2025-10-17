@@ -172,16 +172,28 @@
       "noDreams": "No dreams recorded yet. Start by adding a new dream!",
       "addDream": "Add Dream"
     },
-    "sleep_type": {
+    "sleepType": {
       "dream": "Dream",
-      "nightmare": "Nightmare",
       "lucid": "Lucid Dream",
+      "nightmare": "Nightmare",
       "erotic": "Erotic Dream",
       "sleep_paralysis": "Sleep Paralysis",
       "sleep_talking": "Sleep Talking",
       "sleep_walking": "Sleep Walking",
       "sleep_apnea": "Sleep Apnea",
       "other": "Other"
+    },
+    "happened": {
+      "falling_asleep": "Falling Asleep",
+      "sleeping": "Sleeping",
+      "wakingUp": "Waking Up",
+      "napping": "Napping"
+    },
+    "intensity": {
+      "very_clear": "Very Clear",
+      "clear": "Clear",
+      "unclear": "Unclear",
+      "very_unclear": "Very Unclear"
     },
     "create": {
       "title": "Record a New Dream",

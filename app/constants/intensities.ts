@@ -1,8 +1,6 @@
-
-
 export const intensityOptions = [
-  { label: 'Very Clear', value: 'very_clear' },
-  { label: 'Clear', value: 'clear' },
-  { label: 'Unclear', value: 'unclear' },
-  { label: 'Very Unclear', value: 'very_unclear' }
+  { label: 'dashboard.intensity.veryClear', value: 'very_clear' },
+  { label: 'dashboard.intensity.clear', value: 'clear' },
+  { label: 'dashboard.intensity.unclear', value: 'unclear' },
+  { label: 'dashboard.intensity.veryUnclear', value: 'very_unclear' }
 ]

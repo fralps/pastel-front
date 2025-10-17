@@ -1,13 +1,11 @@
-
-
 export const sleepTypeOptions = [
-  { label: 'Regular Dream', value: 'dream' },
-  { label: 'Lucid Dream', value: 'lucid' },
-  { label: 'Nightmare', value: 'nightmare' },
-  { label: 'Erotic Dream', value: 'erotic' },
-  { label: 'Sleep Paralysis', value: 'sleep_paralysis' },
-  { label: 'Sleep Talking', value: 'sleep_talking' },
-  { label: 'Sleep Apnea', value: 'sleep_apnea' },
-  { label: 'Sleep Walking', value: 'sleep_walking' },
-  { label: 'Other', value: 'other' }
+  { label: 'dashboard.sleepType.dream', value: 'dream' },
+  { label: 'dashboard.sleepType.lucidDream', value: 'lucid_dream' },
+  { label: 'dashboard.sleepType.nightmare', value: 'nightmare' },
+  { label: 'dashboard.sleepType.eroticDream', value: 'erotic_dream' },
+  { label: 'dashboard.sleepType.sleepParalysis', value: 'sleep_paralysis' },
+  { label: 'dashboard.sleepType.sleepTalking', value: 'sleep_talking' },
+  { label: 'dashboard.sleepType.sleepWalking', value: 'sleep_walking' },
+  { label: 'dashboard.sleepType.sleepApnea', value: 'sleep_apnea' },
+  { label: 'dashboard.sleepType.other', value: 'other' }
 ]
