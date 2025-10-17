@@ -187,16 +187,16 @@
       "other": "Autre"
     },
     "happened": {
-      "fallingAsleep": "Endormissement",
+      "falling_asleep": "Endormissement",
       "sleeping": "Sommeil",
-      "wakingUp": "Réveil",
+      "waking_up": "Réveil",
       "napping": "Sieste"
     },
     "intensity": {
-      "veryClear": "Très clair",
+      "very_clear": "Très clair",
       "clear": "Clair",
       "unclear": "Flou",
-      "veryUnclear": "Très flou"
+      "very_unclear": "Très flou"
     },
     "create": {
       "title": "Enregistrer un nouveau rêve",
