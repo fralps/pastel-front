@@ -77,6 +77,12 @@
         "ogTitle": "Pastel - Dashboard",
         "description": "Manage your dreams with Pastel.",
         "ogDescription": "Manage your dreams with Pastel."
+      },
+      "create": {
+        "title": "Record a New Dream - Dashboard",
+        "ogTitle": "Record a New Dream - Dashboard",
+        "description": "Capture the details while they're still fresh in your memory",
+        "ogDescription": "Capture the details while they're still fresh in your memory"
       }
     }
   },

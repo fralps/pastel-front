@@ -13,10 +13,10 @@ definePageMeta({
 const { t, locale } = useI18n({ useScope: 'global' })
 
 useSeoMeta({
-  title: t('dashboard.create.title') + ' - Dashboard',
-  description: t('dashboard.create.description'),
-  ogTitle: t('dashboard.create.title') + ' - Dashboard',
-  ogDescription: t('dashboard.create.description')
+  title: t('meta.dashboard.create.title'),
+  description: t('meta.dashboard.create.description'),
+  ogTitle: t('meta.dashboard.create.title'),
+  ogDescription: t('meta.dashboard.create.description')
 })
 
 
