@@ -12,7 +12,9 @@ const entries = ref<Dream[]>([
     title: 'Flying Over Mountains',
     description: 'I was soaring through clouds above snow-capped peaks. The feeling of freedom was incredible...',
     sleep_type: 'lucid',
-    date: '2024-01-15',
+    happened: 'sleeping',
+    intensity: 'very_clear',
+    date: new Date('2024-01-15'),
     current_mood: 'Peaceful',
     tags_attributes: [
       { id: 1, name: 'flying' },
@@ -25,9 +27,11 @@ const entries = ref<Dream[]>([
     title: 'Lost in a Forest',
     description: 'Dark trees surrounded me, and I couldn\'t find my way out. The shadows seemed to move...',
     sleep_type: 'nightmare',
-    date: '2024-01-14',
+    happened: 'sleeping',
+    intensity: 'unclear',
+    date: new Date('2024-01-14'),
     current_mood: 'Anxious',
-   tags_attributes: [
+    tags_attributes: [
       { id: 1, name: 'flying' },
       { id: 2, name: 'mountains' },
       { id: 3, name: 'freedom' },
@@ -38,7 +42,9 @@ const entries = ref<Dream[]>([
     title: 'Lost in a Forest',
     description: 'Dark trees surrounded me, and I couldn\'t find my way out. The shadows seemed to move...',
     sleep_type: 'dream',
-    date: '2024-01-14',
+    happened: 'sleeping',
+    intensity: 'clear',
+    date: new Date('2024-01-14'),
     current_mood: 'Anxious',
     tags_attributes: [
       { id: 1, name: 'flying' },

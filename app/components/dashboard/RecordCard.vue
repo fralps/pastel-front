@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { Dream } from '@/models'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n({ useScope: 'global' })
 
 const { t } = useI18n()
 
@@ -65,7 +68,7 @@ const getTypeColor = (type: string) => {
           <h3 class="text-base font-semibold text-gray-900 dark:text-white">{{ props.dream.title }}</h3>
           <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <UIcon name="i-lucide-calendar" class="size-3" />
-            {{ new Date(props.dream.date).toLocaleDateString() }}
+            {{ new Date(props.dream.date).toLocaleDateString(locale) }}
             <template v-if="dream.current_mood">
               <span>•</span>
               <span>{{ props.dream.current_mood }}</span>
@@ -74,7 +77,7 @@ const getTypeColor = (type: string) => {
         </div>
         <span :class="['inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium', getTypeColor(props.dream.sleep_type)]">
           <UIcon :name="`i-lucide-${getTypeIcon(props.dream.sleep_type)}`" class="size-4" />
-          {{ t('dashboard.sleep_type.' + props.dream.sleep_type) }}
+          {{ t('dashboard.sleepType.' + props.dream.sleep_type) }}
         </span>
       </div>
     </div>

@@ -77,6 +77,12 @@
         "ogTitle": "Pastel - Dashboard",
         "description": "Manage your dreams with Pastel.",
         "ogDescription": "Manage your dreams with Pastel."
+      },
+      "create": {
+        "title": "Record a New Dream - Dashboard",
+        "ogTitle": "Record a New Dream - Dashboard",
+        "description": "Capture the details while they're still fresh in your memory",
+        "ogDescription": "Capture the details while they're still fresh in your memory"
       }
     }
   },
@@ -172,16 +178,52 @@
       "noDreams": "No dreams recorded yet. Start by adding a new dream!",
       "addDream": "Add Dream"
     },
-    "sleep_type": {
+    "sleepType": {
       "dream": "Dream",
-      "nightmare": "Nightmare",
       "lucid": "Lucid Dream",
+      "nightmare": "Nightmare",
       "erotic": "Erotic Dream",
       "sleep_paralysis": "Sleep Paralysis",
       "sleep_talking": "Sleep Talking",
       "sleep_walking": "Sleep Walking",
       "sleep_apnea": "Sleep Apnea",
       "other": "Other"
+    },
+    "happened": {
+      "falling_asleep": "Falling Asleep",
+      "sleeping": "Sleeping",
+      "wakingUp": "Waking Up",
+      "napping": "Napping"
+    },
+    "intensity": {
+      "very_clear": "Very Clear",
+      "clear": "Clear",
+      "unclear": "Unclear",
+      "very_unclear": "Very Unclear"
+    },
+    "create": {
+      "title": "Record a New Dream",
+      "description": "Capture the details while they're still fresh in your memory",
+      "form": {
+        "title": "Title",
+        "description": "Description",
+        "sleep_type": "Sleep Type",
+        "intensity": "Intensity",
+        "happened": "Happened",
+        "current_mood": "Mood",
+        "date": "Date of the dream",
+        "tags": "Tags",
+        "tags_placeholder": "Enter tags..."
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "save": "Save Dream"
+      },
+      "toast": {
+        "success": "Dream created successfully",
+        "error": "Failed to create dream entry"
+      },
+      "select_date": "Select a date"
     }
   },
   "shared": {
