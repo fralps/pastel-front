@@ -31,12 +31,17 @@ onMounted(async (): Promise<void> => {
   await fetchDreams(currentPage.value)
 })
 
+const scrollToTop = (): void => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 async function fetchDreams(page: number): Promise<void> {
   const response = await $customFetch<PaginatedDreamsResponse>(`/sleeps?page=${page}`, {
     method: 'GET',
   })
 
   if (response?.paginated_result) {
+    scrollToTop()
     dreamsList.value = response.paginated_result
     totalDreams.value = response.total_sleeps
     currentPage.value = page
