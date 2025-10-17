@@ -10,14 +10,15 @@ definePageMeta({
   middleware: ['auth'],
 })
 
+const { t, locale } = useI18n({ useScope: 'global' })
+
 useSeoMeta({
-  title: 'Record a New Dream - Dashboard',
-  description: 'Capture the details while they\'re still fresh in your memory',
-  ogTitle: 'Record a New Dream - Dashboard',
-  ogDescription: 'Capture the details while they\'re still fresh in your memory'
+  title: t('dashboard.create.title') + ' - Dashboard',
+  description: t('dashboard.create.description'),
+  ogTitle: t('dashboard.create.title') + ' - Dashboard',
+  ogDescription: t('dashboard.create.description')
 })
 
-const { locale } = useI18n({ useScope: 'global' })
 
 const formattedLocale = locale.value.replace('_', '-')
 
@@ -63,10 +64,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   })
 
   if (response?.id) {
-    toast.add({ title: 'Success', description: 'Dream created successfully', color: 'success' })
+    toast.add({ title: t('dashboard.create.toast.success'), color: 'success' })
     await navigateTo('/dashboard')
   } else {
-    toast.add({ title: 'Error', description: 'Failed to create dream entry', color: 'error' })
+    toast.add({ title: t('dashboard.create.toast.error'), color: 'error' })
   }
 }
 
@@ -83,45 +84,45 @@ const formatTags = (data: Schema): void => {
         <div class="p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2">
             <UIcon name="i-lucide-plus" class="size-5" />
-            Record a New Dream
+            {{ $t('dashboard.create.title') }}
           </h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Capture the details while they're still fresh in your memory</p>
+          <p class="text-sm text-gray-600 dark:text-gray-400">{{ $t('dashboard.create.description') }}</p>
         </div>
         <div class="p-6 space-y-4">
           <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-            <UFormField label="Title" name="title" class="w-full">
+            <UFormField :label="$t('dashboard.create.form.title')" name="title" class="w-full">
               <UInput v-model="state.title" :required="true" class="w-full" />
             </UFormField>
 
-            <UFormField label="Description" name="description" class="w-full">
+            <UFormField :label="$t('dashboard.create.form.description')" name="description" class="w-full">
               <UTextarea v-model="state.description" :required="true" class="w-full" />
             </UFormField>
 
             <div class="grid grid-cols-2 gap-4">
-              <UFormField label="Sleep Type" name="sleep_type">
+              <UFormField :label="$t('dashboard.create.form.sleep_type')" name="sleep_type">
                 <USelect v-model="state.sleep_type" :items="sleepTypeOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
 
-              <UFormField label="Intensity" name="intensity">
+              <UFormField :label="$t('dashboard.create.form.intensity')" name="intensity">
                 <USelect v-model="state.intensity" :items="intensityOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-              <UFormField label="Happened" name="happened">
+              <UFormField :label="$t('dashboard.create.form.happened')" name="happened">
                 <USelect v-model="state.happened" :items="happenedOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
 
-              <UFormField label="Mood" name="current_mood" class="w-full">
+              <UFormField :label="$t('dashboard.create.form.current_mood')" name="current_mood" class="w-full">
                 <UInput v-model="state.current_mood" :required="true" class="w-full" />
               </UFormField>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <UFormField label="Date of the dream" name="date">
+              <UFormField :label="$t('dashboard.create.form.date')" name="date">
                 <UPopover>
                   <UButton color="neutral" variant="subtle" icon="i-lucide-calendar" class="w-full cursor-pointer">
-                    {{ state.date ? df.format(state.date.toDate(getLocalTimeZone())) : 'Select a date' }}
+                    {{ state.date ? df.format(state.date.toDate(getLocalTimeZone())) : $t('dashboard.create.select_date') }}
                   </UButton>
 
                   <template #content>
@@ -130,8 +131,8 @@ const formatTags = (data: Schema): void => {
                 </UPopover>
               </UFormField>
 
-              <UFormField label="Tags" name="tags_attributes">
-                <UInputTags v-model="tags" placeholder="Enter tags..." :required="true" class="w-full" />
+              <UFormField :label="$t('dashboard.create.form.tags')" name="tags_attributes">
+                <UInputTags v-model="tags" :placeholder="$t('dashboard.create.form.tags_placeholder')" :required="true" class="w-full" />
               </UFormField>
             </div>
 
@@ -141,7 +142,7 @@ const formatTags = (data: Schema): void => {
                 class="text-error font-medium"
                 tabindex="-1"
               >
-                Cancel
+                {{ $t('dashboard.create.actions.cancel') }}
               </ULink>
 
               <UButton
@@ -152,7 +153,7 @@ const formatTags = (data: Schema): void => {
                 variant="solid"
                 class="cursor-pointer"
               >
-                Save Dream
+                {{ $t('dashboard.create.actions.save') }}
               </UButton>
             </div>
           </UForm>

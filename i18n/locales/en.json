@@ -182,6 +182,30 @@
       "sleep_walking": "Sleep Walking",
       "sleep_apnea": "Sleep Apnea",
       "other": "Other"
+    },
+    "create": {
+      "title": "Record a New Dream",
+      "description": "Capture the details while they're still fresh in your memory",
+      "form": {
+        "title": "Title",
+        "description": "Description",
+        "sleep_type": "Sleep Type",
+        "intensity": "Intensity",
+        "happened": "Happened",
+        "current_mood": "Mood",
+        "date": "Date of the dream",
+        "tags": "Tags",
+        "tags_placeholder": "Enter tags..."
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "save": "Save Dream"
+      },
+      "toast": {
+        "success": "Dream created successfully",
+        "error": "Failed to create dream entry"
+      },
+      "select_date": "Select a date"
     }
   },
   "shared": {

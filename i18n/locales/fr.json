@@ -179,6 +179,30 @@
       "sleep_walking": "Somnambulisme",
       "sleep_apnea": "Apnée du sommeil",
       "other": "Autre"
+    },
+    "create": {
+      "title": "Enregistrer un nouveau rêve",
+      "description": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire",
+      "form": {
+        "title": "Titre",
+        "description": "Description",
+        "sleep_type": "Type de sommeil",
+        "intensity": "Intensité",
+        "happened": "Contexte",
+        "current_mood": "Humeur",
+        "date": "Date du rêve",
+        "tags": "Tags",
+        "tags_placeholder": "Entrez des tags..."
+      },
+      "actions": {
+        "cancel": "Annuler",
+        "save": "Enregistrer le rêve"
+      },
+      "toast": {
+        "success": "Rêve créé avec succès",
+        "error": "Échec de la création du rêve"
+      },
+      "select_date": "Sélectionner une date"
     }
   },
   "shared": {
