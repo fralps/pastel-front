@@ -192,7 +192,7 @@
     "happened": {
       "falling_asleep": "Falling Asleep",
       "sleeping": "Sleeping",
-      "wakingUp": "Waking Up",
+      "waking_up": "Waking Up",
       "napping": "Napping"
     },
     "intensity": {
