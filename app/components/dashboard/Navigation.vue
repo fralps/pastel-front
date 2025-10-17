@@ -1,21 +1,39 @@
 <script setup lang="ts">
+  import { useRoute } from 'vue-router'
+  import { watch } from 'vue'
   type TabType = 'home' | 'add' | 'insights'
 
+  const route = useRoute()
   const activeTab = ref<TabType>('home')
+
+  const updateActiveTab = () => {
+    if (typeof route.name === 'string') {
+      if (route.name.startsWith('dashboard___')) {
+        activeTab.value = 'home'
+      } else if (route.name.startsWith('dashboard-create___')) {
+        activeTab.value = 'add'
+      } else if (route.name.startsWith('dashboard-insights___')) {
+        activeTab.value = 'insights'
+      } else {
+        activeTab.value = 'home'
+      }
+    } else {
+      activeTab.value = 'home'
+    }
+  }
+
+  watch(() => route.path, updateActiveTab, { immediate: true })
 
   const redirectTo = (tab: TabType) => {
     switch (tab) {
       case 'home':
         navigateTo('/dashboard')
-        activeTab.value = 'home'
         break
       case 'add':
         navigateTo('/dashboard/create')
-        activeTab.value = 'add'
         break
       case 'insights':
         navigateTo('/dashboard/insights')
-        activeTab.value = 'insights'
         break
     }
   }
