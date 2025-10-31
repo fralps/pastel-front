@@ -1,1 +1,1 @@
-export * from '@/models/dream';
+export * from '~/models/sleep';

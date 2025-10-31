@@ -83,6 +83,12 @@
         "ogTitle": "Record a New Dream - Dashboard",
         "description": "Capture the details while they're still fresh in your memory",
         "ogDescription": "Capture the details while they're still fresh in your memory"
+      },
+      "insights": {
+        "title": "Insights - Dashboard",
+        "ogTitle": "Insights - Dashboard",
+        "description": "Discover insights about your dreams with Pastel.",
+        "ogDescription": "Discover insights about your dreams with Pastel."
       }
     }
   },
@@ -234,9 +240,18 @@
       "select_date": "Select a date"
     }
   },
+  "insights": {
+    "title": "Dream Insights",
+    "description": "Analyze the trends and statistics of your dream journal."
+  },
   "shared": {
     "continue": "Continue",
     "remembered": "Remember your password?",
-    "backToSignIn": "Back to Sign In"
+    "backToSignIn": "Back to Sign In",
+    "navigation": {
+      "dashboard": "Journal",
+      "createDream": "New Dream",
+      "insights": "Insights"
+    }
   }
 }

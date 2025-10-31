@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Dream } from '@/models'
+import type { Sleep } from '@/models'
 
 definePageMeta({
   middleware: ['auth'],
@@ -16,14 +16,14 @@ useSeoMeta({
 })
 
 interface PaginatedDreamsResponse {
-  paginated_result: Dream[]
+  paginated_result: Sleep[]
   total_sleeps: number
   total_pages: {
     pages: number
   }
 }
 
-const dreamsList = ref<Dream[]>([])
+const dreamsList = ref<Sleep[]>([])
 const totalDreams = ref(0)
 const currentPage = ref(1)
 
