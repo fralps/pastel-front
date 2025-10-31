@@ -83,6 +83,12 @@
         "ogTitle": "Enregistrer un nouveau rêve - Tableau de bord",
         "description": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire",
         "ogDescription": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire"
+      },
+      "insights": {
+        "title": "Insights - Tableau de bord",
+        "ogTitle": "Insights - Tableau de bord",
+        "description": "Découvrez des insights sur vos rêves avec Pastel.",
+        "ogDescription": "Découvrez des insights sur vos rêves avec Pastel."
       }
     }
   },
@@ -231,9 +237,18 @@
       "select_date": "Sélectionner une date"
     }
   },
+  "insights": {
+    "title": "Insights sur les rêves",
+    "description": "Analysez les tendances et les statistiques de votre journal de rêves."
+  },
   "shared": {
     "continue": "Continuer",
     "remembered": "Je me souviens de mon mot de passe",
-    "backToSignIn": "Retour à la connexion"
+    "backToSignIn": "Retour à la connexion",
+    "navigation": {
+      "dashboard": "Journal",
+      "createDream": "Nouveau rêve",
+      "insights": "Insights"
+    }
   }
 }

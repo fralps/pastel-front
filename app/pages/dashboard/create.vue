@@ -4,7 +4,7 @@ import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 import { CalendarDate, DateFormatter, getLocalTimeZone } from '@internationalized/date'
 import { sleepTypeOptions, intensityOptions, happenedOptions } from '@/constants'
-import type { Dream } from '@/models'
+import type { Sleep } from '@/models'
 
 definePageMeta({
   middleware: ['auth'],
@@ -76,7 +76,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   loading.value = true
   formatTags(event.data)
 
-  const response = await $customFetch<Dream>('/sleeps', {
+  const response = await $customFetch<Sleep>('/sleeps', {
     method: 'POST',
     body: { sleep: event.data }
   })

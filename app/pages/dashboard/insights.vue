@@ -1,92 +1,69 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Dream } from '@/models'
+import { useI18n } from 'vue-i18n'
+import type { SleepTotals } from '@/models'
+import { sleepTypeIcon, sleepTypeColor } from '@/constants'
 
 definePageMeta({
   middleware: ['auth'],
 })
 
-const entries = ref<Dream[]>([
-  {
-    id: 1,
-    title: 'Flying Over Mountains',
-    description: 'I was soaring through clouds above snow-capped peaks. The feeling of freedom was incredible...',
-    sleep_type: 'lucid',
-    happened: 'sleeping',
-    intensity: 'very_clear',
-    date: new Date('2024-01-15'),
-    current_mood: 'Peaceful',
-    tags_attributes: [
-      { id: 1, name: 'flying' },
-      { id: 2, name: 'mountains' },
-      { id: 3, name: 'freedom' },
-    ]
-  },
-  {
-    id: 2,
-    title: 'Lost in a Forest',
-    description: 'Dark trees surrounded me, and I couldn\'t find my way out. The shadows seemed to move...',
-    sleep_type: 'nightmare',
-    happened: 'sleeping',
-    intensity: 'unclear',
-    date: new Date('2024-01-14'),
-    current_mood: 'Anxious',
-    tags_attributes: [
-      { id: 1, name: 'flying' },
-      { id: 2, name: 'mountains' },
-      { id: 3, name: 'freedom' },
-    ]
-  },
-  {
-    id: 3,
-    title: 'Lost in a Forest',
-    description: 'Dark trees surrounded me, and I couldn\'t find my way out. The shadows seemed to move...',
-    sleep_type: 'dream',
-    happened: 'sleeping',
-    intensity: 'clear',
-    date: new Date('2024-01-14'),
-    current_mood: 'Anxious',
-    tags_attributes: [
-      { id: 1, name: 'flying' },
-      { id: 2, name: 'mountains' },
-      { id: 3, name: 'freedom' },
-    ]
-  },
-])
+const { t } = useI18n({ useScope: 'global' })
 
+useSeoMeta({
+  title: t('meta.dashboard.insights.title'),
+  description: t('meta.dashboard.insights.description'),
+  ogTitle: t('meta.dashboard.insights.ogTitle'),
+  ogDescription: t('meta.dashboard.insights.ogDescription')
+})
+
+const { $customFetch } = useNuxtApp()
+
+const results = ref<SleepTotals>({
+  totals: {
+    dream: 0,
+    lucid: 0,
+    nightmare: 0,
+    sleep_paralysis: 0,
+    sleep_walking: 0,
+    sleep_talking: 0,
+    sleep_apnea: 0,
+    erotic: 0
+  }
+})
+
+onMounted(async () => {
+  await fetchDreamInsights()
+})
+
+const fetchDreamInsights = async () => {
+  const response = await $customFetch<SleepTotals>('/stats/dashboard_stats', {
+    method: 'get'
+  })
+
+  if (response) results.value = response
+}
 </script>
 
 <template>
   <NuxtLayout name="dashboard">
-    <div class="space-y-6">
+    <div class="space-y-6 pb-18">
       <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
         <div class="p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            <!-- <IconChart class="w-5 h-5" /> -->
-            <UIcon name="i-lucide-chart" class="size-5" />
-            Dream Insights
+            <UIcon name="i-lucide-chart-column" class="size-5" />
+            {{ $t('insights.title') }}
           </h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Patterns and statistics from your dream journal</p>
+          <p class="text-sm text-gray-600 dark:text-gray-400">{{ $t('insights.description') }}</p>
         </div>
         <div class="p-6">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="text-center p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                {{ entries.filter(e => e.sleep_type === 'dream').length }}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div v-for="(count, type) in results.totals" :key="type" class="text-center p-6 rounded-lg" :class="sleepTypeColor(type)">
+              <div class="text-2xl font-bold flex items-center justify-center">
+                <UIcon :name="`i-lucide-${sleepTypeIcon(type)}`" class="size-5 mr-1" />
+                {{ count }}
               </div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Regular Dreams</div>
-            </div>
-            <div class="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                {{ entries.filter(e => e.sleep_type === 'lucid').length }}
-              </div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Lucid Dreams</div>
-            </div>
-            <div class="text-center p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
-              <div class="text-2xl font-bold text-red-600 dark:text-red-400">
-                {{ entries.filter(e => e.sleep_type === 'nightmare').length }}
-              </div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Nightmares</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">{{ $t(`dashboard.sleepType.${type}`) }}</div>
             </div>
           </div>
         </div>
