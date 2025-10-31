@@ -105,6 +105,7 @@ async function fetchDreams(page: number): Promise<void> {
           />
 
           <UPagination
+            v-if="totalDreams > 10"
             v-model:page="currentPage"
             :sibling-count="1"
             :items-per-page="10"
