@@ -23,6 +23,10 @@ export default defineNuxtPlugin((nuxtApp) => {
       if (response.status === 401) {
         await nuxtApp.runWithContext(() => navigateTo("/auth/sign-in"));
       }
+
+      if (response.status === 404) {
+        await nuxtApp.runWithContext(() => navigateTo("/dashboard"));
+      }
     },
   });
   // Expose to useNuxtApp().$customFetch
