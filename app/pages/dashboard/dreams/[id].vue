@@ -244,7 +244,7 @@ const deleteDream = async (): Promise<void> => {
           </UButton>
 
           <UButton
-            icon="i-lucide-log-out"
+            icon="i-lucide-trash"
             size="sm"
             color="error"
             variant="outline"
