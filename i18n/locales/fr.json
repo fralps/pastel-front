@@ -249,7 +249,9 @@
       "description": "Description du rêve",
       "actions": {
         "edit": "Modifier",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "deleteSuccessTitle": "Rêve supprimé",
+        "deleteSuccessDesc": "Le rêve a été supprimé avec succès."
       }
     }
   },

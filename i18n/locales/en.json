@@ -252,7 +252,9 @@
       "description": "Dream description",
       "actions": {
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "deleteSuccessTitle": "Dream deleted",
+        "deleteSuccessDesc": "The dream has been successfully deleted."
       }
     }
   },

@@ -4,6 +4,7 @@ import type { Sleep } from "@/models";
 import { sleepTypeIcon, sleepTypeColor, sleepTypeTextColor } from "~/constants";
 
 const router = useRouter();
+const toast = useToast();
 const { $customFetch } = useNuxtApp();
 const { t, locale } = useI18n();
 
@@ -27,12 +28,13 @@ const dreamDetails = ref<Sleep>({
   created_at: null,
   updated_at: null,
 });
+const loading = ref(false);
 
 onMounted(async () => {
   await fetchDreamDetails();
 });
 
-const fetchDreamDetails = async () => {
+const fetchDreamDetails = async (): Promise<void> => {
   const response = await $customFetch(
     `/sleeps/${router.currentRoute.value.params.id}`,
     {
@@ -49,8 +51,20 @@ const editDream = () => {
   console.log("EDIT");
 };
 
-const deleteDream = () => {
-  console.log("DELETE");
+const deleteDream = async (): Promise<void> => {
+  loading.value = true;
+  await $customFetch(`/sleeps/${router.currentRoute.value.params.id}`, {
+    method: "delete",
+  });
+
+  toast.add({
+    title: t("dashboard.show.actions.deleteSuccessTitle"),
+    description: t("dashboard.show.actions.deleteSuccessDesc"),
+    color: "success",
+  });
+
+  await router.push("/dashboard");
+  loading.value = false;
 };
 </script>
 
@@ -235,6 +249,8 @@ const deleteDream = () => {
             color="error"
             variant="outline"
             class="text-xs cursor-pointer"
+            :loading="loading"
+            loading-icon="i-lucide-loader"
             @click="deleteDream()"
           >
             {{ $t("dashboard.show.actions.delete") }}
