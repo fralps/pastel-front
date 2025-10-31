@@ -57,7 +57,7 @@ async function fetchDreams(page: number): Promise<void> {
     <div class="space-y-6">
       <!-- Welcome Section -->
       <div
-        class="bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 border border-primary-200 dark:border-primary-800 rounded-lg"
+        class="bg-linear-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 border border-primary-200 dark:border-primary-800 rounded-lg"
       >
         <div class="p-6">
           <h2
@@ -88,7 +88,7 @@ async function fetchDreams(page: number): Promise<void> {
             color="primary"
             variant="solid"
             class="cursor-pointer"
-            @click="navigateTo('/dashboard/create')"
+            @click="navigateTo('/dashboard/dreams/create')"
           >
             {{ t("dashboard.list.addDream") }}
           </UButton>
@@ -122,7 +122,7 @@ async function fetchDreams(page: number): Promise<void> {
             color="primary"
             variant="solid"
             class="cursor-pointer"
-            @click="navigateTo('/dashboard/create')"
+            @click="navigateTo('/dashboard/dreams/create')"
           >
             {{ t("dashboard.list.addDream") }}
           </UButton>

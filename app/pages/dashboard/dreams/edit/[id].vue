@@ -19,12 +19,13 @@ definePageMeta({
 });
 
 const { t, locale } = useI18n({ useScope: "global" });
+const router = useRouter();
 
 useSeoMeta({
-  title: t("meta.dashboard.create.title"),
-  description: t("meta.dashboard.create.description"),
-  ogTitle: t("meta.dashboard.create.title"),
-  ogDescription: t("meta.dashboard.create.description"),
+  title: t("meta.dashboard.edit.title"),
+  description: t("meta.dashboard.edit.description"),
+  ogTitle: t("meta.dashboard.edit.title"),
+  ogDescription: t("meta.dashboard.edit.description"),
 });
 
 const formattedLocale = locale.value.replace("_", "-");
@@ -51,20 +52,26 @@ const mappedIntensityOptions = intensityOptions.map((option) => ({
 const schema = z.object({
   title: z
     .string()
-    .min(2, t("dashboard.create.form.errors.titleMin"))
-    .max(100, t("dashboard.create.form.errors.titleMax")),
+    .min(2, t("dashboard.edit.form.errors.titleMin"))
+    .max(100, t("dashboard.edit.form.errors.titleMax")),
   description: z
     .string()
-    .min(10, t("dashboard.create.form.errors.descriptionMin")),
+    .min(10, t("dashboard.edit.form.errors.descriptionMin")),
   sleep_type: z.string(),
   intensity: z.string(),
   happened: z.string(),
   current_mood: z
     .string()
-    .min(2, t("dashboard.create.form.errors.currentMoodMin"))
-    .max(20, t("dashboard.create.form.errors.currentMoodMax")),
+    .min(2, t("dashboard.edit.form.errors.currentMoodMin"))
+    .max(20, t("dashboard.edit.form.errors.currentMoodMax")),
   date: z.any(),
-  tags_attributes: z.array(z.object({ name: z.string() })),
+  tags_attributes: z.array(
+    z.object({
+      id: z.number().optional(),
+      name: z.string(),
+      _destroy: z.boolean().optional(),
+    }),
+  ),
 });
 
 type Schema = z.output<typeof schema>;
@@ -82,38 +89,126 @@ const state = reactive<Schema>({
       new Date().getMonth() + 1,
       new Date().getDate(),
     ),
-  ), // Months are 1-indexed
-  tags_attributes: [] as { name: string }[],
+  ),
+  tags_attributes: [],
 });
 
 const { $customFetch } = useNuxtApp();
 const toast = useToast();
 
 const tags = ref<string[]>([]);
+const tagsWithIds = ref<Array<{ id?: number; name: string }>>([]);
 const loading = ref(false);
+
+onMounted(async (): Promise<void> => {
+  await fetchDreamDetails();
+});
+
+const fetchDreamDetails = async (): Promise<void> => {
+  const response: Sleep = await $customFetch(
+    `/sleeps/${router.currentRoute.value.params.id}`,
+    {
+      method: "get",
+    },
+  );
+
+  if (response && Object.keys(response).length > 0) {
+    state.title = response.title ?? "";
+    state.description = response.description ?? "";
+    state.sleep_type = response.sleep_type ?? "";
+    state.intensity = response.intensity ?? "";
+    state.happened = response.happened ?? "";
+    state.current_mood = response.current_mood ?? "";
+    const safeDate = response.date ? new Date(response.date) : new Date();
+    state.date = new CalendarDate(
+      safeDate.getFullYear(),
+      safeDate.getMonth() + 1,
+      safeDate.getDate(),
+    );
+
+    // Store tags with their IDs
+    tagsWithIds.value = (response.tags_attributes ?? []).map(
+      (tag: { id?: number; name: string }) => ({ id: tag.id, name: tag.name }),
+    );
+
+    // Show only names in the input
+    tags.value = tagsWithIds.value.map((tag) => tag.name);
+  }
+};
+
+const formatTagsAttributesForApi = (tagName: string): void => {
+  // Find the tag with its ID
+  const tagWithId = tagsWithIds.value.find((tag) => tag.name === tagName);
+
+  if (tagWithId?.id) {
+    // If the tag has an ID (it exists in the database), we mark it for deletion
+    const existingIndex = state.tags_attributes.findIndex(
+      (tag) => tag.name === tagName,
+    );
+
+    if (existingIndex !== -1) {
+      if (state.tags_attributes[existingIndex]) {
+        state.tags_attributes[existingIndex]._destroy = true;
+      }
+    } else {
+      state.tags_attributes.push({
+        id: tagWithId.id,
+        name: tagName,
+        _destroy: true,
+      });
+    }
+  }
+
+  // Remove from tagsWithIds as well
+  tagsWithIds.value = tagsWithIds.value.filter((tag) => tag.name !== tagName);
+};
+
+const formatTags = (data: Schema): void => {
+  // Keep tags marked for deletion (with their ID)
+  const tagsToDestroy = data.tags_attributes.filter((tag) => tag._destroy);
+
+  // Create the list of new tags and existing tags to keep
+  const currentTags = tags.value.map((tagName) => {
+    const existingTag = tagsWithIds.value.find((t) => t.name === tagName);
+    if (existingTag?.id) {
+      // Existing tag to keep
+      return { id: existingTag.id, name: tagName };
+    }
+    // New tag
+    return { name: tagName };
+  });
+
+  data.tags_attributes = [...tagsToDestroy, ...currentTags];
+};
+
+const formatDate = (data: Schema): void => {
+  if (data.date && typeof data.date === "object" && "toDate" in data.date) {
+    const jsDate = data.date.toDate(getLocalTimeZone());
+    data.date = jsDate.toISOString().split("T")[0];
+  }
+};
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   loading.value = true;
   formatTags(event.data);
+  formatDate(event.data);
 
-  const response = await $customFetch<Sleep>("/sleeps", {
-    method: "POST",
-    body: { sleep: event.data },
-  });
+  const response = await $customFetch<Sleep>(
+    `/sleeps/${router.currentRoute.value.params.id}`,
+    {
+      method: "PUT",
+      body: { sleep: event.data },
+    },
+  );
 
   if (response?.id) {
-    toast.add({ title: t("dashboard.create.toast.success"), color: "success" });
-    await navigateTo("/dashboard");
+    toast.add({ title: t("dashboard.edit.toast.success"), color: "success" });
+    await navigateTo(`/dashboard/dreams/${response.id}`);
   } else {
-    toast.add({ title: t("dashboard.create.toast.error"), color: "error" });
+    toast.add({ title: t("dashboard.edit.toast.error"), color: "error" });
   }
   loading.value = false;
 }
-
-// Format tags following this structure { name: 'tag_name' }
-const formatTags = (data: Schema): void => {
-  data.tags_attributes = tags.value.map((tag) => ({ name: tag }));
-};
 </script>
 
 <template>
@@ -125,10 +220,10 @@ const formatTags = (data: Schema): void => {
       :ui="{
         leadingIcon: 'text-primary',
       }"
+      class="cursor-pointer"
+      @click="router.back()"
     >
-      <NuxtLink :to="$localePath('dashboard')">{{
-        $t("dashboard.create.goBack")
-      }}</NuxtLink>
+      {{ $t("dashboard.edit.goBack") }}
     </UButton>
     <div class="pb-18 mt-6">
       <div
@@ -139,10 +234,10 @@ const formatTags = (data: Schema): void => {
             class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2"
           >
             <UIcon name="i-lucide-plus" class="size-5" />
-            {{ $t("dashboard.create.title") }}
+            {{ $t("dashboard.edit.title") }}
           </h2>
           <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ $t("dashboard.create.description") }}
+            {{ $t("dashboard.edit.description") }}
           </p>
         </div>
         <div class="p-6 space-y-4">
@@ -153,7 +248,7 @@ const formatTags = (data: Schema): void => {
             @submit="onSubmit"
           >
             <UFormField
-              :label="$t('dashboard.create.form.title')"
+              :label="$t('dashboard.edit.form.title')"
               name="title"
               class="w-full"
             >
@@ -161,7 +256,7 @@ const formatTags = (data: Schema): void => {
             </UFormField>
 
             <UFormField
-              :label="$t('dashboard.create.form.description')"
+              :label="$t('dashboard.edit.form.description')"
               name="description"
               class="w-full"
             >
@@ -174,7 +269,7 @@ const formatTags = (data: Schema): void => {
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField
-                :label="$t('dashboard.create.form.sleepType')"
+                :label="$t('dashboard.edit.form.sleepType')"
                 name="sleep_type"
               >
                 <USelect
@@ -186,7 +281,7 @@ const formatTags = (data: Schema): void => {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.create.form.intensity')"
+                :label="$t('dashboard.edit.form.intensity')"
                 name="intensity"
               >
                 <USelect
@@ -200,7 +295,7 @@ const formatTags = (data: Schema): void => {
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField
-                :label="$t('dashboard.create.form.happened')"
+                :label="$t('dashboard.edit.form.happened')"
                 name="happened"
               >
                 <USelect
@@ -212,7 +307,7 @@ const formatTags = (data: Schema): void => {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.create.form.currentMood')"
+                :label="$t('dashboard.edit.form.currentMood')"
                 name="current_mood"
                 class="w-full"
               >
@@ -225,7 +320,7 @@ const formatTags = (data: Schema): void => {
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <UFormField :label="$t('dashboard.create.form.date')" name="date">
+              <UFormField :label="$t('dashboard.edit.form.date')" name="date">
                 <UPopover>
                   <UButton
                     color="neutral"
@@ -236,7 +331,7 @@ const formatTags = (data: Schema): void => {
                     {{
                       state.date
                         ? df.format(state.date.toDate(getLocalTimeZone()))
-                        : $t("dashboard.create.select_date")
+                        : $t("dashboard.edit.select_date")
                     }}
                   </UButton>
 
@@ -251,14 +346,16 @@ const formatTags = (data: Schema): void => {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.create.form.tags')"
+                :label="$t('dashboard.edit.form.tags')"
                 name="tags_attributes"
               >
                 <UInputTags
                   v-model="tags"
-                  :placeholder="$t('dashboard.create.form.tagsPlaceholder')"
+                  :placeholder="$t('dashboard.edit.form.tagsPlaceholder')"
                   :required="true"
+                  :max="5"
                   class="w-full"
+                  @remove-tag="formatTagsAttributesForApi"
                 />
               </UFormField>
             </div>
@@ -269,7 +366,7 @@ const formatTags = (data: Schema): void => {
                 class="text-error font-medium"
                 tabindex="-1"
               >
-                {{ $t("dashboard.create.actions.cancel") }}
+                {{ $t("dashboard.edit.actions.cancel") }}
               </ULink>
 
               <UButton
@@ -282,7 +379,7 @@ const formatTags = (data: Schema): void => {
                 variant="solid"
                 class="cursor-pointer"
               >
-                {{ $t("dashboard.create.actions.save") }}
+                {{ $t("dashboard.edit.actions.save") }}
               </UButton>
             </div>
           </UForm>

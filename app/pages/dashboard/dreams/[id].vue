@@ -47,8 +47,8 @@ const fetchDreamDetails = async (): Promise<void> => {
   }
 };
 
-const editDream = () => {
-  console.log("EDIT");
+const editDream = async (): Promise<void> => {
+  await router.push(`/dashboard/dreams/edit/${dreamDetails.value.id}`);
 };
 
 const deleteDream = async (): Promise<void> => {

@@ -84,6 +84,12 @@
         "description": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire",
         "ogDescription": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire"
       },
+      "edit": {
+        "title": "Modifier un rêve - Tableau de bord",
+        "ogTitle": "Modifier un rêve - Tableau de bord",
+        "description": "Mettez à jour les détails de votre rêve.",
+        "ogDescription": "Mettez à jour les détails de votre rêve."
+      },
       "show": {
         "title": "Détails du rêve - Tableau de bord",
         "ogTitle": "Détails du rêve - Tableau de bord",
@@ -239,6 +245,38 @@
       "toast": {
         "success": "Rêve créé avec succès",
         "error": "Échec de la création du rêve"
+      },
+      "select_date": "Sélectionner une date"
+    },
+    "edit": {
+      "title": "Modifier un rêve",
+      "description": "Mettez à jour les détails de votre rêve.",
+      "goBack": "Retour aux détails",
+      "form": {
+        "title": "Titre",
+        "description": "Description",
+        "sleepType": "Type de sommeil",
+        "intensity": "Intensité",
+        "happened": "Contexte",
+        "currentMood": "Humeur",
+        "date": "Date du rêve",
+        "tags": "Tags",
+        "tagsPlaceholder": "Entrez des tags...",
+        "errors": {
+          "titleMin": "Le titre doit contenir au moins 2 caractères",
+          "titleMax": "Le titre doit contenir au maximum 100 caractères",
+          "descriptionMin": "La description doit contenir au moins 10 caractères",
+          "currentMoodMin": "L'humeur doit contenir au moins 2 caractères",
+          "currentMoodMax": "L'humeur doit contenir au maximum 20 caractères"
+        }
+      },
+      "actions": {
+        "cancel": "Annuler",
+        "save": "Enregistrer"
+      },
+      "toast": {
+        "success": "Rêve modifié avec succès",
+        "error": "Échec de la modification du rêve"
       },
       "select_date": "Sélectionner une date"
     },
