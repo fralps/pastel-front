@@ -57,7 +57,7 @@ const getTypeColor = (type: string) => {
   }
 }
 
-const redirectToShowPage = async (id: number) => {
+const redirectToShowPage = async (id: number | undefined) => {
   await router.push(`/dashboard/dreams/${id}`)
 }
 </script>
