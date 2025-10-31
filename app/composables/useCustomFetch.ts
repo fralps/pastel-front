@@ -1,4 +1,4 @@
-import type { UseFetchOptions } from 'nuxt/app'
+import type { UseFetchOptions } from "nuxt/app";
 
 export function useCustomFetch<T>(
   url: string | (() => string),
@@ -7,5 +7,5 @@ export function useCustomFetch<T>(
   return useFetch(url, {
     ...options,
     $fetch: useNuxtApp().$customFetch,
-  })
+  });
 }

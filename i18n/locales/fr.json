@@ -84,6 +84,12 @@
         "description": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire",
         "ogDescription": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire"
       },
+      "show": {
+        "title": "Détails du rêve - Tableau de bord",
+        "ogTitle": "Détails du rêve - Tableau de bord",
+        "description": "Découvrez les détails de votre rêve avec Pastel.",
+        "ogDescription": "Découvrez les détails de votre rêve avec Pastel."
+      },
       "insights": {
         "title": "Insights - Tableau de bord",
         "ogTitle": "Insights - Tableau de bord",
@@ -174,9 +180,9 @@
   "dashboard": {
     "welcome": {
       "title": "Bienvenue dans votre monde de rêves",
-      "description": "Vous avez {count} rêve(s) enregistré(s). Continuez à explorer votre subconscient."
+      "description": "Vous avez {count} rêve(s) enregistré(s) au total. Continuez à explorer votre subconscient."
     },
-     "list": {
+    "list": {
       "title": "Vos rêves",
       "noDreams": "Aucun rêve enregistré pour le moment. Commencez par ajouter un nouveau rêve !",
       "addDream": "Ajouter un rêve"
@@ -235,6 +241,16 @@
         "error": "Échec de la création du rêve"
       },
       "select_date": "Sélectionner une date"
+    },
+    "show": {
+      "currentMood": "Humeur actuelle :",
+      "happened": "Contexte :",
+      "intensity": "Lucidité :",
+      "description": "Description du rêve",
+      "actions": {
+        "edit": "Modifier",
+        "delete": "Supprimer"
+      }
     }
   },
   "insights": {

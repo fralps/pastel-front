@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useCurrentUserStore } from '@/stores/currentUser'
+import { useCurrentUserStore } from "@/stores/currentUser";
 
-const currentUser = useCurrentUserStore()
+const currentUser = useCurrentUserStore();
 
 const logout = async (): Promise<void> => {
-  const userAuth = useCookie('token')
+  const userAuth = useCookie("token");
 
-  await useCustomFetch('/users/sign_out', {
-    method: 'DELETE'
-  })
-  userAuth.value = null
-  currentUser.$reset()
-  await useRouter().push('/auth/sign-in')
-}
+  await useCustomFetch("/users/sign_out", {
+    method: "DELETE",
+  });
+  userAuth.value = null;
+  currentUser.$reset();
+  await useRouter().push("/auth/sign-in");
+};
 </script>
 
 <template>

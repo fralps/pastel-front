@@ -84,6 +84,12 @@
         "description": "Capture the details while they're still fresh in your memory",
         "ogDescription": "Capture the details while they're still fresh in your memory"
       },
+      "show": {
+        "title": "Dream Details - Dashboard",
+        "ogTitle": "Dream Details - Dashboard",
+        "description": "Discover the details of your dream with Pastel.",
+        "ogDescription": "Discover the details of your dream with Pastel."
+      },
       "insights": {
         "title": "Insights - Dashboard",
         "ogTitle": "Insights - Dashboard",
@@ -177,7 +183,7 @@
   "dashboard": {
     "welcome": {
       "title": "Welcome to Your Dream World",
-      "description": "You have {count} dream(s) recorded. Keep exploring your subconscious mind."
+      "description": "You have {count} dream(s) recorded in total. Keep exploring your subconscious mind."
     },
     "list": {
       "title": "Your Dreams",
@@ -238,6 +244,16 @@
         "error": "Failed to create dream entry"
       },
       "select_date": "Select a date"
+    },
+    "show": {
+      "currentMood": "Current Mood:",
+      "happened": "Happened:",
+      "intensity": "Intensity:",
+      "description": "Dream description",
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      }
     }
   },
   "insights": {
