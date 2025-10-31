@@ -4,7 +4,7 @@ import type { Dream } from '@/models'
 import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n({ useScope: 'global' })
-
+const router = useRouter()
 const { t } = useI18n()
 
 const props = defineProps<{
@@ -56,11 +56,16 @@ const getTypeColor = (type: string) => {
       return 'bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
   }
 }
+
+const redirectToShowPage = async (id: number) => {
+  await router.push(`/dashboard/dreams/${id}`)
+}
 </script>
 
 <template>
   <div
     class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md transition-shadow cursor-pointer"
+    @click="redirectToShowPage(props.dream.id)"
   >
     <div class="p-6 pb-3">
       <div class="flex items-start justify-between">

@@ -44,7 +44,7 @@
       <div class="flex justify-around py-3">
         <button
           :class="[
-            'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors',
+            'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors cursor-pointer',
             activeTab === 'home' 
             ? 'bg-primary-600 text-white' 
             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -56,7 +56,7 @@
         </button>
         <button
           :class="[
-            'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors',
+            'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors cursor-pointer',
             activeTab === 'add' 
               ? 'bg-primary-600 text-white' 
               : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -68,7 +68,7 @@
         </button>
         <button
           :class="[
-            'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors',
+            'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors cursor-pointer',
             activeTab === 'insights' 
             ? 'bg-primary-600 text-white' 
             : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
