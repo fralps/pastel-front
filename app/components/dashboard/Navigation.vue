@@ -13,7 +13,7 @@ const updateActiveTab = () => {
   if (typeof route.name === "string") {
     if (route.name.startsWith("dashboard___")) {
       activeTab.value = "home";
-    } else if (route.name.startsWith("dashboard-create___")) {
+    } else if (route.name.startsWith("dashboard-dreams-create___")) {
       activeTab.value = "add";
     } else if (route.name.startsWith("dashboard-insights___")) {
       activeTab.value = "insights";
@@ -33,7 +33,7 @@ const redirectTo = (tab: TabType) => {
       navigateTo("/dashboard");
       break;
     case "add":
-      navigateTo("/dashboard/create");
+      navigateTo("/dashboard/dreams/create");
       break;
     case "insights":
       navigateTo("/dashboard/insights");

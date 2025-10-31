@@ -84,6 +84,12 @@
         "description": "Capture the details while they're still fresh in your memory",
         "ogDescription": "Capture the details while they're still fresh in your memory"
       },
+      "edit": {
+        "title": "Edit a Dream - Dashboard",
+        "ogTitle": "Edit a Dream - Dashboard",
+        "description": "Update the details of your dream.",
+        "ogDescription": "Update the details of your dream."
+      },
       "show": {
         "title": "Dream Details - Dashboard",
         "ogTitle": "Dream Details - Dashboard",
@@ -241,7 +247,39 @@
       },
       "toast": {
         "success": "Dream created successfully",
-        "error": "Failed to create dream entry"
+        "error": "Failed to create dream"
+      },
+      "select_date": "Select a date"
+    },
+    "edit": {
+      "title": "Edit a Dream",
+      "description": "Update the details of your dream.",
+      "goBack": "Back to details",
+      "form": {
+        "title": "Title",
+        "description": "Description",
+        "sleepType": "Sleep Type",
+        "intensity": "Intensity",
+        "happened": "Happened",
+        "currentMood": "Mood",
+        "date": "Date of the dream",
+        "tags": "Tags",
+        "tagsPlaceholder": "Enter tags...",
+        "errors": {
+          "titleMin": "Title must be at least 2 characters long",
+          "titleMax": "Title must be at most 100 characters long",
+          "descriptionMin": "Description must be at least 10 characters long",
+          "currentMoodMin": "Current mood must be at least 2 characters long",
+          "currentMoodMax": "Current mood must be at most 20 characters long"
+        }
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "toast": {
+        "success": "Dream updated successfully",
+        "error": "Failed to update dream"
       },
       "select_date": "Select a date"
     },

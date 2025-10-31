@@ -20,7 +20,7 @@ export type Sleep = {
   intensity: Intensity | null;
   date: Date | null;
   current_mood: string | null;
-  tags_attributes: { id?: number; name: string }[] | null;
+  tags_attributes: { id?: number; name: string; _destroy?: boolean }[] | null;
   created_at?: Date | null;
   updated_at?: Date | null;
 };
