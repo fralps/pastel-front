@@ -3,15 +3,17 @@ type Happened = 'falling_asleep' | 'sleeping' | 'waking_up' | 'napping'
 type SleepType = 'dream' | 'nightmare' | 'lucid' | 'erotic' | 'sleep_paralysis' | 'sleep_talking' | 'sleep_apnea' | 'sleep_walking' | 'other'
 
 export type Sleep = {
-  id?: number
-  title: string
-  description: string
-  sleep_type: SleepType
-  happened: Happened
-  intensity: Intensity
-  date: Date
-  current_mood: string
-  tags_attributes: { id?: number; name: string }[]
+  id?: number | null
+  title: string | null
+  description: string | null
+  sleep_type: SleepType | null
+  happened: Happened | null
+  intensity: Intensity | null
+  date: Date | null
+  current_mood: string | null
+  tags_attributes: { id?: number; name: string }[] | null
+  created_at?: Date | null
+  updated_at?: Date | null
 };
 
 export type SleepTotals ={

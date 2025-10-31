@@ -84,6 +84,12 @@
         "description": "Capture the details while they're still fresh in your memory",
         "ogDescription": "Capture the details while they're still fresh in your memory"
       },
+       "show": {
+        "title": "Dream Details - Dashboard",
+        "ogTitle": "Dream Details - Dashboard",
+        "description": "Discover the details of your dream with Pastel.",
+        "ogDescription": "Discover the details of your dream with Pastel."
+      },
       "insights": {
         "title": "Insights - Dashboard",
         "ogTitle": "Insights - Dashboard",

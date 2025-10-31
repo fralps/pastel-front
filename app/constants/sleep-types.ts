@@ -10,7 +10,7 @@ export const sleepTypeOptions = [
   { label: 'dashboard.sleepType.other', value: 'other' }
 ]
 
-export const sleepTypeColor = (type: string): string => {
+export const sleepTypeColor = (type: string | null): string => {
   switch (type) {
     case 'lucid':
       return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
@@ -33,7 +33,7 @@ export const sleepTypeColor = (type: string): string => {
   }
 }
 
-export const sleepTypeIcon = (type: string) => {
+export const sleepTypeIcon = (type: string | null) => {
   switch (type) {
     case 'lucid':
       return 'sparkles'

@@ -84,6 +84,12 @@
         "description": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire",
         "ogDescription": "Capturez les détails tant qu'ils sont encore frais dans votre mémoire"
       },
+      "show": {
+        "title": "Détails du rêve - Tableau de bord",
+        "ogTitle": "Détails du rêve - Tableau de bord",
+        "description": "Découvrez les détails de votre rêve avec Pastel.",
+        "ogDescription": "Découvrez les détails de votre rêve avec Pastel."
+      },
       "insights": {
         "title": "Insights - Tableau de bord",
         "ogTitle": "Insights - Tableau de bord",
