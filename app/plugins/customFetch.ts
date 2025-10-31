@@ -1,5 +1,5 @@
 export default defineNuxtPlugin((nuxtApp) => {
-  const userAuth = useCookie('token')
+  const userAuth = useCookie("token");
   const baseURL: string = import.meta.env.VITE_APP_API_BASE_URL as string;
 
   const $customFetch = $fetch.create({
@@ -7,12 +7,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     onRequest({ request: _request, options, error: _error }) {
       if (userAuth.value) {
         // Add Authorization header
-        options.headers.set('Authorization', `${userAuth.value}`)
+        options.headers.set("Authorization", `${userAuth.value}`);
       }
     },
     onResponse({ response }) {
       // Store the token from response headers if available
-      const token = response.headers.get('Authorization');
+      const token = response.headers.get("Authorization");
       if (token) {
         userAuth.value = token;
       }
@@ -21,14 +21,14 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
     async onResponseError({ response }) {
       if (response.status === 401) {
-        await nuxtApp.runWithContext(() => navigateTo('/auth/sign-in'))
+        await nuxtApp.runWithContext(() => navigateTo("/auth/sign-in"));
       }
     },
-  })
+  });
   // Expose to useNuxtApp().$customFetch
   return {
     provide: {
       customFetch: $customFetch,
     },
-  }
-})
+  };
+});

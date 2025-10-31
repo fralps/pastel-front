@@ -182,7 +182,7 @@
       "title": "Bienvenue dans votre monde de rêves",
       "description": "Vous avez {count} rêve(s) enregistré(s). Continuez à explorer votre subconscient."
     },
-     "list": {
+    "list": {
       "title": "Vos rêves",
       "noDreams": "Aucun rêve enregistré pour le moment. Commencez par ajouter un nouveau rêve !",
       "addDream": "Ajouter un rêve"
@@ -241,6 +241,16 @@
         "error": "Échec de la création du rêve"
       },
       "select_date": "Sélectionner une date"
+    },
+    "show": {
+      "currentMood": "Humeur actuelle :",
+      "happened": "Contexte :",
+      "intensity": "Lucidité :",
+      "description": "Description du rêve",
+      "actions": {
+        "edit": "Modifier",
+        "delete": "Supprimer"
+      }
     }
   },
   "insights": {

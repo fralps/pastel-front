@@ -84,7 +84,7 @@
         "description": "Capture the details while they're still fresh in your memory",
         "ogDescription": "Capture the details while they're still fresh in your memory"
       },
-       "show": {
+      "show": {
         "title": "Dream Details - Dashboard",
         "ogTitle": "Dream Details - Dashboard",
         "description": "Discover the details of your dream with Pastel.",
@@ -244,6 +244,16 @@
         "error": "Failed to create dream entry"
       },
       "select_date": "Select a date"
+    },
+    "show": {
+      "currentMood": "Current Mood:",
+      "happened": "Happened:",
+      "intensity": "Intensity:",
+      "description": "Dream Description",
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      }
     }
   },
   "insights": {
