@@ -37,6 +37,8 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
+const loading = ref(false)
+
 onMounted(async () => {
   // Logout user if already logged in
   const userAuth = useCookie('token')
@@ -51,6 +53,7 @@ onMounted(async () => {
 })
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  loading.value = true
   const { data } = await useCustomFetch<[]>('/users/sign_in', {
     method: 'POST',
     body: {
@@ -68,6 +71,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
   } else {
     toast.add({ title: t('auth.signIn.errorTitle'), description: t('auth.signIn.errorDesc'), color: 'error' })
   }
+  loading.value = false
 }
 </script>
 
@@ -78,6 +82,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       :schema="schema"
       :title="t('auth.signIn.title')"
       icon="i-lucide-lock"
+      :loading="loading"
+      loading-icon="i-lucide-loader"
       :submit="{
         label: t('shared.continue'),
       }"

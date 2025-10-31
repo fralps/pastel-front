@@ -43,12 +43,12 @@ const mappedIntensityOptions = intensityOptions.map(option => ({
 }))
 
 const schema = z.object({
-  title: z.string().min(2).max(100),
-  description: z.string().min(10).max(1000),
+  title: z.string().min(2, t('dashboard.create.form.errors.titleMin')).max(100, t('dashboard.create.form.errors.titleMax')),
+  description: z.string().min(10, t('dashboard.create.form.errors.descriptionMin')),
   sleep_type: z.string(),
   intensity: z.string(),
   happened: z.string(),
-  current_mood: z.string().min(2).max(20),
+  current_mood: z.string().min(2, t('dashboard.create.form.errors.currentMoodMin')).max(20, t('dashboard.create.form.errors.currentMoodMax')),
   date: z.any(),
   tags_attributes: z.array(z.object({ name: z.string() }))
 })
@@ -70,8 +70,10 @@ const { $customFetch } = useNuxtApp()
 const toast = useToast()
 
 const tags = ref<string[]>([])
+const loading = ref(false)
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
+  loading.value = true
   formatTags(event.data)
 
   const response = await $customFetch<Dream>('/sleeps', {
@@ -85,6 +87,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   } else {
     toast.add({ title: t('dashboard.create.toast.error'), color: 'error' })
   }
+  loading.value = false
 }
 
 // Format tags following this structure { name: 'tag_name' }
@@ -95,7 +98,17 @@ const formatTags = (data: Schema): void => {
 
 <template>
   <NuxtLayout name="dashboard">
-    <div class="space-y-6 pb-18">
+    <UButton
+      icon="i-lucide-arrow-left"
+      color="neutral"
+      variant="outline"
+      :ui="{
+        leadingIcon: 'text-primary'
+      }"
+    >
+      <NuxtLink :to="$localePath('dashboard')">{{ $t('dashboard.create.goBack') }}</NuxtLink>
+    </UButton>
+    <div class="pb-18 mt-6">
       <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
         <div class="p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2">
@@ -105,7 +118,7 @@ const formatTags = (data: Schema): void => {
           <p class="text-sm text-gray-600 dark:text-gray-400">{{ $t('dashboard.create.description') }}</p>
         </div>
         <div class="p-6 space-y-4">
-          <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+          <UForm :schema="schema" :state="state" class="space-y-8" @submit="onSubmit">
             <UFormField :label="$t('dashboard.create.form.title')" name="title" class="w-full">
               <UInput v-model="state.title" :required="true" class="w-full" />
             </UFormField>
@@ -115,7 +128,7 @@ const formatTags = (data: Schema): void => {
             </UFormField>
 
             <div class="grid grid-cols-2 gap-4">
-              <UFormField :label="$t('dashboard.create.form.sleep_type')" name="sleep_type">
+              <UFormField :label="$t('dashboard.create.form.sleepType')" name="sleep_type">
                 <USelect v-model="state.sleep_type" :items="mappedSleepTypeOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
 
@@ -129,7 +142,7 @@ const formatTags = (data: Schema): void => {
                 <USelect v-model="state.happened" :items="mappedHappenedOptions" :required="true" class="cursor-pointer w-full" />
               </UFormField>
 
-              <UFormField :label="$t('dashboard.create.form.current_mood')" name="current_mood" class="w-full">
+              <UFormField :label="$t('dashboard.create.form.currentMood')" name="current_mood" class="w-full">
                 <UInput v-model="state.current_mood" :required="true" class="w-full" />
               </UFormField>
             </div>
@@ -148,7 +161,7 @@ const formatTags = (data: Schema): void => {
               </UFormField>
 
               <UFormField :label="$t('dashboard.create.form.tags')" name="tags_attributes">
-                <UInputTags v-model="tags" :placeholder="$t('dashboard.create.form.tags_placeholder')" :required="true" class="w-full" />
+                <UInputTags v-model="tags" :placeholder="$t('dashboard.create.form.tagsPlaceholder')" :required="true" class="w-full" />
               </UFormField>
             </div>
 
@@ -164,6 +177,8 @@ const formatTags = (data: Schema): void => {
               <UButton
                 type="submit"
                 icon="i-lucide-plus"
+                :loading
+                loading-icon="i-lucide-loader"
                 size="md"
                 color="primary"
                 variant="solid"

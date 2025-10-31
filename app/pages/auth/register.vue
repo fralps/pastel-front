@@ -66,6 +66,8 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
+const loading = ref(false)
+
 onMounted(async () => {
   // Logout user if already logged in
   const userAuth = useCookie('token')
@@ -80,6 +82,7 @@ onMounted(async () => {
 })
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
+  loading.value = true
   const { data } = await useCustomFetch<[]>('/users/sign_up', {
     method: 'POST',
     body: {
@@ -102,6 +105,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
   } else {
     toast.add({ title: t('auth.register.errorTitle'), description: t('auth.register.errorDesc'), color: 'error' })
   }
+  loading.value = false
 }
 </script>
 
@@ -112,6 +116,8 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       :schema="schema"
       :title="t('auth.register.title')"
       :submit="{ label: t('auth.register.submit') }"
+      :loading="loading"
+      loading-icon="i-lucide-loader"
       @submit="onSubmit"
     >
       <template #description>

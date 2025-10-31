@@ -204,16 +204,24 @@
     "create": {
       "title": "Record a New Dream",
       "description": "Capture the details while they're still fresh in your memory",
+      "goBack": "Back to Dashboard",
       "form": {
         "title": "Title",
         "description": "Description",
-        "sleep_type": "Sleep Type",
+        "sleepType": "Sleep Type",
         "intensity": "Intensity",
         "happened": "Happened",
-        "current_mood": "Mood",
+        "currentMood": "Mood",
         "date": "Date of the dream",
         "tags": "Tags",
-        "tags_placeholder": "Enter tags..."
+        "tagsPlaceholder": "Enter tags...",
+        "errors": {
+          "titleMin": "Title must be at least 2 characters long",
+          "titleMax": "Title must be at most 100 characters long",
+          "descriptionMin": "Description must be at least 10 characters long",
+          "currentMoodMin": "Current mood must be at least 2 characters long",
+          "currentMoodMax": "Current mood must be at most 20 characters long"
+        }
       },
       "actions": {
         "cancel": "Cancel",
