@@ -230,7 +230,7 @@ const deleteDream = async (): Promise<void> => {
 
         <!-- Action buttons -->
         <div
-          class="p-6 sm:p-8 border-t border-primary-100 dark:border-gray-700 flex flex-wrap gap-3"
+          class="p-6 sm:p-8 border-t border-primary-100 dark:border-gray-700 flex flex-wrap gap-3 justify-center"
         >
           <UButton
             icon="i-lucide-pen"
