@@ -16,6 +16,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
   ],
+  app: {
+    head: {
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1.0' },
+      ],
+    },
+  },
   i18n: {
     strategy: 'prefix',
     defaultLocale: 'en',
