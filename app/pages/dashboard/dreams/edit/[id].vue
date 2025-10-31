@@ -181,17 +181,9 @@ const formatTags = (data: Schema): void => {
   data.tags_attributes = [...tagsToDestroy, ...currentTags];
 };
 
-const formatDate = (data: Schema): void => {
-  if (data.date && typeof data.date === "object" && "toDate" in data.date) {
-    const jsDate = data.date.toDate(getLocalTimeZone());
-    data.date = jsDate.toISOString().split("T")[0];
-  }
-};
-
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   loading.value = true;
   formatTags(event.data);
-  formatDate(event.data);
 
   const response = await $customFetch<Sleep>(
     `/sleeps/${router.currentRoute.value.params.id}`,
