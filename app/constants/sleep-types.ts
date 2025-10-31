@@ -6,8 +6,7 @@ export const sleepTypeOptions = [
   { label: "dashboard.sleepType.sleep_paralysis", value: "sleep_paralysis" },
   { label: "dashboard.sleepType.sleep_talking", value: "sleep_talking" },
   { label: "dashboard.sleepType.sleep_walking", value: "sleep_walking" },
-  { label: "dashboard.sleepType.sleep_apnea", value: "sleep_apnea" },
-  { label: "dashboard.sleepType.other", value: "other" },
+  { label: "dashboard.sleepType.sleep_apnea", value: "sleep_apnea" }
 ];
 
 export const sleepTypeColor = (type: string | null): string => {

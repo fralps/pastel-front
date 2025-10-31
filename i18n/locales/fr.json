@@ -201,8 +201,7 @@
       "sleep_paralysis": "Paralysie du sommeil",
       "sleep_talking": "Somniloquie",
       "sleep_walking": "Somnambulisme",
-      "sleep_apnea": "Apnée du sommeil",
-      "other": "Autre"
+      "sleep_apnea": "Apnée du sommeil"
     },
     "happened": {
       "falling_asleep": "Endormissement",

@@ -8,8 +8,7 @@ type SleepType =
   | "sleep_paralysis"
   | "sleep_talking"
   | "sleep_apnea"
-  | "sleep_walking"
-  | "other";
+  | "sleep_walking";
 
 export type Sleep = {
   id?: number | null;

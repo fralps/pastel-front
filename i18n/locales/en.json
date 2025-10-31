@@ -204,8 +204,7 @@
       "sleep_paralysis": "Sleep Paralysis",
       "sleep_talking": "Sleep Talking",
       "sleep_walking": "Sleep Walking",
-      "sleep_apnea": "Sleep Apnea",
-      "other": "Other"
+      "sleep_apnea": "Sleep Apnea"
     },
     "happened": {
       "falling_asleep": "Falling Asleep",
