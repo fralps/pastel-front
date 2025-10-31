@@ -180,7 +180,7 @@
   "dashboard": {
     "welcome": {
       "title": "Bienvenue dans votre monde de rêves",
-      "description": "Vous avez {count} rêve(s) enregistré(s). Continuez à explorer votre subconscient."
+      "description": "Vous avez {count} rêve(s) enregistré(s) au total. Continuez à explorer votre subconscient."
     },
     "list": {
       "title": "Vos rêves",
