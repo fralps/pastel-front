@@ -20,6 +20,21 @@ jobs:
       - name: ⚙️ Build app
         run: bun run build
 
+  security:
+    name: 🔑 Secret Scanning
+    if: success()
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 🐽 Run TruffleHog Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          base: ""
+          head: ${{ github.ref_name }}
+          extra_args: --results=verified,unknown
+
   eslint:
     name: 🔬 ESLint
     if: success()
