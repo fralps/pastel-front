@@ -112,16 +112,6 @@ const goToCreateDream = (): void => {
             class="mx-auto"
             @update:page="fetchDreams"
           />
-          <UButton
-            icon="i-lucide-plus"
-            size="md"
-            color="primary"
-            variant="solid"
-            class="cursor-pointer"
-            @click="goToCreateDream"
-          >
-            {{ t("dashboard.list.addDream") }}
-          </UButton>
         </div>
       </div>
     </div>
