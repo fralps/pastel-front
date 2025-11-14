@@ -215,7 +215,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       class="cursor-pointer"
       @click="router.back()"
     >
-      {{ $t("dashboard.edit.goBack") }}
+      {{ t("dashboard.edit.goBack") }}
     </UButton>
     <div class="pb-18 mt-6">
       <div
@@ -226,10 +226,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2"
           >
             <UIcon name="i-lucide-plus" class="size-5" />
-            {{ $t("dashboard.edit.title") }}
+            {{ t("dashboard.edit.title") }}
           </h2>
           <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ $t("dashboard.edit.description") }}
+            {{ t("dashboard.edit.description") }}
           </p>
         </div>
         <div class="p-6 space-y-4">
@@ -240,7 +240,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             @submit="onSubmit"
           >
             <UFormField
-              :label="$t('dashboard.edit.form.title')"
+              :label="t('dashboard.edit.form.title')"
               name="title"
               class="w-full"
             >
@@ -248,7 +248,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             </UFormField>
 
             <UFormField
-              :label="$t('dashboard.edit.form.description')"
+              :label="t('dashboard.edit.form.description')"
               name="description"
               class="w-full"
             >
@@ -261,7 +261,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField
-                :label="$t('dashboard.edit.form.sleepType')"
+                :label="t('dashboard.edit.form.sleepType')"
                 name="sleep_type"
               >
                 <USelect
@@ -273,7 +273,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.edit.form.intensity')"
+                :label="t('dashboard.edit.form.intensity')"
                 name="intensity"
               >
                 <USelect
@@ -287,7 +287,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField
-                :label="$t('dashboard.edit.form.happened')"
+                :label="t('dashboard.edit.form.happened')"
                 name="happened"
               >
                 <USelect
@@ -299,7 +299,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.edit.form.currentMood')"
+                :label="t('dashboard.edit.form.currentMood')"
                 name="current_mood"
                 class="w-full"
               >
@@ -312,7 +312,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <UFormField :label="$t('dashboard.edit.form.date')" name="date">
+              <UFormField :label="t('dashboard.edit.form.date')" name="date">
                 <UPopover>
                   <UButton
                     color="neutral"
@@ -323,7 +323,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                     {{
                       state.date
                         ? df.format(state.date.toDate(getLocalTimeZone()))
-                        : $t("dashboard.edit.select_date")
+                        : t("dashboard.edit.select_date")
                     }}
                   </UButton>
 
@@ -338,12 +338,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.edit.form.tags')"
+                :label="t('dashboard.edit.form.tags')"
                 name="tags_attributes"
               >
                 <UInputTags
                   v-model="tags"
-                  :placeholder="$t('dashboard.edit.form.tagsPlaceholder')"
+                  :placeholder="t('dashboard.edit.form.tagsPlaceholder')"
                   :required="true"
                   :max="5"
                   class="w-full"
@@ -358,7 +358,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 class="text-error font-medium"
                 tabindex="-1"
               >
-                {{ $t("dashboard.edit.actions.cancel") }}
+                {{ t("dashboard.edit.actions.cancel") }}
               </ULink>
 
               <UButton
@@ -371,7 +371,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 variant="solid"
                 class="cursor-pointer"
               >
-                {{ $t("dashboard.edit.actions.save") }}
+                {{ t("dashboard.edit.actions.save") }}
               </UButton>
             </div>
           </UForm>

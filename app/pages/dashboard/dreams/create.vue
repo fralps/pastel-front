@@ -19,6 +19,7 @@ definePageMeta({
 });
 
 const { t, locale } = useI18n({ useScope: "global" });
+const localePath = useLocalePath();
 
 useSeoMeta({
   title: t("meta.dashboard.create.title"),
@@ -125,10 +126,9 @@ const formatTags = (data: Schema): void => {
       :ui="{
         leadingIcon: 'text-primary',
       }"
+      :to="localePath('dashboard')"
     >
-      <NuxtLink :to="$localePath('dashboard')">{{
-        $t("dashboard.create.goBack")
-      }}</NuxtLink>
+      {{ t("dashboard.create.goBack") }}
     </UButton>
     <div class="pb-18 mt-6">
       <div
@@ -139,10 +139,10 @@ const formatTags = (data: Schema): void => {
             class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2"
           >
             <UIcon name="i-lucide-plus" class="size-5" />
-            {{ $t("dashboard.create.title") }}
+            {{ t("dashboard.create.title") }}
           </h2>
           <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ $t("dashboard.create.description") }}
+            {{ t("dashboard.create.description") }}
           </p>
         </div>
         <div class="p-6 space-y-4">
@@ -153,7 +153,7 @@ const formatTags = (data: Schema): void => {
             @submit="onSubmit"
           >
             <UFormField
-              :label="$t('dashboard.create.form.title')"
+              :label="t('dashboard.create.form.title')"
               name="title"
               class="w-full"
             >
@@ -161,7 +161,7 @@ const formatTags = (data: Schema): void => {
             </UFormField>
 
             <UFormField
-              :label="$t('dashboard.create.form.description')"
+              :label="t('dashboard.create.form.description')"
               name="description"
               class="w-full"
             >
@@ -174,7 +174,7 @@ const formatTags = (data: Schema): void => {
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField
-                :label="$t('dashboard.create.form.sleepType')"
+                :label="t('dashboard.create.form.sleepType')"
                 name="sleep_type"
               >
                 <USelect
@@ -186,7 +186,7 @@ const formatTags = (data: Schema): void => {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.create.form.intensity')"
+                :label="t('dashboard.create.form.intensity')"
                 name="intensity"
               >
                 <USelect
@@ -200,7 +200,7 @@ const formatTags = (data: Schema): void => {
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField
-                :label="$t('dashboard.create.form.happened')"
+                :label="t('dashboard.create.form.happened')"
                 name="happened"
               >
                 <USelect
@@ -212,7 +212,7 @@ const formatTags = (data: Schema): void => {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.create.form.currentMood')"
+                :label="t('dashboard.create.form.currentMood')"
                 name="current_mood"
                 class="w-full"
               >
@@ -225,7 +225,7 @@ const formatTags = (data: Schema): void => {
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <UFormField :label="$t('dashboard.create.form.date')" name="date">
+              <UFormField :label="t('dashboard.create.form.date')" name="date">
                 <UPopover>
                   <UButton
                     color="neutral"
@@ -236,7 +236,7 @@ const formatTags = (data: Schema): void => {
                     {{
                       state.date
                         ? df.format(state.date.toDate(getLocalTimeZone()))
-                        : $t("dashboard.create.select_date")
+                        : t("dashboard.create.select_date")
                     }}
                   </UButton>
 
@@ -251,12 +251,12 @@ const formatTags = (data: Schema): void => {
               </UFormField>
 
               <UFormField
-                :label="$t('dashboard.create.form.tags')"
+                :label="t('dashboard.create.form.tags')"
                 name="tags_attributes"
               >
                 <UInputTags
                   v-model="tags"
-                  :placeholder="$t('dashboard.create.form.tagsPlaceholder')"
+                  :placeholder="t('dashboard.create.form.tagsPlaceholder')"
                   :required="true"
                   :max="5"
                   class="w-full"
@@ -270,7 +270,7 @@ const formatTags = (data: Schema): void => {
                 class="text-error font-medium"
                 tabindex="-1"
               >
-                {{ $t("dashboard.create.actions.cancel") }}
+                {{ t("dashboard.create.actions.cancel") }}
               </ULink>
 
               <UButton
@@ -283,7 +283,7 @@ const formatTags = (data: Schema): void => {
                 variant="solid"
                 class="cursor-pointer"
               >
-                {{ $t("dashboard.create.actions.save") }}
+                {{ t("dashboard.create.actions.save") }}
               </UButton>
             </div>
           </UForm>
