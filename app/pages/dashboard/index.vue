@@ -81,17 +81,22 @@ const goToCreateDream = (): void => {
 
       <!-- Dreams list -->
       <div class="space-y-4">
-        <UButton
-          v-if="dreamsList && dreamsList.length > 0"
-          icon="i-lucide-plus"
-          size="md"
-          color="primary"
-          variant="solid"
-          class="cursor-pointer"
-          @click="goToCreateDream"
-        >
-          {{ t("dashboard.list.addDream") }}
-        </UButton>
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+            {{ t("dashboard.list.title") }}
+          </h2>
+          <UButton
+            v-if="dreamsList && dreamsList.length > 0"
+            icon="i-lucide-plus"
+            size="md"
+            color="primary"
+            variant="solid"
+            class="cursor-pointer"
+            @click="goToCreateDream"
+          >
+            {{ t("dashboard.list.addDream") }}
+          </UButton>
+        </div>
 
         <div
           v-if="dreamsList && dreamsList.length > 0"
@@ -112,6 +117,20 @@ const goToCreateDream = (): void => {
             class="mx-auto"
             @update:page="fetchDreams"
           />
+        </div>
+
+         <div v-else class="text-center text-gray-600 dark:text-gray-400 py-10">
+          <p class="mb-4">{{ t("dashboard.list.noDreams") }}</p>
+          <UButton
+            icon="i-lucide-plus"
+            size="md"
+            color="primary"
+            variant="solid"
+            class="cursor-pointer"
+            @click="goToCreateDream"
+          >
+            {{ t("dashboard.list.addDream") }}
+          </UButton>
         </div>
       </div>
     </div>
