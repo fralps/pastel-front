@@ -50,6 +50,10 @@ async function fetchDreams(page: number): Promise<void> {
     currentPage.value = page;
   }
 }
+
+const goToCreateDream = (): void => {
+  navigateTo('/dashboard/dreams/create');
+};
 </script>
 
 <template>
@@ -77,22 +81,17 @@ async function fetchDreams(page: number): Promise<void> {
 
       <!-- Dreams list -->
       <div class="space-y-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-            {{ t("dashboard.list.title") }}
-          </h2>
-          <UButton
-            v-if="dreamsList && dreamsList.length > 0"
-            icon="i-lucide-plus"
-            size="md"
-            color="primary"
-            variant="solid"
-            class="cursor-pointer"
-            @click="navigateTo('/dashboard/dreams/create')"
-          >
-            {{ t("dashboard.list.addDream") }}
-          </UButton>
-        </div>
+        <UButton
+          v-if="dreamsList && dreamsList.length > 0"
+          icon="i-lucide-plus"
+          size="md"
+          color="primary"
+          variant="solid"
+          class="cursor-pointer"
+          @click="goToCreateDream"
+        >
+          {{ t("dashboard.list.addDream") }}
+        </UButton>
 
         <div
           v-if="dreamsList && dreamsList.length > 0"
@@ -113,17 +112,13 @@ async function fetchDreams(page: number): Promise<void> {
             class="mx-auto"
             @update:page="fetchDreams"
           />
-        </div>
-
-        <div v-else class="text-center text-gray-600 dark:text-gray-400 py-10">
-          <p class="mb-4">{{ t("dashboard.list.noDreams") }}</p>
           <UButton
             icon="i-lucide-plus"
             size="md"
             color="primary"
             variant="solid"
             class="cursor-pointer"
-            @click="navigateTo('/dashboard/dreams/create')"
+            @click="goToCreateDream"
           >
             {{ t("dashboard.list.addDream") }}
           </UButton>

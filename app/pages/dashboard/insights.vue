@@ -56,10 +56,10 @@ const fetchDreamInsights = async () => {
             class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2"
           >
             <UIcon name="i-lucide-chart-column" class="size-5" />
-            {{ $t("insights.title") }}
+            {{ t("insights.title") }}
           </h2>
           <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ $t("insights.description") }}
+            {{ t("insights.description") }}
           </p>
         </div>
         <div class="p-6">
@@ -78,7 +78,7 @@ const fetchDreamInsights = async () => {
                 {{ count }}
               </div>
               <div class="text-sm text-gray-600 dark:text-gray-400">
-                {{ $t(`dashboard.sleepType.${type}`) }}
+                {{ t(`dashboard.sleepType.${type}`) }}
               </div>
             </div>
           </div>

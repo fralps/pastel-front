@@ -7,6 +7,7 @@ const router = useRouter();
 const toast = useToast();
 const { $customFetch } = useNuxtApp();
 const { t, locale } = useI18n();
+const localePath = useLocalePath();
 
 useSeoMeta({
   title: t("meta.dashboard.show.title"),
@@ -78,8 +79,8 @@ const deleteDream = async (): Promise<void> => {
         leadingIcon: sleepTypeTextColor(dreamDetails.sleep_type),
       }"
     >
-      <NuxtLink :to="$localePath('dashboard')">{{
-        $t("dashboard.create.goBack")
+      <NuxtLink :to="localePath('dashboard')">{{
+        t("dashboard.create.goBack")
       }}</NuxtLink>
     </UButton>
 
@@ -240,7 +241,7 @@ const deleteDream = async (): Promise<void> => {
             class="text-xs cursor-pointer"
             @click="editDream()"
           >
-            {{ $t("dashboard.show.actions.edit") }}
+            {{ t("dashboard.show.actions.edit") }}
           </UButton>
 
           <UButton
@@ -253,7 +254,7 @@ const deleteDream = async (): Promise<void> => {
             loading-icon="i-lucide-loader"
             @click="deleteDream()"
           >
-            {{ $t("dashboard.show.actions.delete") }}
+            {{ t("dashboard.show.actions.delete") }}
           </UButton>
         </div>
       </article>
