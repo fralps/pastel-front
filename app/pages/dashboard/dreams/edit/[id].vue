@@ -254,6 +254,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             >
               <UTextarea
                 v-model="state.description"
+                autoresize
                 :required="true"
                 class="w-full"
               />

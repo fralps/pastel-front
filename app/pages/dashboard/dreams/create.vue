@@ -167,6 +167,7 @@ const formatTags = (data: Schema): void => {
             >
               <UTextarea
                 v-model="state.description"
+                autoresize
                 :required="true"
                 class="w-full"
               />
