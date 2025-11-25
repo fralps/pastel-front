@@ -2,6 +2,7 @@
 import { useI18n } from "vue-i18n";
 import * as z from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
+import VoiceDictation from "~/components/dashboard/VoiceDictation.vue";
 import {
   CalendarDate,
   DateFormatter,
@@ -29,6 +30,7 @@ useSeoMeta({
 });
 
 const formattedLocale = locale.value.replace("_", "-");
+const formatLocaleForSpeechRecognition = `${locale.value}-${locale.value.toUpperCase()}`;
 
 const df = new DateFormatter(formattedLocale, {
   dateStyle: "full",
@@ -170,6 +172,12 @@ const formatTags = (data: Schema): void => {
                 autoresize
                 :required="true"
                 class="w-full"
+              />
+
+              <VoiceDictation
+                v-model="state.description"
+                :language="formatLocaleForSpeechRecognition"
+                :continuous="true"
               />
             </UFormField>
 

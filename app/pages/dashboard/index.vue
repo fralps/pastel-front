@@ -52,7 +52,7 @@ async function fetchDreams(page: number): Promise<void> {
 }
 
 const goToCreateDream = (): void => {
-  navigateTo('/dashboard/dreams/create');
+  navigateTo("/dashboard/dreams/create");
 };
 </script>
 
@@ -119,7 +119,7 @@ const goToCreateDream = (): void => {
           />
         </div>
 
-         <div v-else class="text-center text-gray-600 dark:text-gray-400 py-10">
+        <div v-else class="text-center text-gray-600 dark:text-gray-400 py-10">
           <p class="mb-4">{{ t("dashboard.list.noDreams") }}</p>
           <UButton
             icon="i-lucide-plus"
