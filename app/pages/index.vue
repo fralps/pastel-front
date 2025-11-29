@@ -37,11 +37,13 @@ const links = ref([
       :description="t('landing.heroBanner.description')"
       :links="links"
     >
-      <img
-        src="https://images.unsplash.com/photo-1504253163759-c23fccaebb55?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
+      <NuxtImg
+        src="/images/dashboard.webp"
         :alt="t('landing.heroBanner.imageAlt')"
         class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
       />
+
     </UPageHero>
 
     <section id="features">
