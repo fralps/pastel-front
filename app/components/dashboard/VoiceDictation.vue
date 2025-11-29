@@ -10,7 +10,7 @@
         :variant="isRecording ? 'solid' : 'solid'"
         :icon="isRecording ? 'i-lucide-circle-pause' : 'i-lucide-mic'"
         size="lg"
-        class="w-[100%] md:w-[25%] cursor-pointer"
+        class="w-full md:w-[25%] cursor-pointer"
         @click="toggleRecording"
       >
         {{ isRecording ? "Pause" : "Dicter" }}
