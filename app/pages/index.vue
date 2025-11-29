@@ -40,6 +40,8 @@ const links = ref([
 
       <NuxtImg
         src="/images/dashboard.webp"
+        loading="lazy"
+        preload
         :alt="t('landing.heroBanner.imageAlt')"
         class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
       />
@@ -90,9 +92,10 @@ const links = ref([
       <video
         class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
         controls
+        preload="metadata"
       >
         <source
-          src="https://docs.material-tailwind.com/demo.mp4"
+          src="/videos/app-demo.mp4"
           type="video/mp4"
         />
         {{ t("landing.demoSection.browserNotSupported") }}
