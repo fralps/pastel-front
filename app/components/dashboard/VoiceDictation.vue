@@ -1,71 +1,3 @@
-<template>
-  <div class="space-y-4 my-4">
-    <div class="block md:flex md:items-center gap-2">
-      <p class="mb-2 md:mb-0 text-center text-muted text-xs">
-        ou utiliser la dictée vocale :
-      </p>
-      <UButton
-        :disabled="!isSupported"
-        :color="isRecording ? 'warning' : 'primary'"
-        :variant="isRecording ? 'solid' : 'solid'"
-        :icon="isRecording ? 'i-lucide-circle-pause' : 'i-lucide-mic'"
-        size="lg"
-        class="w-full md:w-[25%] cursor-pointer"
-        @click="toggleRecording"
-      >
-        {{ isRecording ? "Pause" : "Dicter" }}
-      </UButton>
-
-      <UButton
-        v-if="modelValue"
-        color="error"
-        variant="link"
-        icon="i-lucide-trash"
-        size="sm"
-        class="cursor-pointer hover:underline mt-2 md:mt-0"
-        @click="clearTranscript"
-      >
-        Effacer
-      </UButton>
-    </div>
-
-    <!-- Alert if not supported -->
-    <UAlert
-      v-if="!isSupported"
-      color="error"
-      variant="soft"
-      icon="i-lucide-triangle-alert"
-      title="Reconnaissance vocale non supportée"
-      description="Votre navigateur ne supporte pas la reconnaissance vocale. Veuillez utiliser Chrome, Edge ou Safari."
-    />
-
-    <!-- Listening status -->
-    <UAlert
-      v-if="isRecording"
-      color="info"
-      variant="soft"
-      icon="i-lucide-radio"
-      title="Écoute en cours..."
-      :description="`Langue: ${language}`"
-      class="animate-pulse"
-    />
-
-    <!-- Interim transcript -->
-    <UCard v-if="interimTranscript" class="border-l-4 border-blue-500">
-      <template #header>
-        <div class="flex items-center gap-2">
-          <UIcon name="i-lucide-message-circle-more" class="text-blue-500" />
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-            En cours de reconnaissance...
-          </span>
-        </div>
-      </template>
-      <p class="text-sm italic text-gray-600 dark:text-gray-400">
-        {{ interimTranscript }}
-      </p>
-    </UCard>
-  </div>
-</template>
 
 <script setup lang="ts">
 import type {
@@ -176,3 +108,73 @@ const clearTranscript = () => {
   interimTranscript.value = "";
 };
 </script>
+
+
+<template>
+  <div class="space-y-4 my-4">
+    <div class="block md:flex md:items-center gap-2">
+      <p class="mb-2 md:mb-0 text-center text-muted text-xs">
+        {{ $t("dashboard.create.form.speechDictation.useSpeechDictation") }}
+      </p>
+      <UButton
+        :disabled="!isSupported"
+        :color="isRecording ? 'warning' : 'primary'"
+        :variant="isRecording ? 'solid' : 'solid'"
+        :icon="isRecording ? 'i-lucide-circle-pause' : 'i-lucide-mic'"
+        size="sm"
+        class="w-full md:w-fit cursor-pointer"
+        @click="toggleRecording"
+      >
+        {{ isRecording ? $t("dashboard.create.form.speechDictation.pauseRecording") : $t("dashboard.create.form.speechDictation.startRecording") }}
+      </UButton>
+
+      <UButton
+        v-if="modelValue"
+        color="error"
+        variant="link"
+        icon="i-lucide-trash"
+        size="sm"
+        class="cursor-pointer hover:underline mt-2 md:mt-0"
+        @click="clearTranscript"
+      >
+        {{ $t("dashboard.create.form.speechDictation.clearText") }}
+      </UButton>
+    </div>
+
+    <!-- Alert if not supported -->
+    <UAlert
+      v-if="!isSupported"
+      color="error"
+      variant="soft"
+      icon="i-lucide-triangle-alert"
+      title="Reconnaissance vocale non supportée"
+      :description="$t('dashboard.create.form.errors.browserNotSupported')"
+    />
+
+    <!-- Listening status -->
+    <UAlert
+      v-if="isRecording"
+      color="info"
+      variant="soft"
+      icon="i-lucide-radio"
+      :title="$t('dashboard.create.form.speechDictation.listening')"
+      :description="$t('dashboard.create.form.speechDictation.language', { language: props.language })"
+      class="animate-pulse"
+    />
+
+    <!-- Interim transcript -->
+    <UCard v-if="interimTranscript" class="border-l-4 border-blue-500">
+      <template #header>
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-message-circle-more" class="text-blue-500" />
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {{ $t("dashboard.create.form.speechDictation.recording") }}
+          </span>
+        </div>
+      </template>
+      <p class="text-sm italic text-gray-600 dark:text-gray-400">
+        {{ interimTranscript }}
+      </p>
+    </UCard>
+  </div>
+</template>

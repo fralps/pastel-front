@@ -173,13 +173,13 @@ const formatTags = (data: Schema): void => {
                 :required="true"
                 class="w-full"
               />
+            </UFormField>
 
-              <VoiceDictation
+            <VoiceDictation
                 v-model="state.description"
                 :language="formatLocaleForSpeechRecognition"
                 :continuous="true"
               />
-            </UFormField>
 
             <div class="grid grid-cols-2 gap-4">
               <UFormField
