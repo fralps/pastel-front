@@ -129,7 +129,7 @@ const clearTranscript = () => {
       </UButton>
 
       <UButton
-        v-if="modelValue"
+        v-if="modelValue.length >= 10"
         color="error"
         variant="link"
         icon="i-lucide-trash"
