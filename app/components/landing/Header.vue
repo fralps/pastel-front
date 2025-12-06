@@ -7,12 +7,12 @@ const items = computed<NavigationMenuItem[]>(() => [
   {
     label: t("landing.header.feature"),
     to: "#features",
-    icon: "i-heroicons-cube-20-solid",
+    icon: "i-lucide-box",
   },
   {
     label: t("landing.header.demo"),
     to: "#demo",
-    icon: "i-heroicons-play-circle-20-solid",
+    icon: "i-lucide-circle-play",
   },
 ]);
 </script>

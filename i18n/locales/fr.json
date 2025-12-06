@@ -222,6 +222,15 @@
       "form": {
         "title": "Titre",
         "description": "Description",
+        "speechDictation": {
+          "useSpeechDictation": "ou utiliser la dictée vocale :",
+          "startRecording": "Dicter",
+          "pauseRecording": "Pause",
+          "recording": "Enregistrement en cours...",
+          "listening": "Écoute en cours...",
+          "language": "Langue : {language}",
+          "clearText": "Effacer"
+        },
         "sleepType": "Type de sommeil",
         "intensity": "Intensité",
         "happened": "Contexte",
@@ -234,7 +243,8 @@
           "titleMax": "Le titre doit contenir au maximum 100 caractères",
           "descriptionMin": "La description doit contenir au moins 10 caractères",
           "currentMoodMin": "L'humeur doit contenir au moins 2 caractères",
-          "currentMoodMax": "L'humeur doit contenir au maximum 20 caractères"
+          "currentMoodMax": "L'humeur doit contenir au maximum 20 caractères",
+          "browserNotSupported": "Votre navigateur ne supporte pas la reconnaissance vocale. Si vous souhaitez utiliser cette fonctionnalité, veuillez utiliser Chrome, Edge ou Safari."
         }
       },
       "actions": {

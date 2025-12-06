@@ -225,6 +225,15 @@
       "form": {
         "title": "Title",
         "description": "Description",
+        "speechDictation": {
+          "useSpeechDictation": "or use speech dictation:",
+          "startRecording": "Dictate",
+          "pauseRecording": "Pause",
+          "recording": "Recording in progress...",
+          "listening": "Listening...",
+          "language": "Language: {language}",
+          "clearText": "Clear"
+        },
         "sleepType": "Sleep Type",
         "intensity": "Intensity",
         "happened": "Happened",
@@ -237,7 +246,8 @@
           "titleMax": "Title must be at most 100 characters long",
           "descriptionMin": "Description must be at least 10 characters long",
           "currentMoodMin": "Current mood must be at least 2 characters long",
-          "currentMoodMax": "Current mood must be at most 20 characters long"
+          "currentMoodMax": "Current mood must be at most 20 characters long",
+          "browserNotSupported": "Your browser does not support speech recognition. If you want to use this feature, please use Chrome, Edge, or Safari."
         }
       },
       "actions": {
