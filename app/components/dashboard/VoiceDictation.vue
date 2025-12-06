@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import type {
   VoiceDictationProps,
@@ -109,11 +108,13 @@ const clearTranscript = () => {
 };
 </script>
 
-
 <template>
   <div class="space-y-4 my-4">
     <div class="block md:flex md:items-center gap-2">
-      <p class="mb-2 md:mb-0 text-center text-muted text-xs">
+      <p
+        class="mb-2 md:mb-0 text-center text-muted text-xs"
+        :class="!isSupported ? 'line-through cursor-not-allowed' : ''"
+      >
         {{ $t("dashboard.create.form.speechDictation.useSpeechDictation") }}
       </p>
       <UButton
@@ -125,7 +126,11 @@ const clearTranscript = () => {
         class="w-full md:w-fit cursor-pointer"
         @click="toggleRecording"
       >
-        {{ isRecording ? $t("dashboard.create.form.speechDictation.pauseRecording") : $t("dashboard.create.form.speechDictation.startRecording") }}
+        {{
+          isRecording
+            ? $t("dashboard.create.form.speechDictation.pauseRecording")
+            : $t("dashboard.create.form.speechDictation.startRecording")
+        }}
       </UButton>
 
       <UButton
@@ -158,7 +163,11 @@ const clearTranscript = () => {
       variant="soft"
       icon="i-lucide-radio"
       :title="$t('dashboard.create.form.speechDictation.listening')"
-      :description="$t('dashboard.create.form.speechDictation.language', { language: props.language })"
+      :description="
+        $t('dashboard.create.form.speechDictation.language', {
+          language: props.language,
+        })
+      "
       class="animate-pulse"
     />
 

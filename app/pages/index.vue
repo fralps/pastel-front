@@ -37,7 +37,6 @@ const links = ref([
       :description="t('landing.heroBanner.description')"
       :links="links"
     >
-
       <NuxtImg
         src="/images/dashboard.webp"
         loading="lazy"
@@ -45,7 +44,6 @@ const links = ref([
         :alt="t('landing.heroBanner.imageAlt')"
         class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
       />
-
     </UPageHero>
 
     <section id="features">
@@ -94,10 +92,7 @@ const links = ref([
         controls
         preload="metadata"
       >
-        <source
-          src="/videos/app-demo.mp4"
-          type="video/mp4"
-        />
+        <source src="/videos/app-demo.mp4" type="video/mp4" />
         {{ t("landing.demoSection.browserNotSupported") }}
       </video>
     </section>
