@@ -17,14 +17,14 @@ const emit = defineEmits<{
   "update:modelValue": [value: string];
 }>();
 
-const isSupported = ref(false);
-const isRecording = ref(false);
-const interimTranscript = ref("");
+const isSupported: Ref<boolean> = ref(false);
+const isRecording: Ref<boolean> = ref(false);
+const interimTranscript: Ref<string> = ref("");
 
 let recognition: SpeechRecognition | null = null;
 
 // Init Speech Recognition
-onMounted(() => {
+onMounted((): void => {
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -40,9 +40,9 @@ onMounted(() => {
   recognition.continuous = props.continuous;
   recognition.interimResults = props.interimResults;
 
-  recognition.onresult = (event: SpeechRecognitionEvent) => {
-    let interimText = "";
-    let finalText = "";
+  recognition.onresult = (event: SpeechRecognitionEvent): void => {
+    let interimText: string = "";
+    let finalText: string = "";
 
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const result = event.results[i];
@@ -59,7 +59,7 @@ onMounted(() => {
 
     // Emit update with final text
     if (finalText) {
-      const newValue = props.modelValue + finalText;
+      const newValue: string = props.modelValue + finalText;
       emit("update:modelValue", newValue);
       interimTranscript.value = "";
     }
@@ -75,7 +75,7 @@ onMounted(() => {
     isRecording.value = false;
   };
 
-  recognition.onend = () => {
+  recognition.onend = (): void => {
     if (isRecording.value && props.continuous) {
       recognition?.start();
     } else {
@@ -84,13 +84,13 @@ onMounted(() => {
   };
 });
 
-onUnmounted(() => {
+onUnmounted((): void => {
   if (recognition && isRecording.value) {
     recognition.stop();
   }
 });
 
-const toggleRecording = () => {
+const toggleRecording = (): void => {
   if (!recognition) return;
 
   if (isRecording.value) {
@@ -102,7 +102,7 @@ const toggleRecording = () => {
   }
 };
 
-const clearTranscript = () => {
+const clearTranscript = (): void => {
   emit("update:modelValue", "");
   interimTranscript.value = "";
 };
