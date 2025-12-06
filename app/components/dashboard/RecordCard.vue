@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
 import type { Sleep } from "@/models";
 import { useI18n } from "vue-i18n";
 import { sleepTypeIcon, sleepTypeColor } from "@/constants";
