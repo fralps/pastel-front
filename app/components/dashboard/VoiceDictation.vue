@@ -5,6 +5,9 @@ import type {
   SpeechRecognitionEvent,
   SpeechRecognitionErrorEvent,
 } from "~/models";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const props = withDefaults(defineProps<VoiceDictationProps>(), {
   modelValue: "",
@@ -115,7 +118,7 @@ const clearTranscript = (): void => {
         class="mb-2 md:mb-0 text-center text-muted text-xs"
         :class="!isSupported ? 'line-through cursor-not-allowed' : ''"
       >
-        {{ $t("dashboard.create.form.speechDictation.useSpeechDictation") }}
+        {{ t("dashboard.create.form.speechDictation.useSpeechDictation") }}
       </p>
       <UButton
         :disabled="!isSupported"
@@ -128,8 +131,8 @@ const clearTranscript = (): void => {
       >
         {{
           isRecording
-            ? $t("dashboard.create.form.speechDictation.pauseRecording")
-            : $t("dashboard.create.form.speechDictation.startRecording")
+            ? t("dashboard.create.form.speechDictation.pauseRecording")
+            : t("dashboard.create.form.speechDictation.startRecording")
         }}
       </UButton>
 
@@ -142,7 +145,7 @@ const clearTranscript = (): void => {
         class="cursor-pointer hover:underline mt-2 md:mt-0"
         @click="clearTranscript"
       >
-        {{ $t("dashboard.create.form.speechDictation.clearText") }}
+        {{ t("dashboard.create.form.speechDictation.clearText") }}
       </UButton>
     </div>
 
@@ -153,7 +156,7 @@ const clearTranscript = (): void => {
       variant="soft"
       icon="i-lucide-triangle-alert"
       title="Reconnaissance vocale non supportée"
-      :description="$t('dashboard.create.form.errors.browserNotSupported')"
+      :description="t('dashboard.create.form.errors.browserNotSupported')"
     />
 
     <!-- Listening status -->
@@ -162,9 +165,9 @@ const clearTranscript = (): void => {
       color="info"
       variant="soft"
       icon="i-lucide-radio"
-      :title="$t('dashboard.create.form.speechDictation.listening')"
+      :title="t('dashboard.create.form.speechDictation.listening')"
       :description="
-        $t('dashboard.create.form.speechDictation.language', {
+        t('dashboard.create.form.speechDictation.language', {
           language: props.language,
         })
       "
@@ -177,7 +180,7 @@ const clearTranscript = (): void => {
         <div class="flex items-center gap-2">
           <UIcon name="i-lucide-message-circle-more" class="text-blue-500" />
           <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-            {{ $t("dashboard.create.form.speechDictation.recording") }}
+            {{ t("dashboard.create.form.speechDictation.recording") }}
           </span>
         </div>
       </template>
