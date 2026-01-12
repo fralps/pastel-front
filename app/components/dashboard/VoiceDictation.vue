@@ -155,7 +155,7 @@ const clearTranscript = (): void => {
       color="error"
       variant="soft"
       icon="i-lucide-triangle-alert"
-      title="Reconnaissance vocale non supportée"
+      :title="t('dashboard.create.form.errors.titleBrowserSupport')"
       :description="t('dashboard.create.form.errors.browserNotSupported')"
     />
 

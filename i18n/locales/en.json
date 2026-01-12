@@ -247,6 +247,7 @@
           "descriptionMin": "Description must be at least 10 characters long",
           "currentMoodMin": "Current mood must be at least 2 characters long",
           "currentMoodMax": "Current mood must be at most 20 characters long",
+          "titleBrowserSupport": "Speech recognition not supported",
           "browserNotSupported": "Your browser does not support speech recognition. If you want to use this feature, please use Chrome, Edge, or Safari."
         }
       },
