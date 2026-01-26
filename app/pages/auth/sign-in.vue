@@ -54,7 +54,7 @@ onMounted(async () => {
 
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   loading.value = true;
-  const { data } = await useCustomFetch<[]>("/users/sign_in", {
+  const { data } = await useCustomFetch<Record<string, unknown>>("/users/sign_in", {
     method: "POST",
     body: {
       user: {

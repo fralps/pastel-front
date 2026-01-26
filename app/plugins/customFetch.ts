@@ -32,7 +32,21 @@ export default defineNuxtPlugin((nuxtApp) => {
   // Expose to useNuxtApp().$customFetch
   return {
     provide: {
-      customFetch: $customFetch,
+      customFetch: $customFetch as typeof globalThis.$fetch,
     },
   };
 });
+
+declare module "#app" {
+  interface NuxtApp {
+    $customFetch: typeof globalThis.$fetch;
+  }
+}
+
+declare module "nuxt/app" {
+  interface NuxtApp {
+    $customFetch: typeof globalThis.$fetch;
+  }
+}
+
+export {};
