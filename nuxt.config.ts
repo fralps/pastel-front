@@ -41,6 +41,16 @@ export default defineNuxtConfig({
   piniaPluginPersistedstate: {
     storage: "cookies",
     debug: true,
+    cookieOptions: {
+      httpOnly: false,
+      secure: true,
+      sameSite: "lax",
+    },
+  },
+  typescript: {
+    tsConfig: {
+      include: ["./types/**/*.d.ts"],
+    },
   },
   devServer: {
     port: 5100,

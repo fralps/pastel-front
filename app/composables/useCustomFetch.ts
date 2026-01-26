@@ -1,11 +1,13 @@
-import type { UseFetchOptions } from "nuxt/app";
+import { useFetch as useBaseFetch, useNuxtApp } from "nuxt/app";
 
-export function useCustomFetch<T>(
-  url: string | (() => string),
-  options: UseFetchOptions<T> = {},
-) {
-  return useFetch(url, {
+export const useCustomFetch: typeof useBaseFetch = (request, options) => {
+  // Explicit cast keeps the wrapper type-safe until Nuxt picks up the injection types.
+  const { $customFetch } = useNuxtApp() as unknown as {
+    $customFetch: typeof globalThis.$fetch;
+  };
+
+  return useBaseFetch(request, {
     ...options,
-    $fetch: useNuxtApp().$customFetch,
+    $fetch: $customFetch,
   });
-}
+};
