@@ -44,15 +44,15 @@ const redirectTo = (tab: TabType) => {
 
 <template>
   <nav
-    class="fixed bottom-0 left-0 right-0 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm border-t border-gray-200 dark:border-gray-700"
+    class="fixed right-0 bottom-0 left-0 border-t border-gray-200 bg-white/40 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/40"
   >
     <div class="flex justify-around py-3">
       <button
         :class="[
-          'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors cursor-pointer',
+          'flex cursor-pointer flex-col items-center gap-1 rounded-lg px-4 py-2 transition-colors',
           activeTab === 'home'
             ? 'bg-primary-600 text-white'
-            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700',
+            : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700',
         ]"
         @click="redirectTo('home')"
       >
@@ -61,10 +61,10 @@ const redirectTo = (tab: TabType) => {
       </button>
       <button
         :class="[
-          'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors cursor-pointer',
+          'flex cursor-pointer flex-col items-center gap-1 rounded-lg px-4 py-2 transition-colors',
           activeTab === 'add'
             ? 'bg-primary-600 text-white'
-            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700',
+            : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700',
         ]"
         @click="redirectTo('add')"
       >
@@ -73,10 +73,10 @@ const redirectTo = (tab: TabType) => {
       </button>
       <button
         :class="[
-          'flex flex-col items-center gap-1 py-2 px-4 rounded-lg transition-colors cursor-pointer',
+          'flex cursor-pointer flex-col items-center gap-1 rounded-lg px-4 py-2 transition-colors',
           activeTab === 'insights'
             ? 'bg-primary-600 text-white'
-            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700',
+            : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700',
         ]"
         @click="redirectTo('insights')"
       >

@@ -70,7 +70,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     >
       <template #description>
         {{ t("shared.remembered") }}
-        <ULink to="/auth/sign-in" class="text-primary font-medium">{{
+        <ULink to="/auth/sign-in" class="font-medium text-primary">{{
           t("shared.backToSignIn")
         }}</ULink
         >.

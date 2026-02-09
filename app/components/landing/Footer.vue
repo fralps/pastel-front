@@ -18,7 +18,7 @@ const items: NavigationMenuItem[] = [
 <template>
   <UFooter>
     <template #left>
-      <p class="text-muted text-sm">
+      <p class="text-sm text-muted">
         Pastel, {{ t("landing.footer.rights") }} {{ new Date().getFullYear() }}
       </p>
     </template>

@@ -20,7 +20,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 <template>
   <UHeader>
     <template #title>
-      <span class="text-primary text-2xl">Pastel</span>
+      <span class="text-2xl text-primary">Pastel</span>
     </template>
 
     <UNavigationMenu :items="items" />

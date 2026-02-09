@@ -99,26 +99,21 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     >
       <template #description>
         {{ t("auth.signIn.noAccount") }}
-        <ULink to="/auth/register" class="text-primary font-medium">{{
+        <ULink to="/auth/register" class="font-medium text-primary">{{
           t("auth.signIn.signUp")
         }}</ULink
         >.
       </template>
 
       <template #password-hint>
-        <ULink
-          to="/auth/forgot-password"
-          class="text-primary font-medium"
-          tabindex="-1"
-          >{{ t("auth.signIn.passwordHint") }}</ULink
-        >
+        <ULink to="/auth/forgot-password" class="font-medium text-primary" tabindex="-1">{{
+          t("auth.signIn.passwordHint")
+        }}</ULink>
       </template>
 
       <template #footer>
         {{ t("auth.signIn.footer", { terms: "" })
-        }}<ULink to="/" class="text-primary font-medium">{{
-          t("auth.signIn.terms")
-        }}</ULink
+        }}<ULink to="/" class="font-medium text-primary">{{ t("auth.signIn.terms") }}</ULink
         >.
       </template>
     </UAuthForm>

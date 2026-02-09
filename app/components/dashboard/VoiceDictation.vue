@@ -28,8 +28,7 @@ let recognition: SpeechRecognition | null = null;
 
 // Init Speech Recognition
 onMounted((): void => {
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   if (!SpeechRecognition) {
     isSupported.value = false;
@@ -112,11 +111,11 @@ const clearTranscript = (): void => {
 </script>
 
 <template>
-  <div class="space-y-4 my-4">
-    <div class="block md:flex md:items-center gap-2">
+  <div class="my-4 space-y-4">
+    <div class="block gap-2 md:flex md:items-center">
       <p
-        class="mb-2 md:mb-0 text-center text-muted text-xs"
-        :class="!isSupported ? 'line-through cursor-not-allowed' : ''"
+        class="mb-2 text-center text-xs text-muted md:mb-0"
+        :class="!isSupported ? 'cursor-not-allowed line-through' : ''"
       >
         {{ t("dashboard.create.form.speechDictation.useSpeechDictation") }}
       </p>
@@ -126,7 +125,7 @@ const clearTranscript = (): void => {
         :variant="isRecording ? 'solid' : 'solid'"
         :icon="isRecording ? 'i-lucide-circle-pause' : 'i-lucide-mic'"
         size="sm"
-        class="w-full md:w-fit cursor-pointer"
+        class="w-full cursor-pointer md:w-fit"
         @click="toggleRecording"
       >
         {{
@@ -142,7 +141,7 @@ const clearTranscript = (): void => {
         variant="link"
         icon="i-lucide-trash"
         size="sm"
-        class="cursor-pointer hover:underline mt-2 md:mt-0"
+        class="mt-2 cursor-pointer hover:underline md:mt-0"
         @click="clearTranscript"
       >
         {{ t("dashboard.create.form.speechDictation.clearText") }}
@@ -184,7 +183,7 @@ const clearTranscript = (): void => {
           </span>
         </div>
       </template>
-      <p class="text-sm italic text-gray-600 dark:text-gray-400">
+      <p class="text-sm text-gray-600 italic dark:text-gray-400">
         {{ interimTranscript }}
       </p>
     </UCard>
