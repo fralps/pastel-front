@@ -1,5 +1,6 @@
-import { defineStore } from "pinia";
 import "pinia-plugin-persistedstate";
+
+import { defineStore } from "pinia";
 
 type Attributes = Record<string, unknown>;
 

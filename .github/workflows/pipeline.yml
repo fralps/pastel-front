@@ -35,8 +35,8 @@ jobs:
           head: ${{ github.ref_name }}
           extra_args: --results=verified,unknown
 
-  eslint:
-    name: 🔬 ESLint
+  lint:
+    name: 🔬 Oxlint
     if: success()
     needs: build
     runs-on: ubuntu-latest
@@ -50,8 +50,8 @@ jobs:
       - name: 🔧 Install dependencies
         run: bun install
 
-      - name: 🔬 Run ESLint
-        run: bun run eslint
+      - name: 🔬 Run Oxlint
+        run: bun run lint
 
   typecheck:
     name: 🔣 Typecheck

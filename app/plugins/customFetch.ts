@@ -48,5 +48,3 @@ declare module "nuxt/app" {
     $customFetch: typeof globalThis.$fetch;
   }
 }
-
-export {};

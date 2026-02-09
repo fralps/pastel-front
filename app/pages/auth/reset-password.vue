@@ -36,9 +36,7 @@ const fields = [
 const schema = z
   .object({
     password: z.string().min(8, t("auth.resetPassword.minPassword")),
-    passwordConfirmation: z
-      .string()
-      .min(8, t("auth.resetPassword.minPassword")),
+    passwordConfirmation: z.string().min(8, t("auth.resetPassword.minPassword")),
   })
   .superRefine(({ passwordConfirmation, password }, ctx) => {
     if (passwordConfirmation !== password) {
@@ -95,7 +93,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     >
       <template #description>
         {{ t("shared.remembered") }}
-        <ULink to="/auth/sign-in" class="text-primary font-medium">{{
+        <ULink to="/auth/sign-in" class="font-medium text-primary">{{
           t("shared.backToSignIn")
         }}</ULink
         >.

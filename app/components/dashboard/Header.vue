@@ -18,7 +18,7 @@ const logout = async (): Promise<void> => {
 <template>
   <UHeader :toggle="false">
     <template #title>
-      <span class="text-primary text-2xl">Pastel</span>
+      <span class="text-2xl text-primary">Pastel</span>
     </template>
 
     <template #right>
@@ -30,7 +30,7 @@ const logout = async (): Promise<void> => {
         size="sm"
         color="error"
         variant="soft"
-        class="text-xs cursor-pointer"
+        class="cursor-pointer text-xs"
         @click="logout()"
       >
         Log Out

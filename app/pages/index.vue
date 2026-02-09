@@ -42,17 +42,14 @@ const links = ref([
         loading="lazy"
         preload
         :alt="t('landing.heroBanner.imageAlt')"
-        class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
+        class="mx-auto w-full rounded-lg shadow-2xl ring ring-default md:w-3/4"
       />
     </UPageHero>
 
     <section id="features">
-      <UPageSection
-        :title="t('landing.featuresSection.title')"
-        icon="i-lucide-package"
-      />
+      <UPageSection :title="t('landing.featuresSection.title')" icon="i-lucide-package" />
 
-      <div class="flex flex-col md:flex-row gap-12 w-[75%] mx-auto">
+      <div class="mx-auto flex w-[75%] flex-col gap-12 md:flex-row">
         <UPageFeature
           orientation="vertical"
           :title="t('landing.featuresSection.dreams.title')"
@@ -88,7 +85,7 @@ const links = ref([
       />
 
       <video
-        class="rounded-lg shadow-2xl ring ring-default w-full mx-auto md:w-3/4"
+        class="mx-auto w-full rounded-lg shadow-2xl ring ring-default md:w-3/4"
         controls
         preload="metadata"
       >

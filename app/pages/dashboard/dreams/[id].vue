@@ -36,12 +36,9 @@ onMounted(async () => {
 });
 
 const fetchDreamDetails = async (): Promise<void> => {
-  const response = await $customFetch(
-    `/sleeps/${router.currentRoute.value.params.id}`,
-    {
-      method: "get",
-    },
-  );
+  const response = await $customFetch(`/sleeps/${router.currentRoute.value.params.id}`, {
+    method: "get",
+  });
 
   if (response && Object.keys(response).length > 0) {
     dreamDetails.value = response as Sleep;
@@ -79,42 +76,32 @@ const deleteDream = async (): Promise<void> => {
         leadingIcon: sleepTypeTextColor(dreamDetails.sleep_type),
       }"
     >
-      <NuxtLink :to="localePath('dashboard')">{{
-        t("dashboard.create.goBack")
-      }}</NuxtLink>
+      <NuxtLink :to="localePath('dashboard')">{{ t("dashboard.create.goBack") }}</NuxtLink>
     </UButton>
 
     <!-- Dream content -->
-    <main v-if="dreamDetails.id" class="pb-18 mt-6">
+    <main v-if="dreamDetails.id" class="mt-6 pb-18">
       <article
-        class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
+        class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
       >
         <!-- Dream header -->
-        <div
-          class="p-6 sm:p-8 border-b border-primary-100 dark:border-gray-700"
-        >
-          <div
-            class="block md:flex flex-wrap items-start justify-between gap-4 mb-4"
-          >
-            <div class="flex-1 min-w-0">
+        <div class="border-b border-primary-100 p-6 sm:p-8 dark:border-gray-700">
+          <div class="mb-4 block flex-wrap items-start justify-between gap-4 md:flex">
+            <div class="min-w-0 flex-1">
               <h1
-                class="text-2xl sm:text-3xl font-bold mb-2 text-balance"
+                class="mb-2 text-2xl font-bold text-balance sm:text-3xl"
                 :class="sleepTypeTextColor(dreamDetails.sleep_type)"
               >
                 {{ dreamDetails.title }}
               </h1>
-              <time
-                class="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5"
-              >
+              <time class="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
                 <UIcon
                   name="i-lucide-calendar"
                   class="size-4"
                   :class="sleepTypeTextColor(dreamDetails.sleep_type)"
                 />
                 {{
-                  dreamDetails.date
-                    ? new Date(dreamDetails.date).toLocaleDateString(locale)
-                    : ""
+                  dreamDetails.date ? new Date(dreamDetails.date).toLocaleDateString(locale) : ""
                 }}
               </time>
             </div>
@@ -122,17 +109,14 @@ const deleteDream = async (): Promise<void> => {
             <!-- Dream type badge -->
             <span
               :class="[
-                'inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium mt-4 md:mt-0',
+                'mt-4 inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium md:mt-0',
                 sleepTypeColor(dreamDetails.sleep_type),
                 'border border-gray-200 dark:border-gray-700',
                 'bg-gray-100 dark:bg-gray-900',
                 'text-gray-700 dark:text-gray-300',
               ]"
             >
-              <UIcon
-                :name="`i-lucide-${sleepTypeIcon(dreamDetails.sleep_type)}`"
-                class="size-4"
-              />
+              <UIcon :name="`i-lucide-${sleepTypeIcon(dreamDetails.sleep_type)}`" class="size-4" />
               {{ t("dashboard.sleepType." + dreamDetails.sleep_type) }}
             </span>
           </div>
@@ -148,9 +132,7 @@ const deleteDream = async (): Promise<void> => {
               />
               <span class="text-gray-700 dark:text-gray-300"
                 >{{ t("dashboard.show.happened") }}
-                <strong>{{
-                  t("dashboard.happened." + dreamDetails.happened)
-                }}</strong></span
+                <strong>{{ t("dashboard.happened." + dreamDetails.happened) }}</strong></span
               >
             </div>
 
@@ -163,14 +145,12 @@ const deleteDream = async (): Promise<void> => {
               />
               <span class="text-gray-700 dark:text-gray-300"
                 >{{ t("dashboard.show.intensity") }}
-                <strong>{{
-                  t("dashboard.intensity." + dreamDetails.intensity)
-                }}</strong></span
+                <strong>{{ t("dashboard.intensity." + dreamDetails.intensity) }}</strong></span
               >
             </div>
           </div>
 
-          <div class="flex flex-wrap gap-4 text-sm mt-4">
+          <div class="mt-4 flex flex-wrap gap-4 text-sm">
             <!-- Current mood -->
             <div class="flex items-center gap-2">
               <UIcon
@@ -187,11 +167,8 @@ const deleteDream = async (): Promise<void> => {
 
           <!-- Tags -->
           <div
-            v-if="
-              dreamDetails.tags_attributes &&
-              dreamDetails.tags_attributes.length > 0
-            "
-            class="flex flex-wrap items-center gap-2 mt-4"
+            v-if="dreamDetails.tags_attributes && dreamDetails.tags_attributes.length > 0"
+            class="mt-4 flex flex-wrap items-center gap-2"
           >
             <UIcon
               name="i-lucide-tag"
@@ -201,7 +178,7 @@ const deleteDream = async (): Promise<void> => {
             <span
               v-for="(tag, index) in dreamDetails.tags_attributes"
               :key="`tag-${tag.id}-${index}`"
-              class="px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300"
+              class="rounded border border-gray-300 bg-gray-50 px-2 py-1 text-xs text-gray-700 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300"
             >
               {{ tag.name }}
             </span>
@@ -211,7 +188,7 @@ const deleteDream = async (): Promise<void> => {
         <!-- Dream description -->
         <div class="p-6 sm:p-8">
           <h2
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2"
+            class="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white"
           >
             <UIcon
               name="i-lucide-book-open"
@@ -222,7 +199,7 @@ const deleteDream = async (): Promise<void> => {
           </h2>
           <div class="prose prose-rose max-w-none">
             <p
-              class="text-gray-700 dark:text-gray-300 leading-relaxed text-pretty whitespace-pre-wrap"
+              class="leading-relaxed text-pretty whitespace-pre-wrap text-gray-700 dark:text-gray-300"
             >
               {{ dreamDetails.description }}
             </p>
@@ -231,14 +208,14 @@ const deleteDream = async (): Promise<void> => {
 
         <!-- Action buttons -->
         <div
-          class="p-6 sm:p-8 border-t border-primary-100 dark:border-gray-700 flex flex-wrap gap-3 justify-center"
+          class="flex flex-wrap justify-center gap-3 border-t border-primary-100 p-6 sm:p-8 dark:border-gray-700"
         >
           <UButton
             icon="i-lucide-pen"
             size="sm"
             color="primary"
             variant="outline"
-            class="text-xs cursor-pointer"
+            class="cursor-pointer text-xs"
             @click="editDream()"
           >
             {{ t("dashboard.show.actions.edit") }}
@@ -249,7 +226,7 @@ const deleteDream = async (): Promise<void> => {
             size="sm"
             color="error"
             variant="outline"
-            class="text-xs cursor-pointer"
+            class="cursor-pointer text-xs"
             :loading="loading"
             loading-icon="i-lucide-loader"
             @click="deleteDream()"

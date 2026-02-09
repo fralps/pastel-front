@@ -3,16 +3,8 @@ import { useI18n } from "vue-i18n";
 import * as z from "zod";
 import type { FormSubmitEvent } from "@nuxt/ui";
 import VoiceDictation from "~/components/dashboard/VoiceDictation.vue";
-import {
-  CalendarDate,
-  DateFormatter,
-  getLocalTimeZone,
-} from "@internationalized/date";
-import {
-  sleepTypeOptions,
-  intensityOptions,
-  happenedOptions,
-} from "@/constants";
+import { CalendarDate, DateFormatter, getLocalTimeZone } from "@internationalized/date";
+import { sleepTypeOptions, intensityOptions, happenedOptions } from "@/constants";
 import type { Sleep } from "@/models";
 
 definePageMeta({
@@ -56,9 +48,7 @@ const schema = z.object({
     .string()
     .min(2, t("dashboard.create.form.errors.titleMin"))
     .max(100, t("dashboard.create.form.errors.titleMax")),
-  description: z
-    .string()
-    .min(10, t("dashboard.create.form.errors.descriptionMin")),
+  description: z.string().min(10, t("dashboard.create.form.errors.descriptionMin")),
   sleep_type: z.string(),
   intensity: z.string(),
   happened: z.string(),
@@ -80,11 +70,7 @@ const state = reactive<Schema>({
   happened: "sleeping",
   current_mood: "",
   date: shallowRef(
-    new CalendarDate(
-      new Date().getFullYear(),
-      new Date().getMonth() + 1,
-      new Date().getDate(),
-    ),
+    new CalendarDate(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()),
   ), // Months are 1-indexed
   tags_attributes: [] as { name: string }[],
 });
@@ -132,13 +118,11 @@ const formatTags = (data: Schema): void => {
     >
       {{ t("dashboard.create.goBack") }}
     </UButton>
-    <div class="pb-18 mt-6">
-      <div
-        class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
-      >
-        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+    <div class="mt-6 pb-18">
+      <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+        <div class="border-b border-gray-200 p-6 dark:border-gray-700">
           <h2
-            class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2"
+            class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white"
           >
             <UIcon name="i-lucide-plus" class="size-5" />
             {{ t("dashboard.create.title") }}
@@ -147,18 +131,9 @@ const formatTags = (data: Schema): void => {
             {{ t("dashboard.create.description") }}
           </p>
         </div>
-        <div class="p-6 space-y-4">
-          <UForm
-            :schema="schema"
-            :state="state"
-            class="space-y-8"
-            @submit="onSubmit"
-          >
-            <UFormField
-              :label="t('dashboard.create.form.title')"
-              name="title"
-              class="w-full"
-            >
+        <div class="space-y-4 p-6">
+          <UForm :schema="schema" :state="state" class="space-y-8" @submit="onSubmit">
+            <UFormField :label="t('dashboard.create.form.title')" name="title" class="w-full">
               <UInput v-model="state.title" :required="true" class="w-full" />
             </UFormField>
 
@@ -167,12 +142,7 @@ const formatTags = (data: Schema): void => {
               name="description"
               class="w-full"
             >
-              <UTextarea
-                v-model="state.description"
-                autoresize
-                :required="true"
-                class="w-full"
-              />
+              <UTextarea v-model="state.description" autoresize :required="true" class="w-full" />
             </UFormField>
 
             <VoiceDictation
@@ -182,41 +152,32 @@ const formatTags = (data: Schema): void => {
             />
 
             <div class="grid grid-cols-2 gap-4">
-              <UFormField
-                :label="t('dashboard.create.form.sleepType')"
-                name="sleep_type"
-              >
+              <UFormField :label="t('dashboard.create.form.sleepType')" name="sleep_type">
                 <USelect
                   v-model="state.sleep_type"
                   :items="mappedSleepTypeOptions"
                   :required="true"
-                  class="cursor-pointer w-full"
+                  class="w-full cursor-pointer"
                 />
               </UFormField>
 
-              <UFormField
-                :label="t('dashboard.create.form.intensity')"
-                name="intensity"
-              >
+              <UFormField :label="t('dashboard.create.form.intensity')" name="intensity">
                 <USelect
                   v-model="state.intensity"
                   :items="mappedIntensityOptions"
                   :required="true"
-                  class="cursor-pointer w-full"
+                  class="w-full cursor-pointer"
                 />
               </UFormField>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-              <UFormField
-                :label="t('dashboard.create.form.happened')"
-                name="happened"
-              >
+              <UFormField :label="t('dashboard.create.form.happened')" name="happened">
                 <USelect
                   v-model="state.happened"
                   :items="mappedHappenedOptions"
                   :required="true"
-                  class="cursor-pointer w-full"
+                  class="w-full cursor-pointer"
                 />
               </UFormField>
 
@@ -225,15 +186,11 @@ const formatTags = (data: Schema): void => {
                 name="current_mood"
                 class="w-full"
               >
-                <UInput
-                  v-model="state.current_mood"
-                  :required="true"
-                  class="w-full"
-                />
+                <UInput v-model="state.current_mood" :required="true" class="w-full" />
               </UFormField>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
               <UFormField :label="t('dashboard.create.form.date')" name="date">
                 <UPopover>
                   <UButton
@@ -250,19 +207,12 @@ const formatTags = (data: Schema): void => {
                   </UButton>
 
                   <template #content>
-                    <UCalendar
-                      v-model="state.date"
-                      :required="true"
-                      class="p-2"
-                    />
+                    <UCalendar v-model="state.date" :required="true" class="p-2" />
                   </template>
                 </UPopover>
               </UFormField>
 
-              <UFormField
-                :label="t('dashboard.create.form.tags')"
-                name="tags_attributes"
-              >
+              <UFormField :label="t('dashboard.create.form.tags')" name="tags_attributes">
                 <UInputTags
                   v-model="tags"
                   :placeholder="t('dashboard.create.form.tagsPlaceholder')"
@@ -274,11 +224,7 @@ const formatTags = (data: Schema): void => {
             </div>
 
             <div class="flex items-center justify-end gap-3 pt-4">
-              <ULink
-                to="/dashboard"
-                class="text-error font-medium"
-                tabindex="-1"
-              >
+              <ULink to="/dashboard" class="font-medium text-error" tabindex="-1">
                 {{ t("dashboard.create.actions.cancel") }}
               </ULink>
 

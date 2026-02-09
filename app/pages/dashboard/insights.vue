@@ -48,12 +48,10 @@ const fetchDreamInsights = async () => {
 <template>
   <NuxtLayout name="dashboard">
     <div class="space-y-6 pb-18">
-      <div
-        class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
-      >
-        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+        <div class="border-b border-gray-200 p-6 dark:border-gray-700">
           <h2
-            class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2"
+            class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white"
           >
             <UIcon name="i-lucide-chart-column" class="size-5" />
             {{ t("insights.title") }}
@@ -63,18 +61,15 @@ const fetchDreamInsights = async () => {
           </p>
         </div>
         <div class="p-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div
               v-for="(count, type) in results.totals"
               :key="type"
-              class="text-center p-6 rounded-lg"
+              class="rounded-lg p-6 text-center"
               :class="sleepTypeColor(type)"
             >
-              <div class="text-2xl font-bold flex items-center justify-center">
-                <UIcon
-                  :name="`i-lucide-${sleepTypeIcon(type)}`"
-                  class="size-5 mr-1"
-                />
+              <div class="flex items-center justify-center text-2xl font-bold">
+                <UIcon :name="`i-lucide-${sleepTypeIcon(type)}`" class="mr-1 size-5" />
                 {{ count }}
               </div>
               <div class="text-sm text-gray-600 dark:text-gray-400">

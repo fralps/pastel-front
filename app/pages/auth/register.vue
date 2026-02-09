@@ -132,7 +132,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
     >
       <template #description>
         {{ t("auth.register.alreadyAccount") }}
-        <ULink to="/auth/sign-in" class="text-primary font-medium">{{
+        <ULink to="/auth/sign-in" class="font-medium text-primary">{{
           t("auth.register.signIn")
         }}</ULink
         >.
@@ -140,9 +140,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
       <template #footer>
         {{ t("auth.register.footer", { terms: "" })
-        }}<ULink to="/" class="text-primary font-medium">{{
-          t("auth.register.terms")
-        }}</ULink
+        }}<ULink to="/" class="font-medium text-primary">{{ t("auth.register.terms") }}</ULink
         >.
       </template>
     </UAuthForm>

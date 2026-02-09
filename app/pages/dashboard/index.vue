@@ -36,12 +36,9 @@ const scrollToTop = (): void => {
 };
 
 async function fetchDreams(page: number): Promise<void> {
-  const response = await $customFetch<PaginatedDreamsResponse>(
-    `/sleeps?page=${page}`,
-    {
-      method: "GET",
-    },
-  );
+  const response = await $customFetch<PaginatedDreamsResponse>(`/sleeps?page=${page}`, {
+    method: "GET",
+  });
 
   if (response?.paginated_result) {
     scrollToTop();
@@ -61,11 +58,11 @@ const goToCreateDream = (): void => {
     <div class="space-y-6">
       <!-- Welcome Section -->
       <div
-        class="bg-linear-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 border border-primary-200 dark:border-primary-800 rounded-lg"
+        class="rounded-lg border border-primary-200 bg-linear-to-r from-primary-50 to-purple-50 dark:border-primary-800 dark:from-primary-900/20 dark:to-purple-900/20"
       >
         <div class="p-6">
           <h2
-            class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white mb-2"
+            class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white"
           >
             <UIcon name="i-lucide-star" class="size-5" />
             {{ t("dashboard.welcome.title") }}
@@ -98,10 +95,7 @@ const goToCreateDream = (): void => {
           </UButton>
         </div>
 
-        <div
-          v-if="dreamsList && dreamsList.length > 0"
-          class="grid gap-4 pb-18"
-        >
+        <div v-if="dreamsList && dreamsList.length > 0" class="grid gap-4 pb-18">
           <DashboardRecordCard
             v-for="(dream, index) in dreamsList"
             :key="`dream-${dream.id}-${index}`"
@@ -119,7 +113,7 @@ const goToCreateDream = (): void => {
           />
         </div>
 
-        <div v-else class="text-center text-gray-600 dark:text-gray-400 py-10">
+        <div v-else class="py-10 text-center text-gray-600 dark:text-gray-400">
           <p class="mb-4">{{ t("dashboard.list.noDreams") }}</p>
           <UButton
             icon="i-lucide-plus"
