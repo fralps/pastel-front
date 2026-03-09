@@ -1,57 +1,51 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   experimental: {
-    viteEnvironmentApi: true,
+    viteEnvironmentApi: true
   },
-  compatibilityDate: "2025-07-15",
+  compatibilityDate: '2025-07-15',
   devtools: {
     enabled: true,
 
     timeline: {
-      enabled: true,
-    },
+      enabled: true
+    }
   },
-  modules: [
-    "@nuxt/image",
-    "@nuxt/ui",
-    "@nuxtjs/i18n",
-    "@pinia/nuxt",
-    "pinia-plugin-persistedstate/nuxt",
-  ],
+  modules: ['@nuxt/image', '@nuxt/ui', '@nuxtjs/i18n', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt'],
   app: {
     head: {
       meta: [
         {
-          name: "viewport",
-          content: "width=device-width, initial-scale=1, maximum-scale=1.0",
-        },
-      ],
-    },
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1, maximum-scale=1.0'
+        }
+      ]
+    }
   },
   i18n: {
-    strategy: "prefix",
-    defaultLocale: "en",
+    strategy: 'prefix',
+    defaultLocale: 'en',
     locales: [
-      { code: "en", name: "English", file: "en.json" },
-      { code: "fr", name: "Français", file: "fr.json" },
-    ],
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'fr', name: 'Français', file: 'fr.json' }
+    ]
   },
-  css: ["~/assets/css/main.css"],
+  css: ['~/assets/css/main.css'],
   piniaPluginPersistedstate: {
-    storage: "cookies",
+    storage: 'cookies',
     debug: true,
     cookieOptions: {
       httpOnly: false,
       secure: true,
-      sameSite: "lax",
-    },
+      sameSite: 'lax'
+    }
   },
   typescript: {
     tsConfig: {
-      include: ["./types/**/*.d.ts"],
-    },
+      include: ['./types/**/*.d.ts']
+    }
   },
   devServer: {
-    port: 5100,
-  },
+    port: 5100
+  }
 });

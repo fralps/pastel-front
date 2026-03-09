@@ -2,29 +2,29 @@
 const { t } = useI18n();
 
 useSeoMeta({
-  title: $t("meta.landing.title"),
-  ogTitle: $t("meta.landing.ogTitle"),
-  description: $t("meta.landing.description"),
-  ogDescription: $t("meta.landing.ogDescription"),
-  ogImage: "https://example.com/image.png",
-  twitterCard: "summary_large_image",
+  title: $t('meta.landing.title'),
+  ogTitle: $t('meta.landing.ogTitle'),
+  description: $t('meta.landing.description'),
+  ogDescription: $t('meta.landing.ogDescription'),
+  ogImage: 'https://example.com/image.png',
+  twitterCard: 'summary_large_image'
 });
 
 const links = ref([
   {
-    label: $t("landing.heroBanner.ctaPrimary"),
-    to: "/auth/sign-in",
-    icon: "i-lucide-log-in",
-    size: "md" as const,
+    label: $t('landing.heroBanner.ctaPrimary'),
+    to: '/auth/sign-in',
+    icon: 'i-lucide-log-in',
+    size: 'md' as const
   },
   {
-    label: $t("landing.heroBanner.ctaSecondary"),
-    to: "/auth/register",
-    color: "neutral" as const,
-    variant: "subtle" as const,
-    trailingIcon: "i-lucide-milestone",
-    size: "md" as const,
-  },
+    label: $t('landing.heroBanner.ctaSecondary'),
+    to: '/auth/register',
+    color: 'neutral' as const,
+    variant: 'subtle' as const,
+    trailingIcon: 'i-lucide-milestone',
+    size: 'md' as const
+  }
 ]);
 </script>
 
@@ -32,11 +32,7 @@ const links = ref([
   <div>
     <LandingHeader />
 
-    <UPageHero
-      :title="t('landing.heroBanner.title')"
-      :description="t('landing.heroBanner.description')"
-      :links="links"
-    >
+    <UPageHero :title="t('landing.heroBanner.title')" :description="t('landing.heroBanner.description')" :links="links">
       <NuxtImg
         src="/images/dashboard.webp"
         loading="lazy"
@@ -84,13 +80,9 @@ const links = ref([
         icon="i-lucide-play-circle"
       />
 
-      <video
-        class="mx-auto w-full rounded-lg shadow-2xl ring ring-default md:w-3/4"
-        controls
-        preload="metadata"
-      >
+      <video class="mx-auto w-full rounded-lg shadow-2xl ring ring-default md:w-3/4" controls preload="metadata">
         <source src="/videos/app-demo.mp4" type="video/mp4" />
-        {{ t("landing.demoSection.browserNotSupported") }}
+        {{ t('landing.demoSection.browserNotSupported') }}
       </video>
     </section>
 

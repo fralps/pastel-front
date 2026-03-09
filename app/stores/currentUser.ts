@@ -1,21 +1,20 @@
-import "pinia-plugin-persistedstate";
-
-import { defineStore } from "pinia";
+import 'pinia-plugin-persistedstate';
+import { defineStore } from 'pinia';
 
 type Attributes = Record<string, unknown>;
 
-export const useCurrentUserStore = defineStore("currentUserStore", {
+export const useCurrentUserStore = defineStore('currentUserStore', {
   state: () => {
     return {
-      attributes: {} as Attributes,
+      attributes: {} as Attributes
     };
   },
   persist: true,
   actions: {
     resetStore() {
       this.attributes = {};
-    },
-  },
+    }
+  }
 });
 
 // Utility function to check if the user is authenticated

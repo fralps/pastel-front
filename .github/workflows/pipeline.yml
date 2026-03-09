@@ -31,7 +31,7 @@ jobs:
       - name: 🐽 Run TruffleHog Scan
         uses: trufflesecurity/trufflehog@main
         with:
-          base: ""
+          base: ''
           head: ${{ github.ref_name }}
           extra_args: --results=verified,unknown
 

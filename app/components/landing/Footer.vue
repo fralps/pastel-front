@@ -1,26 +1,24 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
+import type { NavigationMenuItem } from '@nuxt/ui';
 
 const { t } = useI18n();
 
 const items: NavigationMenuItem[] = [
   {
-    label: t("landing.footer.features"),
-    to: "#features",
+    label: t('landing.footer.features'),
+    to: '#features'
   },
   {
-    label: t("landing.footer.demo"),
-    to: "#demo",
-  },
+    label: t('landing.footer.demo'),
+    to: '#demo'
+  }
 ];
 </script>
 
 <template>
   <UFooter>
     <template #left>
-      <p class="text-sm text-muted">
-        Pastel, {{ t("landing.footer.rights") }} {{ new Date().getFullYear() }}
-      </p>
+      <p class="text-sm text-muted">Pastel, {{ t('landing.footer.rights') }} {{ new Date().getFullYear() }}</p>
     </template>
 
     <UNavigationMenu :items="items" variant="link" />

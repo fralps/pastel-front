@@ -1,82 +1,80 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import * as z from "zod";
-import type { FormSubmitEvent } from "@nuxt/ui";
-import { CalendarDate, DateFormatter, getLocalTimeZone } from "@internationalized/date";
-import { sleepTypeOptions, intensityOptions, happenedOptions } from "@/constants";
-import type { Sleep } from "@/models";
+import type { FormSubmitEvent } from '@nuxt/ui';
+
+import { CalendarDate, DateFormatter, getLocalTimeZone } from '@internationalized/date';
+import { useI18n } from 'vue-i18n';
+import * as z from 'zod';
+
+import type { Sleep } from '@/models';
+
+import { sleepTypeOptions, intensityOptions, happenedOptions } from '@/constants';
 
 definePageMeta({
-  middleware: ["auth"],
+  middleware: ['auth']
 });
 
-const { t, locale } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: 'global' });
 const router = useRouter();
 
 useSeoMeta({
-  title: t("meta.dashboard.edit.title"),
-  description: t("meta.dashboard.edit.description"),
-  ogTitle: t("meta.dashboard.edit.title"),
-  ogDescription: t("meta.dashboard.edit.description"),
+  title: t('meta.dashboard.edit.title'),
+  description: t('meta.dashboard.edit.description'),
+  ogTitle: t('meta.dashboard.edit.title'),
+  ogDescription: t('meta.dashboard.edit.description')
 });
 
-const formattedLocale = locale.value.replace("_", "-");
+const formattedLocale = locale.value.replace('_', '-');
 
 const df = new DateFormatter(formattedLocale, {
-  dateStyle: "full",
+  dateStyle: 'full'
 });
 
 const mappedSleepTypeOptions = sleepTypeOptions.map((option) => ({
   label: t(option.label),
-  value: option.value,
+  value: option.value
 }));
 
 const mappedHappenedOptions = happenedOptions.map((option) => ({
   label: t(option.label),
-  value: option.value,
+  value: option.value
 }));
 
 const mappedIntensityOptions = intensityOptions.map((option) => ({
   label: t(option.label),
-  value: option.value,
+  value: option.value
 }));
 
 const schema = z.object({
-  title: z
-    .string()
-    .min(2, t("dashboard.edit.form.errors.titleMin"))
-    .max(100, t("dashboard.edit.form.errors.titleMax")),
-  description: z.string().min(10, t("dashboard.edit.form.errors.descriptionMin")),
+  title: z.string().min(2, t('dashboard.edit.form.errors.titleMin')).max(100, t('dashboard.edit.form.errors.titleMax')),
+  description: z.string().min(10, t('dashboard.edit.form.errors.descriptionMin')),
   sleep_type: z.string(),
   intensity: z.string(),
   happened: z.string(),
   current_mood: z
     .string()
-    .min(2, t("dashboard.edit.form.errors.currentMoodMin"))
-    .max(20, t("dashboard.edit.form.errors.currentMoodMax")),
+    .min(2, t('dashboard.edit.form.errors.currentMoodMin'))
+    .max(20, t('dashboard.edit.form.errors.currentMoodMax')),
   date: z.any(),
   tags_attributes: z.array(
     z.object({
       id: z.number().optional(),
       name: z.string(),
-      _destroy: z.boolean().optional(),
-    }),
-  ),
+      _destroy: z.boolean().optional()
+    })
+  )
 });
 
 type Schema = z.output<typeof schema>;
 
 const state = reactive<Schema>({
-  title: "",
-  description: "",
-  sleep_type: "dream",
-  intensity: "clear",
-  happened: "sleeping",
-  current_mood: "",
-  date: shallowRef(
-    new CalendarDate(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()),
-  ),
-  tags_attributes: [],
+  title: '',
+  description: '',
+  sleep_type: 'dream',
+  intensity: 'clear',
+  happened: 'sleeping',
+  current_mood: '',
+  date: shallowRef(new CalendarDate(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate())),
+  tags_attributes: []
 });
 
 const { $customFetch } = useNuxtApp();
@@ -92,27 +90,24 @@ onMounted(async (): Promise<void> => {
 
 const fetchDreamDetails = async (): Promise<void> => {
   const response: Sleep = await $customFetch(`/sleeps/${router.currentRoute.value.params.id}`, {
-    method: "get",
+    method: 'get'
   });
 
   if (response && Object.keys(response).length > 0) {
-    state.title = response.title ?? "";
-    state.description = response.description ?? "";
-    state.sleep_type = response.sleep_type ?? "";
-    state.intensity = response.intensity ?? "";
-    state.happened = response.happened ?? "";
-    state.current_mood = response.current_mood ?? "";
+    state.title = response.title ?? '';
+    state.description = response.description ?? '';
+    state.sleep_type = response.sleep_type ?? '';
+    state.intensity = response.intensity ?? '';
+    state.happened = response.happened ?? '';
+    state.current_mood = response.current_mood ?? '';
     const safeDate = response.date ? new Date(response.date) : new Date();
-    state.date = new CalendarDate(
-      safeDate.getFullYear(),
-      safeDate.getMonth() + 1,
-      safeDate.getDate(),
-    );
+    state.date = new CalendarDate(safeDate.getFullYear(), safeDate.getMonth() + 1, safeDate.getDate());
 
     // Store tags with their IDs
-    tagsWithIds.value = (response.tags_attributes ?? []).map(
-      (tag: { id?: number; name: string }) => ({ id: tag.id, name: tag.name }),
-    );
+    tagsWithIds.value = (response.tags_attributes ?? []).map((tag: { id?: number; name: string }) => ({
+      id: tag.id,
+      name: tag.name
+    }));
 
     // Show only names in the input
     tags.value = tagsWithIds.value.map((tag) => tag.name);
@@ -135,7 +130,7 @@ const formatTagsAttributesForApi = (tagName: string): void => {
       state.tags_attributes.push({
         id: tagWithId.id,
         name: tagName,
-        _destroy: true,
+        _destroy: true
       });
     }
   }
@@ -167,15 +162,15 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   formatTags(event.data);
 
   const response = await $customFetch<Sleep>(`/sleeps/${router.currentRoute.value.params.id}`, {
-    method: "PUT",
-    body: { sleep: event.data },
+    method: 'PUT',
+    body: { sleep: event.data }
   });
 
   if (response?.id) {
-    toast.add({ title: t("dashboard.edit.toast.success"), color: "success" });
+    toast.add({ title: t('dashboard.edit.toast.success'), color: 'success' });
     await navigateTo(`/dashboard/dreams/${response.id}`);
   } else {
-    toast.add({ title: t("dashboard.edit.toast.error"), color: "error" });
+    toast.add({ title: t('dashboard.edit.toast.error'), color: 'error' });
   }
   loading.value = false;
 }
@@ -188,24 +183,22 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       color="neutral"
       variant="outline"
       :ui="{
-        leadingIcon: 'text-primary',
+        leadingIcon: 'text-primary'
       }"
       class="cursor-pointer"
       @click="router.back()"
     >
-      {{ t("dashboard.edit.goBack") }}
+      {{ t('dashboard.edit.goBack') }}
     </UButton>
     <div class="mt-6 pb-18">
       <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
         <div class="border-b border-gray-200 p-6 dark:border-gray-700">
-          <h2
-            class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white"
-          >
+          <h2 class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
             <UIcon name="i-lucide-plus" class="size-5" />
-            {{ t("dashboard.edit.title") }}
+            {{ t('dashboard.edit.title') }}
           </h2>
           <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ t("dashboard.edit.description") }}
+            {{ t('dashboard.edit.description') }}
           </p>
         </div>
         <div class="space-y-4 p-6">
@@ -214,11 +207,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
               <UInput v-model="state.title" :required="true" class="w-full" />
             </UFormField>
 
-            <UFormField
-              :label="t('dashboard.edit.form.description')"
-              name="description"
-              class="w-full"
-            >
+            <UFormField :label="t('dashboard.edit.form.description')" name="description" class="w-full">
               <UTextarea v-model="state.description" autoresize :required="true" class="w-full" />
             </UFormField>
 
@@ -252,11 +241,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 />
               </UFormField>
 
-              <UFormField
-                :label="t('dashboard.edit.form.currentMood')"
-                name="current_mood"
-                class="w-full"
-              >
+              <UFormField :label="t('dashboard.edit.form.currentMood')" name="current_mood" class="w-full">
                 <UInput v-model="state.current_mood" :required="true" class="w-full" />
               </UFormField>
             </div>
@@ -264,16 +249,9 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
               <UFormField :label="t('dashboard.edit.form.date')" name="date">
                 <UPopover>
-                  <UButton
-                    color="neutral"
-                    variant="subtle"
-                    icon="i-lucide-calendar"
-                    class="w-full cursor-pointer"
-                  >
+                  <UButton color="neutral" variant="subtle" icon="i-lucide-calendar" class="w-full cursor-pointer">
                     {{
-                      state.date
-                        ? df.format(state.date.toDate(getLocalTimeZone()))
-                        : t("dashboard.edit.select_date")
+                      state.date ? df.format(state.date.toDate(getLocalTimeZone())) : t('dashboard.edit.select_date')
                     }}
                   </UButton>
 
@@ -297,7 +275,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
             <div class="flex items-center justify-end gap-3 pt-4">
               <ULink to="/dashboard" class="font-medium text-error" tabindex="-1">
-                {{ t("dashboard.edit.actions.cancel") }}
+                {{ t('dashboard.edit.actions.cancel') }}
               </ULink>
 
               <UButton
@@ -310,7 +288,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 variant="solid"
                 class="cursor-pointer"
               >
-                {{ t("dashboard.edit.actions.save") }}
+                {{ t('dashboard.edit.actions.save') }}
               </UButton>
             </div>
           </UForm>

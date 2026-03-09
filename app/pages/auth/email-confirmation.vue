@@ -18,19 +18,16 @@ onMounted(async () => {
   }
 
   try {
-    const data = await $customFetch<{ id?: number }>(
-      `/users/confirmation?confirmation_token=${token}`,
-      {
-        method: "GET",
-      },
-    );
+    const data = await $customFetch<{ id?: number }>(`/users/confirmation?confirmation_token=${token}`, {
+      method: 'GET'
+    });
 
     if (data.id) {
-      navigateTo("/auth/sign-in");
+      navigateTo('/auth/sign-in');
       toast.add({
-        title: $t("auth.emailConfirmation.successTitle"),
-        description: $t("auth.emailConfirmation.successDesc"),
-        color: "success",
+        title: $t('auth.emailConfirmation.successTitle'),
+        description: $t('auth.emailConfirmation.successDesc'),
+        color: 'success'
       });
     }
   } catch (err: unknown) {
@@ -41,19 +38,19 @@ onMounted(async () => {
     // Display specific error messages based on the code
     switch (statusCode) {
       case 422:
-        navigateTo("/auth/sign-in");
+        navigateTo('/auth/sign-in');
         toast.add({
-          title: $t("auth.emailConfirmation.alreadyValidatedTitle"),
-          description: $t("auth.emailConfirmation.alreadyValidatedDesc"),
-          color: "info",
+          title: $t('auth.emailConfirmation.alreadyValidatedTitle'),
+          description: $t('auth.emailConfirmation.alreadyValidatedDesc'),
+          color: 'info'
         });
         break;
       default:
-        navigateTo("/auth/sign-in");
+        navigateTo('/auth/sign-in');
         toast.add({
-          title: $t("auth.emailConfirmation.unknownErrorTitle"),
-          description: $t("auth.emailConfirmation.unknownErrorDesc"),
-          color: "error",
+          title: $t('auth.emailConfirmation.unknownErrorTitle'),
+          description: $t('auth.emailConfirmation.unknownErrorDesc'),
+          color: 'error'
         });
     }
   }

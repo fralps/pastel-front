@@ -1,16 +1,16 @@
-declare module "#app" {
+declare module '#app' {
   interface NuxtApp {
     $customFetch: typeof globalThis.$fetch;
   }
 }
 
-declare module "nuxt/app" {
+declare module 'nuxt/app' {
   interface NuxtApp {
     $customFetch: typeof globalThis.$fetch;
   }
 }
 
-declare module "vue" {
+declare module 'vue' {
   interface ComponentCustomProperties {
     $customFetch: typeof globalThis.$fetch;
   }

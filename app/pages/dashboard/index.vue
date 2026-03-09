@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { Sleep } from "@/models";
+import type { Sleep } from '@/models';
 
 definePageMeta({
-  middleware: ["auth"],
+  middleware: ['auth']
 });
 
 const { $customFetch } = useNuxtApp();
 const { t } = useI18n();
 
 useSeoMeta({
-  title: t("meta.dashboard.index.title"),
-  description: t("meta.dashboard.index.description"),
-  ogTitle: t("meta.dashboard.index.ogTitle"),
-  ogDescription: t("meta.dashboard.index.ogDescription"),
+  title: t('meta.dashboard.index.title'),
+  description: t('meta.dashboard.index.description'),
+  ogTitle: t('meta.dashboard.index.ogTitle'),
+  ogDescription: t('meta.dashboard.index.ogDescription')
 });
 
 interface PaginatedDreamsResponse {
@@ -32,12 +32,12 @@ onMounted(async (): Promise<void> => {
 });
 
 const scrollToTop = (): void => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 async function fetchDreams(page: number): Promise<void> {
   const response = await $customFetch<PaginatedDreamsResponse>(`/sleeps?page=${page}`, {
-    method: "GET",
+    method: 'GET'
   });
 
   if (response?.paginated_result) {
@@ -49,7 +49,7 @@ async function fetchDreams(page: number): Promise<void> {
 }
 
 const goToCreateDream = (): void => {
-  navigateTo("/dashboard/dreams/create");
+  navigateTo('/dashboard/dreams/create');
 };
 </script>
 
@@ -61,17 +61,12 @@ const goToCreateDream = (): void => {
         class="rounded-lg border border-primary-200 bg-linear-to-r from-primary-50 to-purple-50 dark:border-primary-800 dark:from-primary-900/20 dark:to-purple-900/20"
       >
         <div class="p-6">
-          <h2
-            class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white"
-          >
+          <h2 class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
             <UIcon name="i-lucide-star" class="size-5" />
-            {{ t("dashboard.welcome.title") }}
+            {{ t('dashboard.welcome.title') }}
           </h2>
-          <p
-            v-if="dreamsList && totalDreams && dreamsList.length > 0"
-            class="text-sm text-gray-600 dark:text-gray-400"
-          >
-            {{ t("dashboard.welcome.description", { count: totalDreams }) }}
+          <p v-if="dreamsList && totalDreams && dreamsList.length > 0" class="text-sm text-gray-600 dark:text-gray-400">
+            {{ t('dashboard.welcome.description', { count: totalDreams }) }}
           </p>
         </div>
       </div>
@@ -80,7 +75,7 @@ const goToCreateDream = (): void => {
       <div class="space-y-4">
         <div class="flex items-center justify-between">
           <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-            {{ t("dashboard.list.title") }}
+            {{ t('dashboard.list.title') }}
           </h2>
           <UButton
             v-if="dreamsList && dreamsList.length > 0"
@@ -91,7 +86,7 @@ const goToCreateDream = (): void => {
             class="cursor-pointer"
             @click="goToCreateDream"
           >
-            {{ t("dashboard.list.addDream") }}
+            {{ t('dashboard.list.addDream') }}
           </UButton>
         </div>
 
@@ -114,7 +109,7 @@ const goToCreateDream = (): void => {
         </div>
 
         <div v-else class="py-10 text-center text-gray-600 dark:text-gray-400">
-          <p class="mb-4">{{ t("dashboard.list.noDreams") }}</p>
+          <p class="mb-4">{{ t('dashboard.list.noDreams') }}</p>
           <UButton
             icon="i-lucide-plus"
             size="md"
@@ -123,7 +118,7 @@ const goToCreateDream = (): void => {
             class="cursor-pointer"
             @click="goToCreateDream"
           >
-            {{ t("dashboard.list.addDream") }}
+            {{ t('dashboard.list.addDream') }}
           </UButton>
         </div>
       </div>

@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { Sleep } from "@/models";
-import { useI18n } from "vue-i18n";
-import { sleepTypeIcon, sleepTypeColor } from "@/constants";
+import { useI18n } from 'vue-i18n';
 
-const { t, locale } = useI18n({ useScope: "global" });
+import type { Sleep } from '@/models';
+
+import { sleepTypeIcon, sleepTypeColor } from '@/constants';
+
+const { t, locale } = useI18n({ useScope: 'global' });
 const router = useRouter();
 
 const props = defineProps<{
@@ -28,7 +30,7 @@ const redirectToShowPage = async (id: number | undefined) => {
           </h3>
           <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <UIcon name="i-lucide-calendar" class="size-3" />
-            {{ props.dream.date ? new Date(props.dream.date).toLocaleDateString(locale) : "" }}
+            {{ props.dream.date ? new Date(props.dream.date).toLocaleDateString(locale) : '' }}
             <template v-if="dream.current_mood">
               <span>•</span>
               <span>{{ props.dream.current_mood }}</span>
@@ -38,11 +40,11 @@ const redirectToShowPage = async (id: number | undefined) => {
         <span
           :class="[
             'inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium',
-            sleepTypeColor(props.dream.sleep_type),
+            sleepTypeColor(props.dream.sleep_type)
           ]"
         >
           <UIcon :name="`i-lucide-${sleepTypeIcon(props.dream.sleep_type)}`" class="size-4" />
-          {{ t("dashboard.sleepType." + props.dream.sleep_type) }}
+          {{ t('dashboard.sleepType.' + props.dream.sleep_type) }}
         </span>
       </div>
     </div>

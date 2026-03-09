@@ -1,28 +1,29 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 import type {
   VoiceDictationProps,
   SpeechRecognition,
   SpeechRecognitionEvent,
-  SpeechRecognitionErrorEvent,
-} from "~/models";
-import { useI18n } from "vue-i18n";
+  SpeechRecognitionErrorEvent
+} from '~/models';
 
 const { t } = useI18n();
 
 const props = withDefaults(defineProps<VoiceDictationProps>(), {
-  modelValue: "",
-  language: "fr-FR",
+  modelValue: '',
+  language: 'fr-FR',
   continuous: true,
-  interimResults: true,
+  interimResults: true
 });
 
 const emit = defineEmits<{
-  "update:modelValue": [value: string];
+  'update:modelValue': [value: string];
 }>();
 
 const isSupported: Ref<boolean> = ref(false);
 const isRecording: Ref<boolean> = ref(false);
-const interimTranscript: Ref<string> = ref("");
+const interimTranscript: Ref<string> = ref('');
 
 let recognition: SpeechRecognition | null = null;
 
@@ -43,8 +44,8 @@ onMounted((): void => {
   recognition.interimResults = props.interimResults;
 
   recognition.onresult = (event: SpeechRecognitionEvent): void => {
-    let interimText: string = "";
-    let finalText: string = "";
+    let interimText: string = '';
+    let finalText: string = '';
 
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const result = event.results[i];
@@ -53,7 +54,7 @@ onMounted((): void => {
       const text = result[0].transcript;
 
       if (result.isFinal) {
-        finalText += text + " ";
+        finalText += text + ' ';
       } else {
         interimText += text;
       }
@@ -62,8 +63,8 @@ onMounted((): void => {
     // Emit update with final text
     if (finalText) {
       const newValue: string = props.modelValue + finalText;
-      emit("update:modelValue", newValue);
-      interimTranscript.value = "";
+      emit('update:modelValue', newValue);
+      interimTranscript.value = '';
     }
 
     // Display interim transcript
@@ -73,7 +74,7 @@ onMounted((): void => {
   };
 
   recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-    console.error("Speech recognition error:", event.error);
+    console.error('Speech recognition error:', event.error);
     isRecording.value = false;
   };
 
@@ -105,8 +106,8 @@ const toggleRecording = (): void => {
 };
 
 const clearTranscript = (): void => {
-  emit("update:modelValue", "");
-  interimTranscript.value = "";
+  emit('update:modelValue', '');
+  interimTranscript.value = '';
 };
 </script>
 
@@ -117,7 +118,7 @@ const clearTranscript = (): void => {
         class="mb-2 text-center text-xs text-muted md:mb-0"
         :class="!isSupported ? 'cursor-not-allowed line-through' : ''"
       >
-        {{ t("dashboard.create.form.speechDictation.useSpeechDictation") }}
+        {{ t('dashboard.create.form.speechDictation.useSpeechDictation') }}
       </p>
       <UButton
         :disabled="!isSupported"
@@ -130,8 +131,8 @@ const clearTranscript = (): void => {
       >
         {{
           isRecording
-            ? t("dashboard.create.form.speechDictation.pauseRecording")
-            : t("dashboard.create.form.speechDictation.startRecording")
+            ? t('dashboard.create.form.speechDictation.pauseRecording')
+            : t('dashboard.create.form.speechDictation.startRecording')
         }}
       </UButton>
 
@@ -144,7 +145,7 @@ const clearTranscript = (): void => {
         class="mt-2 cursor-pointer hover:underline md:mt-0"
         @click="clearTranscript"
       >
-        {{ t("dashboard.create.form.speechDictation.clearText") }}
+        {{ t('dashboard.create.form.speechDictation.clearText') }}
       </UButton>
     </div>
 
@@ -167,7 +168,7 @@ const clearTranscript = (): void => {
       :title="t('dashboard.create.form.speechDictation.listening')"
       :description="
         t('dashboard.create.form.speechDictation.language', {
-          language: props.language,
+          language: props.language
         })
       "
       class="animate-pulse"
@@ -179,7 +180,7 @@ const clearTranscript = (): void => {
         <div class="flex items-center gap-2">
           <UIcon name="i-lucide-message-circle-more" class="text-blue-500" />
           <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-            {{ t("dashboard.create.form.speechDictation.recording") }}
+            {{ t('dashboard.create.form.speechDictation.recording') }}
           </span>
         </div>
       </template>

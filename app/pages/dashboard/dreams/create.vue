@@ -1,78 +1,79 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import * as z from "zod";
-import type { FormSubmitEvent } from "@nuxt/ui";
-import VoiceDictation from "~/components/dashboard/VoiceDictation.vue";
-import { CalendarDate, DateFormatter, getLocalTimeZone } from "@internationalized/date";
-import { sleepTypeOptions, intensityOptions, happenedOptions } from "@/constants";
-import type { Sleep } from "@/models";
+import type { FormSubmitEvent } from '@nuxt/ui';
+
+import { CalendarDate, DateFormatter, getLocalTimeZone } from '@internationalized/date';
+import { useI18n } from 'vue-i18n';
+import * as z from 'zod';
+
+import type { Sleep } from '@/models';
+
+import { sleepTypeOptions, intensityOptions, happenedOptions } from '@/constants';
+import VoiceDictation from '~/components/dashboard/VoiceDictation.vue';
 
 definePageMeta({
-  middleware: ["auth"],
+  middleware: ['auth']
 });
 
-const { t, locale } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: 'global' });
 const localePath = useLocalePath();
 
 useSeoMeta({
-  title: t("meta.dashboard.create.title"),
-  description: t("meta.dashboard.create.description"),
-  ogTitle: t("meta.dashboard.create.title"),
-  ogDescription: t("meta.dashboard.create.description"),
+  title: t('meta.dashboard.create.title'),
+  description: t('meta.dashboard.create.description'),
+  ogTitle: t('meta.dashboard.create.title'),
+  ogDescription: t('meta.dashboard.create.description')
 });
 
-const formattedLocale = locale.value.replace("_", "-");
+const formattedLocale = locale.value.replace('_', '-');
 const formatLocaleForSpeechRecognition = `${locale.value}-${locale.value.toUpperCase()}`;
 
 const df = new DateFormatter(formattedLocale, {
-  dateStyle: "full",
+  dateStyle: 'full'
 });
 
 const mappedSleepTypeOptions = sleepTypeOptions.map((option) => ({
   label: t(option.label),
-  value: option.value,
+  value: option.value
 }));
 
 const mappedHappenedOptions = happenedOptions.map((option) => ({
   label: t(option.label),
-  value: option.value,
+  value: option.value
 }));
 
 const mappedIntensityOptions = intensityOptions.map((option) => ({
   label: t(option.label),
-  value: option.value,
+  value: option.value
 }));
 
 const schema = z.object({
   title: z
     .string()
-    .min(2, t("dashboard.create.form.errors.titleMin"))
-    .max(100, t("dashboard.create.form.errors.titleMax")),
-  description: z.string().min(10, t("dashboard.create.form.errors.descriptionMin")),
+    .min(2, t('dashboard.create.form.errors.titleMin'))
+    .max(100, t('dashboard.create.form.errors.titleMax')),
+  description: z.string().min(10, t('dashboard.create.form.errors.descriptionMin')),
   sleep_type: z.string(),
   intensity: z.string(),
   happened: z.string(),
   current_mood: z
     .string()
-    .min(2, t("dashboard.create.form.errors.currentMoodMin"))
-    .max(20, t("dashboard.create.form.errors.currentMoodMax")),
+    .min(2, t('dashboard.create.form.errors.currentMoodMin'))
+    .max(20, t('dashboard.create.form.errors.currentMoodMax')),
   date: z.any(),
-  tags_attributes: z.array(z.object({ name: z.string() })),
+  tags_attributes: z.array(z.object({ name: z.string() }))
 });
 
 type Schema = z.output<typeof schema>;
 
 const state = reactive<Schema>({
-  title: "",
-  description: "",
-  sleep_type: "dream",
-  intensity: "clear",
-  happened: "sleeping",
-  current_mood: "",
-  date: shallowRef(
-    new CalendarDate(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()),
-  ), // Months are 1-indexed
-  tags_attributes: [] as { name: string }[],
+  title: '',
+  description: '',
+  sleep_type: 'dream',
+  intensity: 'clear',
+  happened: 'sleeping',
+  current_mood: '',
+  date: shallowRef(new CalendarDate(new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate())), // Months are 1-indexed
+  tags_attributes: [] as { name: string }[]
 });
 
 const { $customFetch } = useNuxtApp();
@@ -85,16 +86,16 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   loading.value = true;
   formatTags(event.data);
 
-  const response = await $customFetch<Sleep>("/sleeps", {
-    method: "POST",
-    body: { sleep: event.data },
+  const response = await $customFetch<Sleep>('/sleeps', {
+    method: 'POST',
+    body: { sleep: event.data }
   });
 
   if (response?.id) {
-    toast.add({ title: t("dashboard.create.toast.success"), color: "success" });
-    await navigateTo("/dashboard");
+    toast.add({ title: t('dashboard.create.toast.success'), color: 'success' });
+    await navigateTo('/dashboard');
   } else {
-    toast.add({ title: t("dashboard.create.toast.error"), color: "error" });
+    toast.add({ title: t('dashboard.create.toast.error'), color: 'error' });
   }
   loading.value = false;
 }
@@ -112,23 +113,21 @@ const formatTags = (data: Schema): void => {
       color="neutral"
       variant="outline"
       :ui="{
-        leadingIcon: 'text-primary',
+        leadingIcon: 'text-primary'
       }"
       :to="localePath('dashboard')"
     >
-      {{ t("dashboard.create.goBack") }}
+      {{ t('dashboard.create.goBack') }}
     </UButton>
     <div class="mt-6 pb-18">
       <div class="rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
         <div class="border-b border-gray-200 p-6 dark:border-gray-700">
-          <h2
-            class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white"
-          >
+          <h2 class="mb-2 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
             <UIcon name="i-lucide-plus" class="size-5" />
-            {{ t("dashboard.create.title") }}
+            {{ t('dashboard.create.title') }}
           </h2>
           <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ t("dashboard.create.description") }}
+            {{ t('dashboard.create.description') }}
           </p>
         </div>
         <div class="space-y-4 p-6">
@@ -137,11 +136,7 @@ const formatTags = (data: Schema): void => {
               <UInput v-model="state.title" :required="true" class="w-full" />
             </UFormField>
 
-            <UFormField
-              :label="t('dashboard.create.form.description')"
-              name="description"
-              class="w-full"
-            >
+            <UFormField :label="t('dashboard.create.form.description')" name="description" class="w-full">
               <UTextarea v-model="state.description" autoresize :required="true" class="w-full" />
             </UFormField>
 
@@ -181,11 +176,7 @@ const formatTags = (data: Schema): void => {
                 />
               </UFormField>
 
-              <UFormField
-                :label="t('dashboard.create.form.currentMood')"
-                name="current_mood"
-                class="w-full"
-              >
+              <UFormField :label="t('dashboard.create.form.currentMood')" name="current_mood" class="w-full">
                 <UInput v-model="state.current_mood" :required="true" class="w-full" />
               </UFormField>
             </div>
@@ -193,16 +184,9 @@ const formatTags = (data: Schema): void => {
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
               <UFormField :label="t('dashboard.create.form.date')" name="date">
                 <UPopover>
-                  <UButton
-                    color="neutral"
-                    variant="subtle"
-                    icon="i-lucide-calendar"
-                    class="w-full cursor-pointer"
-                  >
+                  <UButton color="neutral" variant="subtle" icon="i-lucide-calendar" class="w-full cursor-pointer">
                     {{
-                      state.date
-                        ? df.format(state.date.toDate(getLocalTimeZone()))
-                        : t("dashboard.create.select_date")
+                      state.date ? df.format(state.date.toDate(getLocalTimeZone())) : t('dashboard.create.select_date')
                     }}
                   </UButton>
 
@@ -225,7 +209,7 @@ const formatTags = (data: Schema): void => {
 
             <div class="flex items-center justify-end gap-3 pt-4">
               <ULink to="/dashboard" class="font-medium text-error" tabindex="-1">
-                {{ t("dashboard.create.actions.cancel") }}
+                {{ t('dashboard.create.actions.cancel') }}
               </ULink>
 
               <UButton
@@ -238,7 +222,7 @@ const formatTags = (data: Schema): void => {
                 variant="solid"
                 class="cursor-pointer"
               >
-                {{ t("dashboard.create.actions.save") }}
+                {{ t('dashboard.create.actions.save') }}
               </UButton>
             </div>
           </UForm>

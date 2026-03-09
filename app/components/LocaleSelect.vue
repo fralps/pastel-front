@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import { en, fr } from "@nuxt/ui/locale";
+import { en, fr } from '@nuxt/ui/locale';
+import { useI18n } from 'vue-i18n';
 
-const { locale, setLocale } = useI18n({ useScope: "global" });
+const { locale, setLocale } = useI18n({ useScope: 'global' });
 const currentLocale = ref(locale.value);
 </script>
 
