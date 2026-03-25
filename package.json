@@ -28,7 +28,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "oxfmt": "^0.38.0",
+    "oxfmt": "^0.42.0",
     "oxlint": "^1.56.0"
   }
 }
