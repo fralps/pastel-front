@@ -34,23 +34,47 @@ const dreamDetails = ref<Sleep>({
 const loading = ref(false);
 const analysisInProgress = ref(false);
 const POLLING_INTERVAL_MS = 5000;
-let pollingInterval: ReturnType<typeof setInterval> | null = null;
+let pollingTimeout: ReturnType<typeof setTimeout> | null = null;
+let pollingActive = false;
 
 const stopPolling = (): void => {
-  if (!pollingInterval) return;
+  pollingActive = false;
 
-  clearInterval(pollingInterval);
-  pollingInterval = null;
+  if (!pollingTimeout) return;
+
+  clearTimeout(pollingTimeout);
+  pollingTimeout = null;
 };
 
-const startPolling = (): void => {
-  if (pollingInterval) return;
+const scheduleNextPoll = (): void => {
+  if (!pollingActive) return;
 
-  pollingInterval = setInterval(() => {
-    void fetchDreamDetails();
+  pollingTimeout = setTimeout(async () => {
+    if (!pollingActive) {
+      pollingTimeout = null;
+      return;
+    }
+
+    try {
+      await fetchDreamDetails();
+    } catch (error) {
+      console.error('Failed to fetch dream details during polling:', error);
+    } finally {
+      pollingTimeout = null;
+
+      if (pollingActive && analysisInProgress.value) {
+        scheduleNextPoll();
+      }
+    }
   }, POLLING_INTERVAL_MS);
 };
 
+const startPolling = (): void => {
+  if (pollingActive) return;
+
+  pollingActive = true;
+  scheduleNextPoll();
+};
 onMounted(async () => {
   await fetchDreamDetails();
 });
