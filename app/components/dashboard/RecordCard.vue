@@ -19,10 +19,13 @@ const redirectToShowPage = async (id: number | undefined) => {
 
 <template>
   <div
-    class="cursor-pointer rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800 relative"
+    class="relative cursor-pointer rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
     @click="redirectToShowPage(props.dream.id ?? undefined)"
   >
-    <UBadge v-if="props.dream.analysis_status === 'done'" class="absolute -right-2.5 -top-2.5 shadow-xl rounded-full p-2">
+    <UBadge
+      v-if="props.dream.analysis_status === 'done'"
+      class="absolute -top-2.5 -right-2.5 rounded-full p-2 shadow-xl"
+    >
       <UIcon name="i-lucide-wand-sparkles" class="size-3" />
     </UBadge>
     <div class="p-6 pb-3">

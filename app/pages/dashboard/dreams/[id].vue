@@ -33,9 +33,30 @@ const dreamDetails = ref<Sleep>({
 });
 const loading = ref(false);
 const analysisInProgress = ref(false);
+const POLLING_INTERVAL_MS = 5000;
+let pollingInterval: ReturnType<typeof setInterval> | null = null;
+
+const stopPolling = (): void => {
+  if (!pollingInterval) return;
+
+  clearInterval(pollingInterval);
+  pollingInterval = null;
+};
+
+const startPolling = (): void => {
+  if (pollingInterval) return;
+
+  pollingInterval = setInterval(() => {
+    void fetchDreamDetails();
+  }, POLLING_INTERVAL_MS);
+};
 
 onMounted(async () => {
   await fetchDreamDetails();
+});
+
+onUnmounted(() => {
+  stopPolling();
 });
 
 const fetchDreamDetails = async (): Promise<void> => {
@@ -45,6 +66,13 @@ const fetchDreamDetails = async (): Promise<void> => {
 
   if (response && Object.keys(response).length > 0) {
     dreamDetails.value = response as Sleep;
+    analysisInProgress.value = dreamDetails.value.analysis_status === 'in_progress';
+
+    if (dreamDetails.value.analysis_status === 'in_progress') {
+      startPolling();
+    } else {
+      stopPolling();
+    }
   }
 };
 
@@ -62,6 +90,7 @@ const runSleepAnalysis = async (): Promise<void> => {
 
   if (response) {
     analysisInProgress.value = true;
+    await fetchDreamDetails();
   }
 };
 
