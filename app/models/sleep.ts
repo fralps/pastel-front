@@ -20,6 +20,8 @@ export type Sleep = {
   date: Date | null;
   current_mood: string | null;
   tags_attributes: { id?: number; name: string; _destroy?: boolean }[] | null;
+  analysis?: string | null;
+  analysis_status?: 'not_started' | 'in_progress' | 'done' | null;
   created_at?: Date | null;
   updated_at?: Date | null;
 };

@@ -298,7 +298,10 @@
       "happened": "Happened:",
       "intensity": "Intensity:",
       "description": "Dream description",
+      "analysis": "Dream analysis",
+      "analysisInProgress": "Analysis in progress, come back later. We are analyzing your dream with our AI, this may take a few seconds.",
       "actions": {
+        "runAnalysis": "Run analysis",
         "edit": "Edit",
         "delete": "Delete",
         "deleteSuccessTitle": "Dream deleted",

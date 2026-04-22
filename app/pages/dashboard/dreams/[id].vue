@@ -32,6 +32,7 @@ const dreamDetails = ref<Sleep>({
   updated_at: null
 });
 const loading = ref(false);
+const analysisInProgress = ref(false);
 
 onMounted(async () => {
   await fetchDreamDetails();
@@ -49,6 +50,19 @@ const fetchDreamDetails = async (): Promise<void> => {
 
 const editDream = async (): Promise<void> => {
   await router.push(`/dashboard/dreams/edit/${dreamDetails.value.id}`);
+};
+
+const runSleepAnalysis = async (): Promise<void> => {
+  if (dreamDetails.value.analysis_status !== 'not_started') return;
+
+  const response = await $customFetch(`/sleeps/${router.currentRoute.value.params.id}/analyse`, {
+    method: 'post',
+    body: { locale: locale.value }
+  });
+
+  if (response) {
+    analysisInProgress.value = true;
+  }
 };
 
 const deleteDream = async (): Promise<void> => {
@@ -173,6 +187,40 @@ const deleteDream = async (): Promise<void> => {
           <div class="prose prose-rose max-w-none">
             <p class="leading-relaxed text-pretty whitespace-pre-wrap text-gray-700 dark:text-gray-300">
               {{ dreamDetails.description }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Dream analysis -->
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-4 mb-4">
+            <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <UIcon name="i-lucide-wand-sparkles" class="size-5" :class="sleepTypeTextColor(dreamDetails.sleep_type)" />
+              {{ t('dashboard.show.analysis') }}
+            </h2>
+
+            <UButton
+              v-if="dreamDetails.analysis_status == 'not_started' && !analysisInProgress"
+              icon="i-lucide-wand-sparkles"
+              size="sm"
+              color="neutral"
+              variant="outline"
+              class="cursor-pointer text-xs"
+              :class="sleepTypeTextColor(dreamDetails.sleep_type)"
+              @click="runSleepAnalysis()"
+            >
+              {{ t('dashboard.show.actions.runAnalysis') }}
+            </UButton>
+          </div>
+
+          <div class="prose prose-rose max-w-none">
+            <p v-if="analysisInProgress" class="flex items-center gap-2 text-xs">
+              <UIcon name="i-lucide-loader" class="size-4 animate-spin" :class="sleepTypeTextColor(dreamDetails.sleep_type)" />
+              {{ t('dashboard.show.analysisInProgress') }}
+            </p>
+
+            <p v-else class="leading-relaxed text-pretty whitespace-pre-wrap text-gray-700 dark:text-gray-300">
+              {{ dreamDetails.analysis }}
             </p>
           </div>
         </div>
