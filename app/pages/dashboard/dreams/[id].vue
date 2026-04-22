@@ -233,7 +233,7 @@ const deleteDream = async (): Promise<void> => {
             </h2>
 
             <UButton
-              v-if="dreamDetails.analysis_status == 'not_started' && !analysisInProgress"
+              v-if="dreamDetails.analysis_status === 'not_started' && !analysisInProgress"
               icon="i-lucide-wand-sparkles"
               size="sm"
               color="neutral"
