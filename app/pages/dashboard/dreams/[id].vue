@@ -193,9 +193,13 @@ const deleteDream = async (): Promise<void> => {
 
         <!-- Dream analysis -->
         <div class="p-6 sm:p-8">
-          <div class="flex items-center gap-4 mb-4">
+          <div class="mb-4 flex items-center gap-4">
             <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
-              <UIcon name="i-lucide-wand-sparkles" class="size-5" :class="sleepTypeTextColor(dreamDetails.sleep_type)" />
+              <UIcon
+                name="i-lucide-wand-sparkles"
+                class="size-5"
+                :class="sleepTypeTextColor(dreamDetails.sleep_type)"
+              />
               {{ t('dashboard.show.analysis') }}
             </h2>
 
@@ -215,7 +219,11 @@ const deleteDream = async (): Promise<void> => {
 
           <div class="prose prose-rose max-w-none">
             <p v-if="analysisInProgress" class="flex items-center gap-2 text-xs">
-              <UIcon name="i-lucide-loader" class="size-4 animate-spin" :class="sleepTypeTextColor(dreamDetails.sleep_type)" />
+              <UIcon
+                name="i-lucide-loader"
+                class="size-4 animate-spin"
+                :class="sleepTypeTextColor(dreamDetails.sleep_type)"
+              />
               {{ t('dashboard.show.analysisInProgress') }}
             </p>
 
