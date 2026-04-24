@@ -298,6 +298,8 @@
       "description": "Description du rêve",
       "analysis": "Analyse du rêve",
       "analysisInProgress": "Analyse en cours, revenez plus tard. Nous analysons votre rêve avec notre IA, cela peut prendre quelques secondes.",
+      "analysisCompleteTitle": "Analyse terminée",
+      "analysisCompleteDesc": "Votre rêve a été analysé avec succès par notre IA.",
       "actions": {
         "runAnalysis": "Lancer l'analyse",
         "edit": "Modifier",

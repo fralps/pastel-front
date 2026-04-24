@@ -89,6 +89,7 @@ const fetchDreamDetails = async (): Promise<void> => {
   });
 
   if (response && Object.keys(response).length > 0) {
+    const wasPolling = pollingActive;
     dreamDetails.value = response as Sleep;
     analysisInProgress.value = dreamDetails.value.analysis_status === 'in_progress';
 
@@ -96,6 +97,13 @@ const fetchDreamDetails = async (): Promise<void> => {
       startPolling();
     } else {
       stopPolling();
+      if (wasPolling && dreamDetails.value.analysis_status === 'done') {
+        toast.add({
+          title: t('dashboard.show.analysisCompleteTitle'),
+          description: t('dashboard.show.analysisCompleteDesc'),
+          color: 'success'
+        });
+      }
     }
   }
 };
