@@ -318,7 +318,9 @@
   },
   "insights": {
     "title": "Dream Insights",
-    "description": "Analyze the trends and statistics of your dream journal."
+    "description": "Analyze the trends and statistics of your dream journal.",
+    "aiAnalyzedTitle": "AI Analyzed",
+    "aiAnalyzedDescription": "Dreams analyzed by AI"
   },
   "shared": {
     "continue": "Continue",

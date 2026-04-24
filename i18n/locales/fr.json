@@ -315,7 +315,9 @@
   },
   "insights": {
     "title": "Insights sur les rêves",
-    "description": "Analysez les tendances et les statistiques de votre journal de rêves."
+    "description": "Analysez les tendances et les statistiques de votre journal de rêves.",
+    "aiAnalyzedTitle": "Analysés par IA",
+    "aiAnalyzedDescription": "Rêves analysés par notre IA"
   },
   "shared": {
     "continue": "Continuer",

@@ -31,7 +31,8 @@ const results = ref<SleepTotals>({
     sleep_talking: 0,
     sleep_apnea: 0,
     erotic: 0
-  }
+  },
+  ai_analyzed: 0
 });
 
 onMounted(async () => {
@@ -61,6 +62,20 @@ const fetchDreamInsights = async () => {
           </p>
         </div>
         <div class="p-6">
+          <div
+            v-if="results.ai_analyzed !== undefined"
+            class="mb-6 flex items-center gap-4 rounded-lg border border-primary-200 bg-primary-50 p-6 dark:border-primary-800 dark:bg-primary-950"
+          >
+            <div
+              class="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900"
+            >
+              <UIcon name="i-lucide-wand-sparkles" class="size-6 text-primary-600 dark:text-primary-400" />
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-primary-700 dark:text-primary-300">{{ results.ai_analyzed }}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">{{ t('insights.aiAnalyzedDescription') }}</div>
+            </div>
+          </div>
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div
               v-for="(count, type) in results.totals"

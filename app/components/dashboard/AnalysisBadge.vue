@@ -21,7 +21,7 @@ const toggle = (): void => {
     <UIcon name="i-lucide-wand-sparkles" class="size-3" />
     <span
       :class="[
-        'overflow-hidden whitespace-nowrap pl-0 text-xs font-medium transition-all duration-200',
+        'overflow-hidden pl-0 text-xs font-medium whitespace-nowrap transition-all duration-200',
         'max-w-0 opacity-0 md:group-hover/badge:max-w-24 md:group-hover/badge:pl-1.5 md:group-hover/badge:opacity-100',
         isExpanded ? 'max-w-24 pl-1.5 opacity-100 md:max-w-0 md:pl-0 md:opacity-0' : ''
       ]"

@@ -37,4 +37,5 @@ export type SleepTotals = {
     sleep_apnea: number;
     erotic: number;
   };
+  ai_analyzed?: number;
 };
