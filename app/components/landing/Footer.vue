@@ -29,7 +29,7 @@ const items: NavigationMenuItem[] = [
         color="neutral"
         variant="ghost"
         size="xs"
-        to="https://github.com/nuxt/nuxt"
+        to="https://github.com/fralps"
         target="_blank"
         aria-label="GitHub"
       />
@@ -41,15 +41,6 @@ const items: NavigationMenuItem[] = [
         to="https://fralps-dev.vercel.app/"
         target="_blank"
         aria-label="Portfolio"
-      />
-      <UButton
-        icon="i-simple-icons-bento"
-        color="neutral"
-        variant="ghost"
-        size="xs"
-        to="https://bento.me/francoisloupias"
-        target="_blank"
-        aria-label="Bento"
       />
       <UButton
         icon="i-simple-icons-bluesky"
