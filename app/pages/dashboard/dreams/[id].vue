@@ -280,9 +280,7 @@ const deleteDream = async (): Promise<void> => {
               {{ t('dashboard.show.analysisInProgress') }}
             </p>
 
-            <p v-else class="leading-relaxed text-pretty whitespace-pre-wrap text-gray-700 dark:text-gray-300">
-              {{ dreamDetails.analysis }}
-            </p>
+            <MDC v-else-if="dreamDetails.analysis" :value="dreamDetails.analysis" tag="analysis" />
           </div>
         </div>
 

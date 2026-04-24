@@ -194,7 +194,8 @@
     "list": {
       "title": "Your Dreams",
       "noDreams": "No dreams recorded yet. Start by adding a new dream!",
-      "addDream": "Add Dream"
+      "addDream": "Add Dream",
+      "aiAnalyzed": "AI analyzed"
     },
     "sleepType": {
       "dream": "Dream",

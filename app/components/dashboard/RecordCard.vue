@@ -22,12 +22,8 @@ const redirectToShowPage = async (id: number | undefined) => {
     class="relative cursor-pointer rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
     @click="redirectToShowPage(props.dream.id ?? undefined)"
   >
-    <UBadge
-      v-if="props.dream.analysis_status === 'done'"
-      class="absolute -top-2.5 -right-2.5 rounded-full p-2 shadow-xl"
-    >
-      <UIcon name="i-lucide-wand-sparkles" class="size-3" />
-    </UBadge>
+    <DashboardAnalysisBadge v-if="props.dream.analysis_status === 'done'" />
+
     <div class="p-6 pb-3">
       <div class="flex items-start justify-between">
         <div class="space-y-1">

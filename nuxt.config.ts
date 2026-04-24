@@ -16,7 +16,14 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
-  modules: ['@nuxt/image', '@nuxt/ui', '@nuxtjs/i18n', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt'],
+  modules: [
+    '@nuxt/image',
+    '@nuxt/ui',
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/mdc'
+  ],
   app: {
     head: {
       meta: [
