@@ -25,6 +25,10 @@
       "lucidDreams": {
         "title": "Rêves lucides",
         "description": "Explorez et améliorez vos expériences de rêves lucides."
+      },
+      "aiAnalysis": {
+        "title": "Analyse par IA",
+        "description": "Obtenez des insights sur vos rêves grâce à nos puissants outils d'analyse par IA."
       }
     },
     "demoSection": {
