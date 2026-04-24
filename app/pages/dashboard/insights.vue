@@ -69,7 +69,7 @@ const fetchDreamInsights = async () => {
             <div
               class="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900"
             >
-              <UIcon name="i-lucide-wand-sparkles" class="size-6 text-primary-600 dark:text-primary-400" />
+              <UIcon name="i-lucide-wand-sparkles" class="size-6 text-primary-600 dark:text-primary-400 animate-pulse" />
             </div>
             <div>
               <div class="text-2xl font-bold text-primary-700 dark:text-primary-300">{{ results.ai_analyzed }}</div>

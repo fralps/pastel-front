@@ -18,7 +18,7 @@ const toggle = (): void => {
     ]"
     @click.stop="toggle"
   >
-    <UIcon name="i-lucide-wand-sparkles" class="size-3" />
+    <UIcon name="i-lucide-wand-sparkles" class="size-3 animate-pulse" />
     <span
       :class="[
         'overflow-hidden pl-0 text-xs font-medium whitespace-nowrap transition-all duration-200',
