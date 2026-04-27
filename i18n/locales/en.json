@@ -25,6 +25,10 @@
       "lucidDreams": {
         "title": "Lucid Dreams",
         "description": "Explore and enhance your lucid dreaming experiences."
+      },
+      "aiAnalysis": {
+        "title": "AI Analysis",
+        "description": "Gain insights into your dreams with our powerful AI analysis tools."
       }
     },
     "demoSection": {
@@ -194,7 +198,8 @@
     "list": {
       "title": "Your Dreams",
       "noDreams": "No dreams recorded yet. Start by adding a new dream!",
-      "addDream": "Add Dream"
+      "addDream": "Add Dream",
+      "aiAnalyzed": "AI analyzed"
     },
     "sleepType": {
       "dream": "Dream",
@@ -298,7 +303,12 @@
       "happened": "Happened:",
       "intensity": "Intensity:",
       "description": "Dream description",
+      "analysis": "Dream analysis",
+      "analysisInProgress": "Analysis in progress, come back later. We are analyzing your dream with our AI, this may take a few seconds.",
+      "analysisCompleteTitle": "Analysis complete",
+      "analysisCompleteDesc": "Your dream has been successfully analyzed by our AI.",
       "actions": {
+        "runAnalysis": "Run analysis",
         "edit": "Edit",
         "delete": "Delete",
         "deleteSuccessTitle": "Dream deleted",
@@ -308,7 +318,9 @@
   },
   "insights": {
     "title": "Dream Insights",
-    "description": "Analyze the trends and statistics of your dream journal."
+    "description": "Analyze the trends and statistics of your dream journal.",
+    "aiAnalyzedTitle": "AI Analyzed",
+    "aiAnalyzedDescription": "Dreams analyzed by AI"
   },
   "shared": {
     "continue": "Continue",

@@ -25,6 +25,10 @@
       "lucidDreams": {
         "title": "Rêves lucides",
         "description": "Explorez et améliorez vos expériences de rêves lucides."
+      },
+      "aiAnalysis": {
+        "title": "Analyse par IA",
+        "description": "Obtenez des insights sur vos rêves grâce à nos puissants outils d'analyse par IA."
       }
     },
     "demoSection": {
@@ -191,7 +195,8 @@
     "list": {
       "title": "Vos rêves",
       "noDreams": "Aucun rêve enregistré pour le moment. Commencez par ajouter un nouveau rêve !",
-      "addDream": "Ajouter un rêve"
+      "addDream": "Ajouter un rêve",
+      "aiAnalyzed": "Analysé par IA"
     },
     "sleepType": {
       "dream": "Rêve",
@@ -295,7 +300,12 @@
       "happened": "Contexte :",
       "intensity": "Lucidité :",
       "description": "Description du rêve",
+      "analysis": "Analyse du rêve",
+      "analysisInProgress": "Analyse en cours, revenez plus tard. Nous analysons votre rêve avec notre IA, cela peut prendre quelques secondes.",
+      "analysisCompleteTitle": "Analyse terminée",
+      "analysisCompleteDesc": "Votre rêve a été analysé avec succès par notre IA.",
       "actions": {
+        "runAnalysis": "Lancer l'analyse",
         "edit": "Modifier",
         "delete": "Supprimer",
         "deleteSuccessTitle": "Rêve supprimé",
@@ -305,7 +315,9 @@
   },
   "insights": {
     "title": "Insights sur les rêves",
-    "description": "Analysez les tendances et les statistiques de votre journal de rêves."
+    "description": "Analysez les tendances et les statistiques de votre journal de rêves.",
+    "aiAnalyzedTitle": "Analysés par IA",
+    "aiAnalyzedDescription": "Rêves analysés par notre IA"
   },
   "shared": {
     "continue": "Continuer",

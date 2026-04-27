@@ -45,11 +45,10 @@ const links = ref([
     <section id="features">
       <UPageSection :title="t('landing.featuresSection.title')" icon="i-lucide-package" />
 
-      <div class="mx-auto flex w-[75%] flex-col gap-12 md:flex-row">
+      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-12 px-4 md:grid-cols-2">
         <UPageFeature
           orientation="vertical"
           :title="t('landing.featuresSection.dreams.title')"
-          size="md"
           :description="t('landing.featuresSection.dreams.description')"
           icon="i-lucide-bed"
           class="text-center"
@@ -68,6 +67,14 @@ const links = ref([
           :title="t('landing.featuresSection.lucidDreams.title')"
           :description="t('landing.featuresSection.lucidDreams.description')"
           icon="i-lucide-rainbow"
+          class="text-center"
+        />
+
+        <UPageFeature
+          orientation="vertical"
+          :title="t('landing.featuresSection.aiAnalysis.title')"
+          :description="t('landing.featuresSection.aiAnalysis.description')"
+          icon="i-lucide-wand-sparkles"
           class="text-center"
         />
       </div>

@@ -19,9 +19,11 @@ const redirectToShowPage = async (id: number | undefined) => {
 
 <template>
   <div
-    class="cursor-pointer rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
+    class="relative cursor-pointer rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
     @click="redirectToShowPage(props.dream.id ?? undefined)"
   >
+    <DashboardAnalysisBadge v-if="props.dream.analysis_status === 'done'" />
+
     <div class="p-6 pb-3">
       <div class="flex items-start justify-between">
         <div class="space-y-1">

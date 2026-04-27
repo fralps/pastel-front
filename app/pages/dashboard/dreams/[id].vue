@@ -32,9 +32,55 @@ const dreamDetails = ref<Sleep>({
   updated_at: null
 });
 const loading = ref(false);
+const analysisInProgress = ref(false);
+const POLLING_INTERVAL_MS = 5000;
+let pollingTimeout: ReturnType<typeof setTimeout> | null = null;
+let pollingActive = false;
 
+const stopPolling = (): void => {
+  pollingActive = false;
+
+  if (!pollingTimeout) return;
+
+  clearTimeout(pollingTimeout);
+  pollingTimeout = null;
+};
+
+const scheduleNextPoll = (): void => {
+  if (!pollingActive) return;
+
+  pollingTimeout = setTimeout(async () => {
+    if (!pollingActive) {
+      pollingTimeout = null;
+      return;
+    }
+
+    try {
+      await fetchDreamDetails();
+    } catch (error) {
+      console.error('Failed to fetch dream details during polling:', error);
+    } finally {
+      pollingTimeout = null;
+
+      if (pollingActive && analysisInProgress.value) {
+        scheduleNextPoll();
+      }
+    }
+  }, POLLING_INTERVAL_MS);
+};
+
+const startPolling = (): void => {
+  if (pollingActive) return;
+
+  pollingActive = true;
+  scheduleNextPoll();
+};
 onMounted(async () => {
   await fetchDreamDetails();
+});
+
+onUnmounted(() => {
+  stopPolling();
 });
 
 const fetchDreamDetails = async (): Promise<void> => {
@@ -43,12 +89,41 @@ const fetchDreamDetails = async (): Promise<void> => {
   });
 
   if (response && Object.keys(response).length > 0) {
+    const wasPolling = pollingActive;
     dreamDetails.value = response as Sleep;
+    analysisInProgress.value = dreamDetails.value.analysis_status === 'in_progress';
+
+    if (dreamDetails.value.analysis_status === 'in_progress') {
+      startPolling();
+    } else {
+      stopPolling();
+      if (wasPolling && dreamDetails.value.analysis_status === 'done') {
+        toast.add({
+          title: t('dashboard.show.analysisCompleteTitle'),
+          description: t('dashboard.show.analysisCompleteDesc'),
+          color: 'success'
+        });
+      }
+    }
   }
 };
 
 const editDream = async (): Promise<void> => {
   await router.push(`/dashboard/dreams/edit/${dreamDetails.value.id}`);
+};
+
+const runSleepAnalysis = async (): Promise<void> => {
+  if (dreamDetails.value.analysis_status !== 'not_started') return;
+
+  const response = await $customFetch(`/sleeps/${router.currentRoute.value.params.id}/analyse`, {
+    method: 'post',
+    body: { locale: locale.value }
+  });
+
+  if (response) {
+    analysisInProgress.value = true;
+    await fetchDreamDetails();
+  }
 };
 
 const deleteDream = async (): Promise<void> => {
@@ -174,6 +249,46 @@ const deleteDream = async (): Promise<void> => {
             <p class="leading-relaxed text-pretty whitespace-pre-wrap text-gray-700 dark:text-gray-300">
               {{ dreamDetails.description }}
             </p>
+          </div>
+        </div>
+
+        <!-- Dream analysis -->
+        <div class="p-6 sm:p-8">
+          <div class="mb-4 flex items-center gap-4">
+            <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+              <UIcon
+                name="i-lucide-wand-sparkles"
+                class="size-5"
+                :class="sleepTypeTextColor(dreamDetails.sleep_type)"
+              />
+              {{ t('dashboard.show.analysis') }}
+            </h2>
+
+            <UButton
+              v-if="dreamDetails.analysis_status === 'not_started' && !analysisInProgress"
+              icon="i-lucide-wand-sparkles"
+              size="sm"
+              color="neutral"
+              variant="outline"
+              class="cursor-pointer text-xs"
+              :class="sleepTypeTextColor(dreamDetails.sleep_type)"
+              @click="runSleepAnalysis()"
+            >
+              {{ t('dashboard.show.actions.runAnalysis') }}
+            </UButton>
+          </div>
+
+          <div class="prose prose-rose max-w-none">
+            <p v-if="analysisInProgress" class="flex items-center gap-2 text-xs">
+              <UIcon
+                name="i-lucide-loader"
+                class="size-4 animate-spin"
+                :class="sleepTypeTextColor(dreamDetails.sleep_type)"
+              />
+              {{ t('dashboard.show.analysisInProgress') }}
+            </p>
+
+            <MDC v-else-if="dreamDetails.analysis" :value="dreamDetails.analysis" tag="analysis" />
           </div>
         </div>
 
