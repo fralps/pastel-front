@@ -18,7 +18,7 @@
   "dependencies": {
     "@nuxt/image": "^2.0.0",
     "@nuxt/ui": "^4.6.1",
-    "@nuxtjs/i18n": "^10.2.4",
+    "@nuxtjs/i18n": "^10.3.0",
     "@nuxtjs/mdc": "^0.21.1",
     "@pinia/nuxt": "^0.11.3",
     "nuxt": "^4.4.2",
@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "oxfmt": "^0.46.0",
-    "oxlint": "^1.61.0"
+    "oxlint": "^1.62.0"
   }
 }
