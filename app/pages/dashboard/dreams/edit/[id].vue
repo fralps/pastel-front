@@ -89,9 +89,10 @@ onMounted(async (): Promise<void> => {
 });
 
 const fetchDreamDetails = async (): Promise<void> => {
-  const response: Sleep = await $customFetch(`/sleeps/${router.currentRoute.value.params.id}`, {
+  // Cast via `as any` to break TypeScript 7's route type recursion on dynamic segments.
+  const response = (await ($customFetch as any)(`/sleeps/${router.currentRoute.value.params.id}`, {
     method: 'get'
-  });
+  })) as Sleep;
 
   if (response && Object.keys(response).length > 0) {
     state.title = response.title ?? '';
