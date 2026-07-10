@@ -3,10 +3,23 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: ['@vue/devtools-core', '@vue/devtools-kit', 'zod']
+    },
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        onwarn(warning, warn) {
+          // Suppress sourcemap warnings from Nuxt internal plugins
+          if (warning.plugin && (warning.plugin.startsWith('nuxt:') || warning.plugin.startsWith('@tailwindcss/'))) {
+            return
+          }
+          // Suppress /* #__PURE__ */ annotation warnings from node_modules
+          if (warning.message?.includes('/* #__PURE__ */')) {
+            return
+          }
+          warn(warning)
+        }
+      }
     }
-  },
-  experimental: {
-    viteEnvironmentApi: true
   },
   compatibilityDate: '2025-07-15',
   devtools: {
