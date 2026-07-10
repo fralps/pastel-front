@@ -5,9 +5,6 @@ export default defineNuxtConfig({
       include: ['@vue/devtools-core', '@vue/devtools-kit', 'zod']
     }
   },
-  experimental: {
-    viteEnvironmentApi: true
-  },
   compatibilityDate: '2025-07-15',
   devtools: {
     enabled: true,

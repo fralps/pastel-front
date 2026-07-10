@@ -2,7 +2,6 @@
 import { useI18n } from 'vue-i18n';
 
 import type {
-  VoiceDictationProps,
   SpeechRecognition,
   SpeechRecognitionEvent,
   SpeechRecognitionErrorEvent
@@ -10,11 +9,11 @@ import type {
 
 const { t } = useI18n();
 
-const props = withDefaults(defineProps<VoiceDictationProps>(), {
-  modelValue: '',
-  language: 'fr-FR',
-  continuous: true,
-  interimResults: true
+const props = defineProps({
+  modelValue: { type: String, default: '' },
+  language: { type: String, default: 'fr-FR' },
+  continuous: { type: Boolean, default: true },
+  interimResults: { type: Boolean, default: true },
 });
 
 const emit = defineEmits<{

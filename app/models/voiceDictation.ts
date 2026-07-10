@@ -5,13 +5,6 @@ declare global {
   }
 }
 
-export interface VoiceDictationProps {
-  modelValue?: string;
-  language?: string;
-  continuous?: boolean;
-  interimResults?: boolean;
-}
-
 export interface SpeechRecognitionErrorEvent extends Event {
   error: string;
   message: string;
