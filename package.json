@@ -21,7 +21,7 @@
     "@nuxtjs/i18n": "^10.6.0",
     "@nuxtjs/mdc": "^0.22.1",
     "@pinia/nuxt": "^1.0.0",
-    "nuxt": "^4.5.0",
+    "nuxt": "^4.5.2",
     "pinia-plugin-persistedstate": "^4.7.1",
     "vue": "^3.5.41",
     "vue-router": "^5.2.0",
