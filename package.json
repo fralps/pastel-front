@@ -19,7 +19,7 @@
     "@nuxt/image": "^2.1.0",
     "@nuxt/ui": "^4.9.0",
     "@nuxtjs/i18n": "^10.6.0",
-    "@nuxtjs/mdc": "^0.22.1",
+    "@nuxtjs/mdc": "^0.23.1",
     "@pinia/nuxt": "^1.0.0",
     "nuxt": "^4.5.2",
     "pinia-plugin-persistedstate": "^4.7.1",
