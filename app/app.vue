@@ -13,7 +13,9 @@ if (import.meta.env.VITE_APP_ENV === 'production') {
 </script>
 
 <template>
-  <UApp>
-    <NuxtPage />
-  </UApp>
+  <NuxtLayout>
+    <UApp>
+      <NuxtPage />
+    </UApp>
+  </NuxtLayout>
 </template>
