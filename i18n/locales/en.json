@@ -3,7 +3,8 @@
     "header": {
       "title": "Pastel",
       "feature": "Features",
-      "demo": "Demo"
+      "demo": "Demo",
+      "faq": "FAQ"
     },
     "heroBanner": {
       "title": "Your dreams diary",
@@ -36,18 +37,53 @@
       "description": "See how Pastel can transform your dream journaling experience.",
       "browserNotSupported": "Your browser does not support the interactive demo."
     },
+    "faqSection": {
+      "title": "Frequently asked questions",
+      "description": "Everything you need to know about Pastel, your dreams diary.",
+      "items": {
+        "whatIsPastel": {
+          "question": "What is Pastel?",
+          "answer": "Pastel is an online dream journal. It lets you write down, organize and revisit your dreams, nightmares and lucid dreams, and get an AI analysis of each of them."
+        },
+        "isFree": {
+          "question": "Is Pastel free?",
+          "answer": "Yes, Pastel is completely free. Just create an account to start logging your dreams."
+        },
+        "dreamTypes": {
+          "question": "Which types of dreams can I track?",
+          "answer": "You can log classic dreams, lucid dreams, nightmares and erotic dreams, as well as sleep events such as sleep paralysis, sleep talking, sleepwalking and sleep apnea. Each entry can include its clarity, when it happened, your mood and tags."
+        },
+        "aiAnalysis": {
+          "question": "How does the AI dream analysis work?",
+          "answer": "Open one of your dreams and start its analysis: Pastel sends its content to Mistral AI and displays an interpretation within a few seconds. The insights page then shows your statistics, including how many dreams have been analyzed."
+        },
+        "privacy": {
+          "question": "Are my dreams private?",
+          "answer": "Yes. Your dreams are encrypted in Pastel's database and are only visible from your account. AI analysis is handled by Mistral AI, a French company subject to the European GDPR."
+        },
+        "voiceDictation": {
+          "question": "Can I dictate my dreams by voice?",
+          "answer": "Yes. Voice dictation lets you describe your dream right after waking up, without typing. It requires a compatible browser (such as Chrome, Edge or Safari) and microphone access."
+        },
+        "mobileLanguages": {
+          "question": "Can I use Pastel on mobile and in other languages?",
+          "answer": "Pastel works in any browser, on desktop and mobile, with a navigation designed for small screens. It is available in English and French, with light and dark modes."
+        }
+      }
+    },
     "footer": {
       "rights": "All rights reserved.",
       "features": "Features",
-      "demo": "Demo"
+      "demo": "Demo",
+      "faq": "FAQ"
     }
   },
   "meta": {
     "landing": {
-      "title": "Pastel - Home",
-      "ogTitle": "Pastel - Home",
-      "description": "Welcome to Pastel, your content creation platform.",
-      "ogDescription": "Welcome to Pastel, your content creation platform."
+      "title": "Pastel - Your dreams diary",
+      "ogTitle": "Pastel - Your dreams diary",
+      "description": "Pastel is a free online dream journal: log your dreams, nightmares and lucid dreams, and get an AI analysis of each of them.",
+      "ogDescription": "Pastel is a free online dream journal: log your dreams, nightmares and lucid dreams, and get an AI analysis of each of them."
     },
     "auth": {
       "signIn": {

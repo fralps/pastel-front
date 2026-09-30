@@ -10,13 +10,13 @@ export default defineNuxtConfig({
         onwarn(warning, warn) {
           // Suppress sourcemap warnings from Nuxt internal plugins
           if (warning.plugin && (warning.plugin.startsWith('nuxt:') || warning.plugin.startsWith('@tailwindcss/'))) {
-            return
+            return;
           }
           // Suppress /* #__PURE__ */ annotation warnings from node_modules
           if (warning.message?.includes('/* #__PURE__ */')) {
-            return
+            return;
           }
-          warn(warning)
+          warn(warning);
         }
       }
     }
@@ -50,9 +50,11 @@ export default defineNuxtConfig({
   i18n: {
     strategy: 'prefix',
     defaultLocale: 'en',
+    // Public site URL (canonical, hreflang, schema.org), overridden at runtime by NUXT_PUBLIC_I18N_BASE_URL
+    baseUrl: '',
     locales: [
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'fr', name: 'Français', file: 'fr.json' }
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'fr', language: 'fr-FR', name: 'Français', file: 'fr.json' }
     ]
   },
   css: ['~/assets/css/main.css'],

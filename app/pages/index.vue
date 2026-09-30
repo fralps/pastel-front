@@ -1,25 +1,47 @@
 <script setup lang="ts">
 const { t } = useI18n();
+const localePath = useLocalePath();
+const siteUrl = useSiteUrl();
+
+const ogImage = `${siteUrl}/images/dashboard.webp`;
 
 useSeoMeta({
-  title: $t('meta.landing.title'),
-  ogTitle: $t('meta.landing.ogTitle'),
-  description: $t('meta.landing.description'),
-  ogDescription: $t('meta.landing.ogDescription'),
-  ogImage: 'https://example.com/image.png',
-  twitterCard: 'summary_large_image'
+  title: () => t('meta.landing.title'),
+  ogTitle: () => t('meta.landing.ogTitle'),
+  description: () => t('meta.landing.description'),
+  ogDescription: () => t('meta.landing.ogDescription'),
+  ogType: 'website',
+  ogSiteName: 'Pastel',
+  ogImage,
+  ogImageAlt: () => t('landing.heroBanner.imageAlt'),
+  twitterCard: 'summary_large_image',
+  twitterImage: ogImage
 });
 
-const links = ref([
+// hreflang alternates, canonical and og:locale for the localized landing page.
+// i18n emits relative URLs when no baseUrl is configured, so force absolute ones (required by SEO crawlers).
+const toAbsoluteUrl = <T,>(url: T) => (typeof url === 'string' && url.startsWith('/') ? `${siteUrl}${url}` : url);
+const i18nHead = useLocaleHead();
+useHead(() => ({
+  htmlAttrs: { lang: i18nHead.value.htmlAttrs.lang },
+  link: (i18nHead.value.link || []).map((link) => ({ ...link, href: toAbsoluteUrl(link.href) })),
+  meta: (i18nHead.value.meta || []).map((meta) =>
+    meta.property === 'og:url' ? { ...meta, content: toAbsoluteUrl(meta.content) } : meta
+  )
+}));
+
+useLandingSchemaOrg();
+
+const links = computed(() => [
   {
-    label: $t('landing.heroBanner.ctaPrimary'),
-    to: '/auth/sign-in',
+    label: t('landing.heroBanner.ctaPrimary'),
+    to: localePath('/auth/sign-in'),
     icon: 'i-lucide-log-in',
     size: 'md' as const
   },
   {
-    label: $t('landing.heroBanner.ctaSecondary'),
-    to: '/auth/register',
+    label: t('landing.heroBanner.ctaSecondary'),
+    to: localePath('/auth/register'),
     color: 'neutral' as const,
     variant: 'subtle' as const,
     trailingIcon: 'i-lucide-milestone',
@@ -92,6 +114,8 @@ const links = ref([
         {{ t('landing.demoSection.browserNotSupported') }}
       </video>
     </section>
+
+    <LandingFaq />
 
     <LandingFooter />
   </div>

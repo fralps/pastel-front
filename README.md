@@ -39,12 +39,14 @@ Create a `.env` file at the project root:
 ```bash
 VITE_APP_API_BASE_URL=http://localhost:3000
 VITE_APP_ENV=development
+NUXT_PUBLIC_I18N_BASE_URL=http://localhost:5100
 ```
 
 Used variables:
 
 - `VITE_APP_API_BASE_URL`: backend base URL
 - `VITE_APP_ENV`: if set to `production`, Umami analytics script is injected
+- `NUXT_PUBLIC_I18N_BASE_URL`: public site URL used for canonical/hreflang links, Open Graph images and schema.org JSON-LD (falls back to the request origin when empty)
 
 ## Run Locally
 

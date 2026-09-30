@@ -3,7 +3,8 @@
     "header": {
       "title": "Pastel",
       "feature": "Fonctionnalités",
-      "demo": "Démo"
+      "demo": "Démo",
+      "faq": "FAQ"
     },
     "heroBanner": {
       "title": "Votre journal de rêves",
@@ -36,18 +37,53 @@
       "description": "Découvrez comment Pastel peut transformer votre expérience de journal de rêves.",
       "browserNotSupported": "Votre navigateur ne supporte pas la démo interactive."
     },
+    "faqSection": {
+      "title": "Questions fréquentes",
+      "description": "Tout ce qu'il faut savoir sur Pastel, votre journal de rêves.",
+      "items": {
+        "whatIsPastel": {
+          "question": "Qu'est-ce que Pastel ?",
+          "answer": "Pastel est un journal de rêves en ligne. Il vous permet de noter, organiser et relire vos rêves, cauchemars et rêves lucides, et d'obtenir une analyse par IA de chacun d'eux."
+        },
+        "isFree": {
+          "question": "Pastel est-il gratuit ?",
+          "answer": "Oui, Pastel est entièrement gratuit. Il suffit de créer un compte pour commencer à enregistrer vos rêves."
+        },
+        "dreamTypes": {
+          "question": "Quels types de rêves puis-je suivre ?",
+          "answer": "Vous pouvez enregistrer des rêves classiques, des rêves lucides, des cauchemars et des rêves érotiques, ainsi que des événements du sommeil comme la paralysie du sommeil, la somniloquie, le somnambulisme ou l'apnée du sommeil. Chaque entrée peut préciser sa clarté, le moment où elle s'est produite, votre humeur et des tags."
+        },
+        "aiAnalysis": {
+          "question": "Comment fonctionne l'analyse des rêves par IA ?",
+          "answer": "Ouvrez l'un de vos rêves et lancez son analyse : Pastel transmet son contenu à Mistral AI et affiche une interprétation en quelques secondes. La page d'insights présente ensuite vos statistiques, dont le nombre de rêves analysés."
+        },
+        "privacy": {
+          "question": "Mes rêves sont-ils privés ?",
+          "answer": "Oui. Vos rêves sont chiffrés dans la base de données de Pastel et ne sont visibles que depuis votre compte. L'analyse par IA est confiée à Mistral AI, une entreprise française soumise au RGPD européen."
+        },
+        "voiceDictation": {
+          "question": "Puis-je dicter mes rêves à la voix ?",
+          "answer": "Oui. La dictée vocale vous permet de raconter votre rêve dès le réveil, sans taper. Elle nécessite un navigateur compatible (comme Chrome, Edge ou Safari) et l'accès au micro."
+        },
+        "mobileLanguages": {
+          "question": "Puis-je utiliser Pastel sur mobile et dans d'autres langues ?",
+          "answer": "Pastel fonctionne dans n'importe quel navigateur, sur ordinateur comme sur mobile, avec une navigation pensée pour les petits écrans. Il est disponible en français et en anglais, en mode clair ou sombre."
+        }
+      }
+    },
     "footer": {
       "rights": "Tous droits réservés.",
       "features": "Fonctionnalités",
-      "demo": "Démo"
+      "demo": "Démo",
+      "faq": "FAQ"
     }
   },
   "meta": {
     "landing": {
-      "title": "Pastel - Accueil",
-      "ogTitle": "Pastel - Accueil",
-      "description": "Bienvenue sur Pastel, votre plateforme de création de contenu.",
-      "ogDescription": "Bienvenue sur Pastel, votre plateforme de création de contenu."
+      "title": "Pastel - Votre journal de rêves",
+      "ogTitle": "Pastel - Votre journal de rêves",
+      "description": "Pastel est un journal de rêves en ligne et gratuit : notez vos rêves, cauchemars et rêves lucides, et obtenez une analyse par IA de chacun d'eux.",
+      "ogDescription": "Pastel est un journal de rêves en ligne et gratuit : notez vos rêves, cauchemars et rêves lucides, et obtenez une analyse par IA de chacun d'eux."
     },
     "auth": {
       "signIn": {

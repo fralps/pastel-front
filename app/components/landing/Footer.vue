@@ -3,7 +3,7 @@ import type { NavigationMenuItem } from '@nuxt/ui';
 
 const { t } = useI18n();
 
-const items: NavigationMenuItem[] = [
+const items = computed<NavigationMenuItem[]>(() => [
   {
     label: t('landing.footer.features'),
     to: '#features'
@@ -11,8 +11,12 @@ const items: NavigationMenuItem[] = [
   {
     label: t('landing.footer.demo'),
     to: '#demo'
+  },
+  {
+    label: t('landing.footer.faq'),
+    to: '#faq'
   }
-];
+]);
 </script>
 
 <template>
