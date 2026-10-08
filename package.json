@@ -28,7 +28,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "oxfmt": "^0.68.0",
+    "oxfmt": "^0.71.0",
     "oxlint": "^1.85.0",
     "typescript": "^7.0.2",
     "vue-tsc": "^3.3.12",
