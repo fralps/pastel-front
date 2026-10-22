@@ -1,6 +1,9 @@
 import { useFetch as useBaseFetch, useNuxtApp } from 'nuxt/app';
 
-export const useCustomFetch: typeof useBaseFetch = (request, options) => {
+export const useCustomFetch: typeof useBaseFetch = (
+  request: Parameters<typeof useBaseFetch>[0],
+  options?: Parameters<typeof useBaseFetch>[1]
+) => {
   const { $customFetch } = useNuxtApp() as unknown as {
     $customFetch: typeof globalThis.$fetch;
   };
