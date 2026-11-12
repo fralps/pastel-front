@@ -23,7 +23,7 @@
     "@pinia/nuxt": "^1.0.3",
     "nuxt": "^4.6.3",
     "pinia-plugin-persistedstate": "^4.7.1",
-    "vue": "^3.5.44",
+    "vue": "^3.5.45",
     "vue-router": "^5.4.0",
     "zod": "^4.6.7"
   },
